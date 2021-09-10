@@ -43,6 +43,27 @@ class GroupController extends Controller
         return $group;
     }
 
+    //add users to group
+    public function addUserToGroup(Request $request)
+    {
+        $group = $this->groupRepository->attachUserToGroup($request);
+        return $group;
+    }
+
+    //add file to group
+    public function addFileToGroup(Request $request)
+    {
+         $group = $this->groupRepository->attachFileToGroup($request);
+         return $group;
+    }
+
+    //add file to group
+    public function addTagToGroup(Request $request)
+    {
+         $group = $this->groupRepository->attachTagToGroup($request);
+         return $group;
+    }
+
     //delete
     public function destroy($id)
     {

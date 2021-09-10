@@ -1,127 +1,246 @@
 <template>
-<div class="app-container app-theme-white body-tabs-shadow fixed-sidebar fixed-header">
-
+  <div
+    class="
+      app-container app-theme-white
+      body-tabs-shadow
+      fixed-sidebar fixed-header
+    "
+  >
     <Header />
 
     <div class="app-main">
-        <SideBar />
-        <div class="app-main__outer">
+      <SideBar />
+      <div class="app-main__outer">
         <div class="app-main__inner">
-            <div class="app-page-title">
-                <div class="page-title-wrapper">
-                    <div class="page-title-heading">
-                        <div class="page-title-icon">
-                            <i class="pe-7s-home icon-gradient bg-mean-fruit">
-                            </i>
-                        </div>
-                        <div> All Groups
-                            <div class="page-title-subheading">
-                                Welcome to C80 electronic document management system
-                            </div>
-                        </div>
-                    </div>
+          <div class="app-page-title">
+            <div class="page-title-wrapper">
+              <div class="page-title-heading">
+                <div class="page-title-icon">
+                  <i class="pe-7s-home icon-gradient bg-mean-fruit"> </i>
                 </div>
-            </div>
-
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="main-card mb-3 card">
-
-
-                        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous" />
-<div class="container">
-    <div class="row">
-        <div class="col-md-5">
-            <div class="project-info-box mt-0">
-                <h5>PROJECT DETAILS</h5>
-                <p class="mb-0">Vivamus pellentesque, felis in aliquam ullamcorper, lorem tortor porttitor erat, hendrerit porta nunc tellus eu lectus. Ut vel imperdiet est. Pellentesque condimentum, dui et blandit laoreet, quam nisi tincidunt tortor.</p>
-            </div><!-- / project-info-box -->
-
-            <div class="project-info-box">
-                <p><b>Client:</b> CUPCAKE CO</p>
-                <p><b>Date:</b> 14.02.2020</p>
-                <p><b>Designer:</b> James Doe</p>
-                <p><b>Tools:</b> Illustrator</p>
-                <p class="mb-0"><b>Budget:</b> $500</p>
-            </div><!-- / project-info-box -->
-
-            <div class="project-info-box mt-0 mb-0">
-                <p class="mb-0">
-                    <span class="fw-bold mr-10 va-middle hide-mobile">Share:</span>
-                    <a href="#x" class="btn btn-xs btn-facebook btn-circle btn-icon mr-5 mb-0"><i class="fab fa-facebook-f"></i></a>
-                    <a href="#x" class="btn btn-xs btn-twitter btn-circle btn-icon mr-5 mb-0"><i class="fab fa-twitter"></i></a>
-                    <a href="#x" class="btn btn-xs btn-pinterest btn-circle btn-icon mr-5 mb-0"><i class="fab fa-pinterest"></i></a>
-                    <a href="#x" class="btn btn-xs btn-linkedin btn-circle btn-icon mr-5 mb-0"><i class="fab fa-linkedin-in"></i></a>
-                </p>
-            </div><!-- / project-info-box -->
-        </div><!-- / column -->
-
-        <div class="col-md-7">
-            <img src="https://via.placeholder.com/400x300/FFB6C1/000000" alt="project-image" class="rounded">
-            <div class="project-info-box">
-                <p><b>Categories:</b> Design, Illustration</p>
-                <p><b>Skills:</b> Illustrator</p>
-            </div><!-- / project-info-box -->
-        </div><!-- / column -->
-    </div>
-</div>
-
-
-
-
-                    </div>
+                <div>
+                  Group Details
+                  <div class="page-title-subheading">
+                    Welcome to C80 electronic document management system
+                  </div>
                 </div>
+              </div>
             </div>
+          </div>
 
+          <div class="row">
+            <div class="col-md-12">
+              <div class="main-card mb-3 card">
+                <div class="container-fluid">
+                  <div class="row">
+                    <div class="col-md-8">
+                      <div class="project-info-box mt-0">
+                        <h5>
+                          <strong>{{ group.name }} Details</strong>
+                        </h5>
+                        <p class="mb-0 text-justify">
+                          <small>{{ group.description }}</small>
+                        </p>
+                      </div>
+                      <!-- / project-info-box -->
+                      <div class="project-info-box">
+                        <p>
+                          <strong>Creator Name:</strong> {{ group.user.name }}
+                        </p>
+                        <p>
+                          <strong>Creator Email:</strong> {{ group.user.email }}
+                        </p>
+                        <p>
+                          <strong>Creator Phone:</strong> {{ group.user.phone }}
+                        </p>
+                        <p>
+                          <strong>Created Date:</strong>
+                          {{ formatDate(group.created_at) }}
+                        </p>
+                      </div>
+                      <!-- / project-info-box -->
+                    </div>
+                    <!-- / column -->
+                    <div class="col-md-4">
+                    <div class="project-info-box">
+                       <div class="form-group">
+                            <label for="name"> <strong>Add User</strong></label>
+                            <select v-model="selected_user" class="form-control form-control-md">
+                                <option
+                                v-for="(userData, index) in users"
+                                v-bind:value="userData.id"
+                                :key="index"
+                                class="text-dark"
+                                >
+                                {{ userData.name }}
+                                </option>
+                            </select><br>
+                             <button
+                            type="submit"
+                            @click="onSubmitUser()"
+                            class="btn btn-dark btn-lg"
+                            title="Add user to group"
+                            >
+                            <i class="pe-7s-add-user"></i>
+                            </button>
+                            <router-link to="/" class="btn btn-success btn-lg" title="View all users in this group"> <i class="pe-7s-look"></i
+                          > </router-link>
+                        </div>
+                        <div class="form-group">
+                            <label for="name"> <strong>Add File</strong></label>
+                              <select v-model="selected_file" class="form-control form-control-md">
+                                <option
+                                v-for="(file, index) in files"
+                                v-bind:value="file.id"
+                                :key="index"
+                                class="text-dark"
+                                >
+                                {{ file.name }}
+                                </option>
+                            </select><br>
+                              <button
+                            type="submit"
+                            @click="onSubmitFile()"
+                            class="btn btn-dark btn-lg"
+                            title="Add file to group"
+                            >
+                           <i class="pe-7s-add-user"></i>
+                            </button>
+                             <router-link to="/" class="btn btn-success btn-lg" title="View all all files in this group"> <i class="pe-7s-look"></i
+                          >  </router-link>
+                        </div>
+                        <div class="form-group">
+                            <label for="name"> <strong>Add Tag</strong></label>
+                             <select v-model="selected" class="form-control form-control-md">
+                                <option
+                                v-for="(tag, index) in tags"
+                                v-bind:value="tag.id"
+                                :key="index"
+                                class="text-dark"
+                                >
+                                {{ tag.name }}
+                                </option>
+                            </select><br>
+                              <button
+                            type="submit"
+                            @click="onSubmitTag()"
+                            class="btn btn-dark btn-lg"
+                            title="Add tag to group"
+                            >
+                            <i class="pe-7s-add-user"></i>
+                            </button>
+                             <router-link to="/" class="btn btn-success btn-lg" title="view all tags in this group"> <i class="pe-7s-look"></i
+                          > </router-link>
+                        </div>
+                      </div>
+                      <!-- / project-info-box -->
+                    </div>
+                    <!-- / column -->
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
         <Footer />
+      </div>
     </div>
-    </div>
-
-</div>
+  </div>
 </template>
 
 <script>
-
-import {mapGetters} from 'vuex'
-import axios from 'axios'
+import { mapGetters } from "vuex";
+import axios from "axios";
 
 export default {
-    name: 'GroupShow',
-    data() {
-        return {
-             group: {}
+  name: "GroupShow",
+  data() {
+    return {
+      group: {},
+      users: [],
+      files: [],
+      tags: [],
+      selected_tag: "",
+      selected_user: "",
+      selected_file: "",
+    };
+  },
+  components: {
+    SideBar: () => import("../../../components/SideBar.vue"),
+    Header: () => import("../../../components/Header.vue"),
+    Footer: () => import("../../../components/Footer.vue"),
+  },
+  created() {
+    this.getGroup(this.$route.params.id);
+    this.getMetrix();
+  },
+  methods: {
+    //get all groups
+    async getGroup(id) {
+      const response = await axios.get("groups/" + id);
+      this.group = response.data.data;
+    },
+    //format data
+    formatDate(dateString) {
+      const options = { year: "numeric", month: "long", day: "numeric" };
+      return new Date(dateString).toLocaleDateString(undefined, options);
+    },
+    //add users to group
+    async onSubmitUser() {
+        try {
+          const response = await axios.post("add-user-to-group", {
+            user_id: this.selected_user,
+            group_id: this.$route.params.id,
+          });
+          alert(response.data.message);
+        } catch (e) {
+          alert("Sorry select a user");
         }
     },
-    components : {
-        SideBar: () => import('../../../components/SideBar.vue'),
-        Header: () => import('../../../components/Header.vue'),
-        Footer: () => import('../../../components/Footer.vue')
-    },
-    created() {
-        this.getGroup(this.$route.params.id);
-    },
-    methods: {
-        async getGroup(id) {
-            const response = await axios.get('groups/' + id);
-            this.group = response.data.data;
-        },
-        formatDate (dateString){
-            const options = { year: "numeric", month: "long", day: "numeric" }
-            return new Date(dateString).toLocaleDateString(undefined, options)
+    //add file to group
+    async onSubmitFile() {
+        try {
+          const response = await axios.post("add-file-to-group", {
+            file_id: this.selected_file,
+            group_id: this.$route.params.id,
+          });
+          alert(response.data.message);
+        } catch (e) {
+          alert("Sorry select a user");
         }
     },
-    computed: {
-      ...mapGetters(['user'])
+    //add tag to group
+    async onSubmitTag() {
+        try {
+          const response = await axios.post("add-tag-to-group", {
+            tag_id: this.selected_tag,
+            group_id: this.$route.params.id,
+          });
+          alert(response.data.message);
+        } catch (e) {
+          alert("Sorry select a tag");
+        }
+    },
+    //metrix
+    async getMetrix() {
+        const response = await axios.get('attachment-helper');
+        this.users = response.data.users;
+        this.files = response.data.files;
+        this.tags = response.data.tags;
     }
-}
+  },
+  computed: {
+    ...mapGetters(["user"]),
+  },
+};
 </script>
 
 
 <style scoped>
-  body{
-    background:#f5f5f5;
-    margin-top:20px;}
+body {
+  background: #f5f5f5;
+  margin-top: 20px;
+}
 /*------- portfolio -------*/
 .project {
   margin: 15px 0;
@@ -177,354 +296,31 @@ export default {
   padding-bottom: 0;
   border-bottom: none;
 }
-img {
-    width: 100%;
-    max-width: 100%;
-    height: auto;
-    -webkit-backface-visibility: hidden;
-}
 .rounded {
-    border-radius: 5px !important;
-}
-.btn-xs.btn-icon {
-    width: 34px;
-    height: 34px;
-    max-width: 34px !important;
-    max-height: 34px !important;
-    font-size: 10px;
-    line-height: 34px;
-}
-/* facebook button */
-.btn-facebook, .btn-facebook:active, .btn-facebook:focus {
-  color: #fff !important;
-  background: #4e68a1;
-  border: 2px solid #4e68a1;
-}
-
-.btn-facebook:hover {
-  color: #fff !important;
-  background: #3b4f7a;
-  border: 2px solid #3b4f7a;
-}
-
-.btn-facebook-link, .btn-facebook-link:active, .btn-facebook-link:focus {
-  color: #4e68a1 !important;
-  background: transparent;
-  border: none;
-}
-
-.btn-facebook-link:hover {
-  color: #3b4f7a !important;
-}
-
-.btn-outline-facebook, .btn-outline-facebook:active, .btn-outline-facebook:focus {
-  color: #4e68a1 !important;
-  background: transparent;
-  border: 2px solid #4e68a1;
-}
-
-.btn-outline-facebook:hover {
-  color: #fff !important;
-  background: #4e68a1;
-  border: 2px solid #4e68a1;
-}
-
-/* twitter button */
-.btn-twitter, .btn-twitter:active, .btn-twitter:focus {
-  color: #fff !important;
-  background: #65b5f2;
-  border: 2px solid #65b5f2;
-}
-
-.btn-twitter:hover {
-  color: #fff !important;
-  background: #5294c6;
-  border: 2px solid #5294c6;
-}
-
-.btn-twitter:hover {
-  color: #fff !important;
-  background: #5294c6;
-  border: 2px solid #5294c6;
-}
-
-.btn-twitter-link, .btn-twitter-link:active, .btn-twitter-link:focus {
-  color: #65b5f2 !important;
-  background: transparent;
-  border: none;
-}
-
-.btn-twitter-link:hover {
-  color: #5294c6 !important;
-}
-
-.btn-outline-twitter, .btn-outline-twitter:active, .btn-outline-twitter:focus {
-  color: #65b5f2 !important;
-  background: transparent;
-  border: 2px solid #65b5f2;
-}
-
-.btn-outline-twitter:hover {
-  color: #fff !important;
-  background: #65b5f2;
-  border: 2px solid #65b5f2;
-}
-
-/* google button */
-.btn-google, .btn-google:active, .btn-google:focus {
-  color: #fff !important;
-  background: #e05d4b;
-  border: 2px solid #e05d4b;
-}
-
-.btn-google:hover {
-  color: #fff !important;
-  background: #b94c3d;
-  border: 2px solid #b94c3d;
-}
-
-.btn-google-link, .btn-google-link:active, .btn-google-link:focus {
-  color: #e05d4b !important;
-  background: transparent;
-  border: none;
-}
-
-.btn-google-link:hover {
-  color: #b94c3d !important;
-}
-
-.btn-outline-google, .btn-outline-google:active, .btn-outline-google:focus {
-  color: #e05d4b !important;
-  background: transparent;
-  border: 2px solid #e05d4b;
-}
-
-.btn-outline-google:hover {
-  color: #fff !important;
-  background: #e05d4b;
-  border: 2px solid #e05d4b;
-}
-
-/* linkedin button */
-.btn-linkedin, .btn-linkedin:active, .btn-linkedin:focus {
-  color: #fff !important;
-  background: #2083bc;
-  border: 2px solid #2083bc;
-}
-
-.btn-linkedin:hover {
-  color: #fff !important;
-  background: #186592;
-  border: 2px solid #186592;
-}
-
-.btn-linkedin-link, .btn-linkedin-link:active, .btn-linkedin-link:focus {
-  color: #2083bc !important;
-  background: transparent;
-  border: none;
-}
-
-.btn-linkedin-link:hover {
-  color: #186592 !important;
-}
-
-.btn-outline-linkedin, .btn-outline-linkedin:active, .btn-outline-linkedin:focus {
-  color: #2083bc !important;
-  background: transparent;
-  border: 2px solid #2083bc;
-}
-
-.btn-outline-linkedin:hover {
-  color: #fff !important;
-  background: #2083bc;
-  border: 2px solid #2083bc;
-}
-
-/* pinterest button */
-.btn-pinterest, .btn-pinterest:active, .btn-pinterest:focus {
-  color: #fff !important;
-  background: #d2373b;
-  border: 2px solid #d2373b;
-}
-
-.btn-pinterest:hover {
-  color: #fff !important;
-  background: #ad2c2f;
-  border: 2px solid #ad2c2f;
-}
-
-.btn-pinterest-link, .btn-pinterest-link:active, .btn-pinterest-link:focus {
-  color: #d2373b !important;
-  background: transparent;
-  border: none;
-}
-
-.btn-pinterest-link:hover {
-  color: #ad2c2f !important;
-}
-
-.btn-outline-pinterest, .btn-outline-pinterest:active, .btn-outline-pinterest:focus {
-  color: #d2373b !important;
-  background: transparent;
-  border: 2px solid #d2373b;
-}
-
-.btn-outline-pinterest:hover {
-  color: #fff !important;
-  background: #d2373b;
-  border: 2px solid #d2373b;
-}
-
-/* dribble button */
-.btn-dribbble, .btn-dribbble:active, .btn-dribbble:focus {
-  color: #fff !important;
-  background: #ec5f94;
-  border: 2px solid #ec5f94;
-}
-
-.btn-dribbble:hover {
-  color: #fff !important;
-  background: #b4446e;
-  border: 2px solid #b4446e;
-}
-
-.btn-dribbble-link, .btn-dribbble-link:active, .btn-dribbble-link:focus {
-  color: #ec5f94 !important;
-  background: transparent;
-  border: none;
-}
-
-.btn-dribbble-link:hover {
-  color: #b4446e !important;
-}
-
-.btn-outline-dribbble, .btn-outline-dribbble:active, .btn-outline-dribbble:focus {
-  color: #ec5f94 !important;
-  background: transparent;
-  border: 2px solid #ec5f94;
-}
-
-.btn-outline-dribbble:hover {
-  color: #fff !important;
-  background: #ec5f94;
-  border: 2px solid #ec5f94;
-}
-
-/* instagram button */
-.btn-instagram, .btn-instagram:active, .btn-instagram:focus {
-  color: #fff !important;
-  background: #4c5fd7;
-  border: 2px solid #4c5fd7;
-}
-
-.btn-instagram:hover {
-  color: #fff !important;
-  background: #4252ba;
-  border: 2px solid #4252ba;
-}
-
-.btn-instagram-link, .btn-instagram-link:active, .btn-instagram-link:focus {
-  color: #4c5fd7 !important;
-  background: transparent;
-  border: none;
-}
-
-.btn-instagram-link:hover {
-  color: #4252ba !important;
-}
-
-.btn-outline-instagram, .btn-outline-instagram:active, .btn-outline-instagram:focus {
-  color: #4c5fd7 !important;
-  background: transparent;
-  border: 2px solid #4c5fd7;
-}
-
-.btn-outline-instagram:hover {
-  color: #fff !important;
-  background: #4c5fd7;
-  border: 2px solid #4c5fd7;
-}
-
-/* youtube button */
-.btn-youtube, .btn-youtube:active, .btn-youtube:focus {
-  color: #fff !important;
-  background: #e52d27;
-  border: 2px solid #e52d27;
-}
-
-.btn-youtube:hover {
-  color: #fff !important;
-  background: #b31217;
-  border: 2px solid #b31217;
-}
-
-.btn-youtube-link, .btn-youtube-link:active, .btn-youtube-link:focus {
-  color: #e52d27 !important;
-  background: transparent;
-  border: none;
-}
-
-.btn-youtube-link:hover {
-  color: #b31217 !important;
-}
-
-.btn-outline-youtube, .btn-outline-youtube:active, .btn-outline-youtube:focus {
-  color: #e52d27 !important;
-  background: transparent;
-  border: 2px solid #e52d27;
-}
-
-.btn-outline-youtube:hover {
-  color: #fff !important;
-  background: #e52d27;
-  border: 2px solid #e52d27;
-}
-.btn-xs.btn-icon span, .btn-xs.btn-icon i {
-    line-height: 34px;
-}
-.btn-icon.btn-circle span, .btn-icon.btn-circle i {
-    margin-top: -1px;
-    margin-right: -1px;
-}
-.btn-icon i {
-    margin-top: -1px;
-}
-.btn-icon span, .btn-icon i {
-    display: block;
-    line-height: 50px;
-}
-a.btn, a.btn-social {
-    display: inline-block;
+  border-radius: 5px !important;
 }
 .mr-5 {
-    margin-right: 5px !important;
+  margin-right: 5px !important;
 }
 .mb-0 {
-    margin-bottom: 0 !important;
-}
-.btn-facebook, .btn-facebook:active, .btn-facebook:focus {
-    color: #fff !important;
-    background: #4e68a1;
-    border: 2px solid #4e68a1;
-}
-.btn-circle {
-    border-radius: 50% !important;
-}
-.project-info-box p {
-    margin-bottom: 15px;
-    padding-bottom: 15px;
-    border-bottom: 1px solid #d5dadb;
-}
-p {
-    font-family: "Barlow", sans-serif !important;
-    font-weight: 300;
-    font-size: 1rem;
-    color: #686c6d;
-    letter-spacing: 0.03rem;
-    margin-bottom: 10px;
-}
-b, strong {
-    font-weight: 700 !important;
+  margin-bottom: 0 !important;
 }
 
+.project-info-box p {
+  margin-bottom: 15px;
+  padding-bottom: 15px;
+  border-bottom: 1px solid #d5dadb;
+}
+p {
+  font-family: "Barlow", sans-serif !important;
+  font-weight: 300;
+  font-size: 1rem;
+  color: #686c6d;
+  letter-spacing: 0.03rem;
+  margin-bottom: 10px;
+}
+b,
+strong {
+  font-weight: 700 !important;
+}
 </style>

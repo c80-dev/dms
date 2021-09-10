@@ -27,6 +27,10 @@ export default new VueRouter({
         { path: '/file-edit/:id', name: 'FileEdit', component: () => import('./views/pages/file/FileEdit.vue') },
         { path: '/file-show/:id', name: 'FileShow', component: () => import('./views/pages/file/FileShow.vue') },
 
-        { path: '/change-password', name: 'ChangePassword', component: () => import('./views/pages/user/ChangePassword.vue') }
+        { path: '/profile/:id', name: 'Profile', component: () => import('./views/pages/Profile.vue') },
+        { path: '/profile-edit/:id', name: 'UserEdit', component: () => import('./views/pages/user/UserEdit.vue') },
+        { path: '/users', name: 'UserAll', component: () => import('./views/pages/user/UserAll.vue') },
+
+        { path: '/change-password/:id', name: 'ChangePassword', component: () => import('./views/pages/user/ChangePassword.vue') }
     ]
 });

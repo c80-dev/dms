@@ -105,7 +105,7 @@
                         </ul>
                     </li>
                     <li>
-                        <router-link  to="index.html">
+                        <router-link  to="/users">
                             <i class="metismenu-icon pe-7s-users"></i>
                             Users
                         </router-link>

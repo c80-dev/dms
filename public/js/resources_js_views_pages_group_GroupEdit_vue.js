@@ -73,15 +73,38 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  name: 'GroupEdit',
+  name: "GroupEdit",
   data: function data() {
     return {
       group: {},
-      error: '',
-      success: ''
+      error: "",
+      success: ""
     };
   },
   components: {
@@ -113,7 +136,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               case 0:
                 _context.prev = 0;
                 _context.next = 3;
-                return axios__WEBPACK_IMPORTED_MODULE_1___default().post('groups/' + id, {
+                return axios__WEBPACK_IMPORTED_MODULE_1___default().post("groups/" + id, {
                   name: _this.group.name,
                   description: _this.group.description,
                   _method: "patch"
@@ -149,7 +172,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               case 0:
                 _context2.prev = 0;
                 _context2.next = 3;
-                return axios__WEBPACK_IMPORTED_MODULE_1___default().get('groups/' + id);
+                return axios__WEBPACK_IMPORTED_MODULE_1___default().get("groups/" + id);
 
               case 3:
                 response = _context2.sent;
@@ -174,10 +197,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   created: function created() {
     this.getGroupDetail(this.$route.params.id);
   },
-  updated: function updated() {
-    this.getGroupDetail(this.$route.params.id);
-  },
-  computed: _objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_2__.mapGetters)(['user']))
+  computed: _objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_2__.mapGetters)(["user"]))
 });
 
 /***/ }),
@@ -270,7 +290,7 @@ var render = function() {
     "div",
     {
       staticClass:
-        "app-container app-theme-white body-tabs-shadow fixed-sidebar fixed-header"
+        "\n    app-container app-theme-white\n    body-tabs-shadow\n    fixed-sidebar fixed-header\n  "
     },
     [
       _c("Header"),
@@ -373,7 +393,7 @@ var render = function() {
                           }
                         }
                       },
-                      [_vm._v("Submit")]
+                      [_vm._v("\n            Submit\n          ")]
                     )
                   ],
                   1
@@ -404,10 +424,10 @@ var staticRenderFns = [
           ]),
           _vm._v(" "),
           _c("div", [
-            _vm._v(" Edit Group\r\n                            "),
+            _vm._v("\n                Edit Group\n                "),
             _c("div", { staticClass: "page-title-subheading" }, [
               _vm._v(
-                "\r\n                                Welcome to C80 electronic document management system\r\n                            "
+                "\n                  Welcome to C80 electronic document management system\n                "
               )
             ])
           ])

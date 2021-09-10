@@ -11,5 +11,7 @@ interface AuthRepositoryInterface
     public function refresh();
 
     public function userProfile();
-    
+
+    public function delete($id);
+
 }

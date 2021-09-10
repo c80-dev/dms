@@ -93,7 +93,7 @@ class UserRepository implements UserRepositoryInterface
                     'message' => $validator->errors()->first()
                 ], 422);
             }else {
-                return $this->action->image($request, $id);
+                return $this->action->imageUpload($request, $id);
             }
       }
 

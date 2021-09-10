@@ -1,194 +1,201 @@
 <template>
-<div class="app-container app-theme-white body-tabs-shadow fixed-sidebar fixed-header">
-
+  <div
+    class="
+      app-container app-theme-white
+      body-tabs-shadow
+      fixed-sidebar fixed-header
+    "
+  >
     <Header />
 
     <div class="app-main">
-        <SideBar />
-        <div class="app-main__outer">
+      <SideBar />
+      <div class="app-main__outer">
         <div class="app-main__inner">
-            <div class="app-page-title">
-                <div class="page-title-wrapper">
-                    <div class="page-title-heading">
-                        <div class="page-title-icon">
-                            <i class="pe-7s-home icon-gradient bg-mean-fruit">
-                            </i>
-                        </div>
-                        <div> All Groups
-                            <div class="page-title-subheading">
-                                Welcome to C80 electronic document management system
+          <div class="app-page-title">
+            <div class="page-title-wrapper">
+              <div class="page-title-heading">
+                <div class="page-title-icon">
+                  <i class="pe-7s-home icon-gradient bg-mean-fruit"> </i>
+                </div>
+                <div>
+                  Profile
+                  <div class="page-title-subheading">
+                    Welcome to C80 electronic document management system
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-5 offset-md-3">
+              <div class="main-card mb-3 card">
+                <div class="container">
+                  <div class="row profile">
+                    <div class="col-md-12">
+                      <div class="profile-sidebar">
+                        <!-- SIDEBAR USER TITLE -->
+                        <div class="profile-usertitle">
+                            <div class="profile-userpic" v-if="user.image_path">
+                                <img width="40" class="rounded-circle" :src="asset(`storage/uploads/${user.image_path}`)" alt="">
                             </div>
+                             <div class="profile-userpic" v-else>
+                                <img width="40" class="rounded-circle" :src="asset('images/avt.png')" alt="">
+                            </div>
+                          <div class="profile-usertitle-name"> {{ user.name }} </div>
+                          <div class="profile-usertitle-job"> {{ user.roles[0].name }}</div>
                         </div>
+                        <!-- END SIDEBAR USER TITLE -->
+                        <!-- SIDEBAR BUTTONS -->
+                        <div class="profile-userbuttons">
+                            <input
+                                type="file"
+                                class="form-control form-control-md"
+                                id="file"
+                                name="file"
+                                @change="selectFile"
+                            /> <br>
+                          <button type="button" @click="onSubmit(user.id)" class="btn btn-success btn-sm">
+                           Change Picture
+                          </button>
+                        </div>
+                        <!-- END SIDEBAR BUTTONS -->
+                        <!-- SIDEBAR MENU -->
+                        <div class="profile-usermenu mb-10">
+                          <ul class="nav">
+                            <li class="active">
+                              <a href="#">
+                                <i class="glyphicon glyphicon-home"></i>
+                                Overview
+                              </a>
+                            </li>
+                            <li>
+                              <router-link
+                                v-bind:to="'/profile-edit/' + user.id"
+                              >
+                                <i class="glyphicon glyphicon-user"></i>
+                                Account Settings
+                              </router-link>
+                            </li>
+                          </ul>
+                        </div>
+                        <!-- END MENU -->
+
+                        <div class="portlet light bordered">
+                          <div>
+                            <h4 class="profile-desc-title">
+                              About {{ user.name }}
+                            </h4>
+                            <span class="profile-desc-text">
+                              Lorem ipsum dolor sit amet diam nonummy nibh
+                              dolore.
+                            </span>
+                            <br>
+                              <small> <strong>Joined : </strong> {{ user.created_at }}</small>
+                            <div class="margin-top-20 profile-desc-link">
+                              <i class="fa fa-twitter"></i>
+                              <span
+                                >@{{user.twitter}}</span
+                              >
+                            </div>
+                            <div class="margin-top-20 profile-desc-link">
+                              <i class="fa fa-facebook"></i>
+                              <span
+                                >{{user.facebook}}</span
+                              >
+                            </div>
+                            <div class="margin-top-20 profile-desc-link">
+                              <i class="fa fa-linkedin"></i>
+                              <span
+                                >{{user.linkedin}}</span
+                              >
+                            </div>
+                            <div class="margin-top-20 profile-desc-link">
+                              <i class="fa fa-envelope"></i>
+                              <span
+                                >{{user.email}}</span
+                              >
+                            </div>
+                            <div class="margin-top-20 profile-desc-link">
+                              <i class="fa fa-phone"></i>
+                              <span
+                                >{{user.phone}}</span
+                              >
+                            </div>
+                          </div>
+                        </div>
+                      </div>
                     </div>
+                  </div>
                 </div>
+              </div>
             </div>
-
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="main-card mb-3 card">
-
-
-
-
-                        <div class="container">
-    <div class="row profile">
-		<div class="col-md-3">
-			<div class="profile-sidebar">
-				<!-- SIDEBAR USERPIC -->
-				<div class="profile-userpic">
-					<img src="https://gravatar.com/avatar/31b64e4876d603ce78e04102c67d6144?s=80&d=https://codepen.io/assets/avatars/user-avatar-80x80-bdcd44a3bfb9a5fd01eb8b86f9e033fa1a9897c3a15b33adfc2649a002dab1b6.png" class="img-responsive" alt="">
-				</div>
-				<!-- END SIDEBAR USERPIC -->
-				<!-- SIDEBAR USER TITLE -->
-				<div class="profile-usertitle">
-					<div class="profile-usertitle-name">
-						Jason Davis
-					</div>
-					<div class="profile-usertitle-job">
-						Developer
-					</div>
-				</div>
-				<!-- END SIDEBAR USER TITLE -->
-				<!-- SIDEBAR BUTTONS -->
-				<div class="profile-userbuttons">
-					<button type="button" class="btn btn-success btn-sm">Follow</button>
-					<button type="button" class="btn btn-danger btn-sm">Message</button>
-				</div>
-				<!-- END SIDEBAR BUTTONS -->
-				<!-- SIDEBAR MENU -->
-				<div class="profile-usermenu">
-					<ul class="nav">
-						<li class="active">
-							<a href="#">
-							<i class="glyphicon glyphicon-home"></i>
-							Overview </a>
-						</li>
-						<li>
-							<a href="https://codepen.io/jasondavis/pen/jVRwaG?editors=1000">
-							<i class="glyphicon glyphicon-user"></i>
-							Account Settings </a>
-						</li>
-						<li>
-							<a href="#" target="_blank">
-							<i class="glyphicon glyphicon-ok"></i>
-							Tasks </a>
-						</li>
-						<li>
-							<a href="#">
-							<i class="glyphicon glyphicon-flag"></i>
-							Help </a>
-						</li>
-					</ul>
-				</div>
-				<!-- END MENU -->
-
-           <div class="portlet light bordered">
-                                                <!-- STAT -->
-                                                <div class="row list-separated profile-stat">
-                                                    <div class="col-md-4 col-sm-4 col-xs-6">
-                                                        <div class="uppercase profile-stat-title"> 37 </div>
-                                                        <div class="uppercase profile-stat-text"> Projects </div>
-                                                    </div>
-                                                    <div class="col-md-4 col-sm-4 col-xs-6">
-                                                        <div class="uppercase profile-stat-title"> 51 </div>
-                                                        <div class="uppercase profile-stat-text"> Tasks </div>
-                                                    </div>
-                                                    <div class="col-md-4 col-sm-4 col-xs-6">
-                                                        <div class="uppercase profile-stat-title"> 61 </div>
-                                                        <div class="uppercase profile-stat-text"> Uploads </div>
-                                                    </div>
-                                                </div>
-                                                <!-- END STAT -->
-                                                 <div>
-                                                    <h4 class="profile-desc-title">About Jason Davis</h4>
-                                                    <span class="profile-desc-text"> Lorem ipsum dolor sit amet diam nonummy nibh dolore. </span>
-                                                    <div class="margin-top-20 profile-desc-link">
-                                                        <i class="fa fa-globe"></i>
-                                                        <a href="https://www.apollowebstudio.com">apollowebstudio.com</a>
-                                                    </div>
-                                                    <div class="margin-top-20 profile-desc-link">
-                                                        <i class="fa fa-twitter"></i>
-                                                        <a href="https://www.twitter.com/jasondavisfl/">@jasondavisfl</a>
-                                                    </div>
-                                                    <div class="margin-top-20 profile-desc-link">
-                                                        <i class="fa fa-facebook"></i>
-                                                        <a href="https://www.facebook.com/">JasonDavisFL</a>
- </div></div></div>
-
-
-
-			</div>
-		</div>
-		<div class="col-md-9">
-            <div class="profile-content">
-			   Some user related content goes here...
-            </div>
-		</div>
-	</div>
-</div>
-
-
-
-
-
-                    </div>
-                </div>
-            </div>
-
+          </div>
         </div>
         <Footer />
+      </div>
     </div>
-    </div>
-
-</div>
+  </div>
 </template>
 
 <script>
-
-import {mapGetters} from 'vuex'
-import axios from 'axios'
+import axios from "axios";
 
 export default {
-    name: 'GroupShow',
-    data() {
-        return {
-            group: {}
+  name: "Profile",
+  data() {
+    return {
+      user: {},
+      file: null,
+    };
+  },
+  components: {
+    SideBar: () => import("../../components/SideBar.vue"),
+    Header: () => import("../../components/Header.vue"),
+    Footer: () => import("../../components/Footer.vue"),
+  },
+  created() {
+        this.getProfile(this.$route.params.id);
+  },
+  methods: {
+    selectFile(event) {
+      this.file = event.target.files[0];
+    },
+    async onSubmit(id) {
+        try {
+            var formData = new FormData;
+            formData.append("image_path", this.file, this.name);
+            const response = await axios.post("change-picture/" + id, formData, {
+                headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+            });
+            alert(response.data.message);
+        } catch (e) {
+            alert(e.response.data.message);
         }
     },
-    components : {
-        SideBar: () => import('../../../components/SideBar.vue'),
-        Header: () => import('../../../components/Header.vue'),
-        Footer: () => import('../../../components/Footer.vue')
+    async getProfile(id) {
+        const response = await axios.get("users/" + id);
+        this.user = response.data.data;
     },
-    created() {
-        this.getGroup(this.$route.params.id);
+    formatDate(dateString) {
+        const options = { year: "numeric", month: "long", day: "numeric" };
+        return new Date(dateString).toLocaleDateString(undefined, options);
     },
-    methods: {
-        async getGroup(id) {
-            const response = await axios.get('groups/' + id);
-            this.group = response.data.data;
-        },
-        formatDate (dateString){
-            const options = { year: "numeric", month: "long", day: "numeric" }
-            return new Date(dateString).toLocaleDateString(undefined, options)
-        }
-    },
-    computed: {
-      ...mapGetters(['user'])
-    }
-}
+  }
+};
 </script>
 
 
 <style scoped>
-    /***
+/***
 User Profile Sidebar by @keenthemes
 A component of Metronic Theme - #1 Selling Bootstrap 3 Admin Theme in Themeforest: https://j.mp/metronictheme
 Licensed under MIT
 ***/
 
 body {
-  background: #F1F3FA;
+  background: #f1f3fa;
 }
 
 /* Profile container */
@@ -203,13 +210,14 @@ body {
 }
 
 .profile-userpic img {
-  float: none;
-  margin: 0 auto;
-  width: 50%;
-  height: 50%;
+  width: 20%;
+  height: 20%;
   -webkit-border-radius: 50% !important;
   -moz-border-radius: 50% !important;
   border-radius: 50% !important;
+}
+#file{
+    border: 0px solid black;
 }
 
 .profile-usertitle {
@@ -294,72 +302,93 @@ body {
   background: #fff;
   min-height: 460px;
 }
-a, button, code, div, img, input, label, li, p, pre, select, span, svg, table, td, textarea, th, ul {
-    -webkit-border-radius: 0!important;
-    -moz-border-radius: 0!important;
-    border-radius: 0!important;
+a,
+button,
+code,
+div,
+img,
+input,
+label,
+li,
+p,
+pre,
+select,
+span,
+svg,
+table,
+td,
+textarea,
+th,
+ul {
+  -webkit-border-radius: 0 !important;
+  -moz-border-radius: 0 !important;
+  border-radius: 0 !important;
 }
 .portlet {
-    margin-top: 0;
-    margin-bottom: 25px;
-    padding: 0;
-    border-radius: 4px;
+  margin-top: 0;
+  margin-bottom: 25px;
+  padding: 0;
+  border-radius: 4px;
 }
 .portlet.bordered {
-    border-left: 2px solid #e6e9ec!important;
+  border-left: 2px solid #e6e9ec !important;
 }
 .portlet.light {
-    padding: 12px 20px 15px;
-    background-color: #fff;
+  padding: 12px 20px 15px;
+  background-color: #fff;
 }
 .portlet.light.bordered {
-    border: 1px solid #e7ecf1!important;
+  border: 1px solid #e7ecf1 !important;
 }
 .list-separated {
-    margin-top: 10px;
-    margin-bottom: 15px;
+  margin-top: 10px;
+  margin-bottom: 15px;
 }
 .profile-stat {
-    padding-bottom: 20px;
-    border-bottom: 1px solid #f0f4f7;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #f0f4f7;
 }
 .profile-stat-title {
-    color: #7f90a4;
-    font-size: 25px;
-    text-align: center;
+  color: #7f90a4;
+  font-size: 25px;
+  text-align: center;
 }
 .uppercase {
-    text-transform: uppercase!important;
+  text-transform: uppercase !important;
 }
 
 .profile-stat-text {
-    color: #5b9bd1;
-    font-size: 10px;
-    font-weight: 600;
-    text-align: center;
+  color: #5b9bd1;
+  font-size: 10px;
+  font-weight: 600;
+  text-align: center;
 }
 .profile-desc-title {
-    color: #7f90a4;
-    font-size: 17px;
-    font-weight: 600;
+  color: #7f90a4;
+  font-size: 17px;
+  font-weight: 600;
 }
 .profile-desc-text {
-    color: #7e8c9e;
-    font-size: 14px;
+  color: #7e8c9e;
+  font-size: 14px;
 }
 .margin-top-20 {
-    margin-top: 20px!important;
+  margin-top: 20px !important;
 }
-[class*=" fa-"]:not(.fa-stack), [class*=" glyphicon-"], [class*=" icon-"], [class^=fa-]:not(.fa-stack), [class^=glyphicon-], [class^=icon-] {
-    display: inline-block;
-    line-height: 14px;
-    -webkit-font-smoothing: antialiased;
+[class*=" fa-"]:not(.fa-stack),
+[class*=" glyphicon-"],
+[class*=" icon-"],
+[class^="fa-"]:not(.fa-stack),
+[class^="glyphicon-"],
+[class^="icon-"] {
+  display: inline-block;
+  line-height: 14px;
+  -webkit-font-smoothing: antialiased;
 }
 .profile-desc-link i {
-    width: 22px;
-    font-size: 19px;
-    color: #abb6c4;
-    margin-right: 5px;
+  width: 22px;
+  font-size: 19px;
+  color: #abb6c4;
+  margin-right: 5px;
 }
-
 </style>

@@ -75,16 +75,38 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  name: 'GroupCreate',
+  name: "GroupCreate",
   data: function data() {
     return {
-      name: '',
-      description: '',
-      error: '',
-      success: ''
+      name: "",
+      description: "",
+      error: "",
+      success: ""
     };
   },
   components: {
@@ -116,7 +138,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               case 0:
                 _context.prev = 0;
                 _context.next = 3;
-                return axios__WEBPACK_IMPORTED_MODULE_1___default().post('groups', {
+                return axios__WEBPACK_IMPORTED_MODULE_1___default().post("groups", {
                   name: _this.name,
                   description: _this.description
                 });
@@ -144,11 +166,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       }))();
     },
     setDataToNull: function setDataToNull() {
-      this.name = '';
-      this.description = '';
+      this.name = "";
+      this.description = "";
     }
   },
-  computed: _objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_2__.mapGetters)(['user']))
+  computed: _objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_2__.mapGetters)(["user"]))
 });
 
 /***/ }),
@@ -241,7 +263,7 @@ var render = function() {
     "div",
     {
       staticClass:
-        "app-container app-theme-white body-tabs-shadow fixed-sidebar fixed-header"
+        "\n    app-container app-theme-white\n    body-tabs-shadow\n    fixed-sidebar fixed-header\n  "
     },
     [
       _c("Header"),
@@ -336,7 +358,7 @@ var render = function() {
                           }
                         }
                       },
-                      [_vm._v("Submit")]
+                      [_vm._v("\n            Submit\n          ")]
                     )
                   ],
                   1
@@ -367,10 +389,10 @@ var staticRenderFns = [
           ]),
           _vm._v(" "),
           _c("div", [
-            _vm._v(" Create Group\r\n                            "),
+            _vm._v("\n                Create Group\n                "),
             _c("div", { staticClass: "page-title-subheading" }, [
               _vm._v(
-                "\r\n                                Welcome to C80 electronic document management system\r\n                            "
+                "\n                  Welcome to C80 electronic document management system\n                "
               )
             ])
           ])

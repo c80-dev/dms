@@ -90,4 +90,8 @@ class AuthRepository implements AuthRepositoryInterface
           return $this->action->authUser();
       }
 
+      public function delete($id) {
+            return $this->action->delete($id);
+      }
+
 }

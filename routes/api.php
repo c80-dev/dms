@@ -29,6 +29,8 @@ Route::group(['middleware' => 'api', 'prefix' => 'v0.01'], function ($router) {
         //user routes
         Route::group(['middleware' => ['user']], function () {
 
+            Route::get('/attachment-helper', [App\Helpers\Helper::class, 'attachmentHelper']);
+
             //groups
             Route::get('/groups', [App\Http\Controllers\Api\GroupController::class, 'index']);
                 Route::get('/groups/{id}', [App\Http\Controllers\Api\GroupController::class, 'show']);
@@ -36,12 +38,24 @@ Route::group(['middleware' => 'api', 'prefix' => 'v0.01'], function ($router) {
                 Route::patch('/groups/{id}', [App\Http\Controllers\Api\GroupController::class, 'update']);
                 Route::delete('/groups/{id}', [App\Http\Controllers\Api\GroupController::class, 'destroy']);
 
-              //groups
+            //add
+            Route::post('/add-user-to-group', [App\Http\Controllers\Api\GroupController::class, 'addUserToGroup']);
+                Route::post('/add-file-to-group', [App\Http\Controllers\Api\GroupController::class, 'addFileToGroup']);
+                Route::post('/add-tag-to-group', [App\Http\Controllers\Api\GroupController::class, 'addTagToGroup']);
+
+            //groups
             Route::get('/tags', [App\Http\Controllers\Api\TagController::class, 'index']);
                 Route::get('/tags/{id}', [App\Http\Controllers\Api\TagController::class, 'show']);
                 Route::post('/tags', [App\Http\Controllers\Api\TagController::class, 'store']);
                 Route::patch('/tags/{id}', [App\Http\Controllers\Api\TagController::class, 'update']);
                 Route::delete('/tags/{id}', [App\Http\Controllers\Api\TagController::class, 'destroy']);
+
+            //files
+            Route::get('/files', [App\Http\Controllers\Api\FileController::class, 'index']);
+                Route::get('/files/{id}', [App\Http\Controllers\Api\FileController::class, 'show']);
+                Route::post('/files', [App\Http\Controllers\Api\FileController::class, 'store']);
+                Route::patch('/files/{id}', [App\Http\Controllers\Api\FileController::class, 'update']);
+                Route::delete('/files/{id}', [App\Http\Controllers\Api\FileController::class, 'destroy']);
 
 
             //auth routes
@@ -50,6 +64,7 @@ Route::group(['middleware' => 'api', 'prefix' => 'v0.01'], function ($router) {
                 Route::get('/user-profile', [App\Http\Controllers\Api\AuthController::class, 'userProfile']);
                 Route::patch('/change-password/{id}', [App\Http\Controllers\Api\UserController::class, 'changePassword']);
                 Route::patch('/update-profile/{id}', [App\Http\Controllers\Api\UserController::class, 'updateUserAcount']);
+                Route::post('/change-picture/{id}', [App\Http\Controllers\Api\UserController::class, 'updateImage']);
 
             //users routes
             Route::get('/users', [App\Http\Controllers\Api\UserController::class, 'index']);
@@ -59,9 +74,10 @@ Route::group(['middleware' => 'api', 'prefix' => 'v0.01'], function ($router) {
 
         //only admin secured routes
         Route::group(['middleware' => ['admin']], function () {
+            Route::get('/dashboard-metrix', [App\Helpers\Helper::class, 'dashbaordMetix']);
             //settings routes
             Route::apiResource('/settings', App\Http\Controllers\Api\SettingController::class);
-              Route::delete('/delete-user/{id}', [App\Http\Controllers\Api\AuthController::class, 'delete']);
+                Route::delete('/delete-user/{id}', [App\Http\Controllers\Api\AuthController::class, 'delete']);
 
             Route::get('/run-migrations', function () {
                 return Artisan::call('migrate', ["--force" => true ]);

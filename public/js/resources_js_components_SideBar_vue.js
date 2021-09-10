@@ -360,7 +360,7 @@ var render = function() {
           _c(
             "li",
             [
-              _c("router-link", { attrs: { to: "index.html" } }, [
+              _c("router-link", { attrs: { to: "/users" } }, [
                 _c("i", { staticClass: "metismenu-icon pe-7s-users" }),
                 _vm._v("\n                        Users\n                    ")
               ])

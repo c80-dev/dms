@@ -11,6 +11,8 @@ use App\Http\Resources\UserResource;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 use \Cviebrock\EloquentSluggable\Services\SlugService;
+use App\Helpers\FileProcessing;
+use Illuminate\Support\Facades\Storage;
 
 class UserAction
 {
@@ -18,12 +20,14 @@ class UserAction
     public $model;
     public $verification_token;
     public $role;
+    public $fileProcessing;
 
-    public function __construct(User $model,  VerificationToken $verification_token, Role $role)
+    public function __construct(User $model,  VerificationToken $verification_token, Role $role, FileProcessing $fileProcessing)
     {
        $this->model = $model;
        $this->verification_token = $verification_token;
        $this->role = $role;
+       $this->fileProcessing = $fileProcessing;
     }
 
     //create user account
@@ -88,7 +92,9 @@ class UserAction
     {
       $data = $this->model->where('id', '=', $id)->exists();
       if ($data) {
-          $user = $this->model->find($id);
+          $user = $this->model->with(['roles' => function($query) {
+            $query->select(['name']);
+       } ])->find($id);
           return new UserResource($user);
       }else {
         return response()->json([
@@ -179,6 +185,31 @@ class UserAction
                  'message' => 'Sorry this user do not exist'
              ], 404);
          }
+    }
+
+    //image upload
+    public function imageUpload($request, $id)
+    {
+        $data = $this->model->where('id', '=', $id)->exists();
+        if ($data) {
+            $user = $this->model->find($id);
+            $update = $user->update([
+                'image_path' => $this->fileProcessing->file_processing($request, 'image_path'),
+            ]);
+            if ($update) {
+                return response()->json([
+                 'message' => 'Profile image uploaded successfully'
+                ], 200);
+           }else {
+              return response()->json([
+                  'message' => 'Sorry unable to upload image'
+              ], 400);
+           }
+        }else {
+          return response()->json([
+              'message' => 'Sorry this data do not exist'
+          ], 404);
+        }
     }
 
     //delete user

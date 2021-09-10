@@ -47,6 +47,12 @@
                                 Settings
                             </a>
                         </li>
+                        <li class="dropdown nav-item">
+                            <router-link v-bind:to="'/change-password/'+ user.id"  class="nav-link">
+                                <i class="nav-link-icon fa fa-key"></i>
+                                Change Password
+                            </router-link>
+                        </li>
                     </ul>
                 </div>
                 <div class="app-header-right">
@@ -60,7 +66,10 @@
                             <div class="widget-content-wrapper">
                                 <div class="widget-content-left">
                                     <div class="btn-group">
-                                        <a data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="p-0 btn">
+                                        <a data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="p-0 btn" v-if="user.image_path">
+                                            <img width="42" class="rounded-circle" :src="asset(`storage/uploads/${user.image_path}`)" alt="">
+                                        </a>
+                                        <a data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="p-0 btn" v-else>
                                             <img width="42" class="rounded-circle" :src="asset('images/avt.png')" alt="">
                                         </a>
                                         <div tabindex="-1" role="menu" aria-hidden="true" class="dropdown-menu dropdown-menu-right">

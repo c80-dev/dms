@@ -21,7 +21,7 @@ class TagAction
     {
         $tag = $this->model->create([
             'user_id' => auth()->user()->id,
-            'name' => $request->name,
+            'name' => "#".$request->name,
             'description' => $request->description,
             'slug' => SlugService::createSlug($this->model, 'slug', $request->name)
         ]);
@@ -54,7 +54,7 @@ class TagAction
     {
       $data = $this->model->where('id', '=', $id)->exists();
       if ($data) {
-          $tag = $this->model->find($id);
+          $tag = $this->model->with(['user'])->find($id);
           return new TagResource($tag);
       }else {
         return response()->json([

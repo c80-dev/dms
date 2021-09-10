@@ -27,7 +27,7 @@ class UserResource extends JsonResource
             'image_path'=> $general_helper->clean($this->image_path),
             'slug'      => $general_helper->clean($this->slug),
             'roles'     => $general_helper->clean($this->whenLoaded('roles')),
-            'created_at'=> $this->created_at->diffForHumans(),
+            'created_at'=> $this->created_at,
             'updated_at'=> $this->updated_at
         ];
     }

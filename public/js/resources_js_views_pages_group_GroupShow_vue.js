@@ -111,13 +111,86 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  name: 'GroupShow',
+  name: "GroupShow",
   data: function data() {
     return {
-      group: {}
+      group: {},
+      users: [],
+      files: [],
+      tags: [],
+      selected_tag: "",
+      selected_user: "",
+      selected_file: ""
     };
   },
   components: {
@@ -133,8 +206,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   },
   created: function created() {
     this.getGroup(this.$route.params.id);
+    this.getMetrix();
   },
   methods: {
+    //get all groups
     getGroup: function getGroup(id) {
       var _this = this;
 
@@ -145,7 +220,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
             switch (_context.prev = _context.next) {
               case 0:
                 _context.next = 2;
-                return axios__WEBPACK_IMPORTED_MODULE_1___default().get('groups/' + id);
+                return axios__WEBPACK_IMPORTED_MODULE_1___default().get("groups/" + id);
 
               case 2:
                 response = _context.sent;
@@ -159,6 +234,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         }, _callee);
       }))();
     },
+    //format data
     formatDate: function formatDate(dateString) {
       var options = {
         year: "numeric",
@@ -166,9 +242,144 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         day: "numeric"
       };
       return new Date(dateString).toLocaleDateString(undefined, options);
+    },
+    //add users to group
+    onSubmitUser: function onSubmitUser() {
+      var _this2 = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee2() {
+        var response;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee2$(_context2) {
+          while (1) {
+            switch (_context2.prev = _context2.next) {
+              case 0:
+                _context2.prev = 0;
+                _context2.next = 3;
+                return axios__WEBPACK_IMPORTED_MODULE_1___default().post("add-user-to-group", {
+                  user_id: _this2.selected_user,
+                  group_id: _this2.$route.params.id
+                });
+
+              case 3:
+                response = _context2.sent;
+                alert(response.data.message);
+                _context2.next = 10;
+                break;
+
+              case 7:
+                _context2.prev = 7;
+                _context2.t0 = _context2["catch"](0);
+                alert("Sorry select a user");
+
+              case 10:
+              case "end":
+                return _context2.stop();
+            }
+          }
+        }, _callee2, null, [[0, 7]]);
+      }))();
+    },
+    //add file to group
+    onSubmitFile: function onSubmitFile() {
+      var _this3 = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee3() {
+        var response;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee3$(_context3) {
+          while (1) {
+            switch (_context3.prev = _context3.next) {
+              case 0:
+                _context3.prev = 0;
+                _context3.next = 3;
+                return axios__WEBPACK_IMPORTED_MODULE_1___default().post("add-file-to-group", {
+                  file_id: _this3.selected_file,
+                  group_id: _this3.$route.params.id
+                });
+
+              case 3:
+                response = _context3.sent;
+                alert(response.data.message);
+                _context3.next = 10;
+                break;
+
+              case 7:
+                _context3.prev = 7;
+                _context3.t0 = _context3["catch"](0);
+                alert("Sorry select a user");
+
+              case 10:
+              case "end":
+                return _context3.stop();
+            }
+          }
+        }, _callee3, null, [[0, 7]]);
+      }))();
+    },
+    //add tag to group
+    onSubmitTag: function onSubmitTag() {
+      var _this4 = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee4() {
+        var response;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee4$(_context4) {
+          while (1) {
+            switch (_context4.prev = _context4.next) {
+              case 0:
+                _context4.prev = 0;
+                _context4.next = 3;
+                return axios__WEBPACK_IMPORTED_MODULE_1___default().post("add-tag-to-group", {
+                  tag_id: _this4.selected_tag,
+                  group_id: _this4.$route.params.id
+                });
+
+              case 3:
+                response = _context4.sent;
+                alert(response.data.message);
+                _context4.next = 10;
+                break;
+
+              case 7:
+                _context4.prev = 7;
+                _context4.t0 = _context4["catch"](0);
+                alert("Sorry select a tag");
+
+              case 10:
+              case "end":
+                return _context4.stop();
+            }
+          }
+        }, _callee4, null, [[0, 7]]);
+      }))();
+    },
+    //metrix
+    getMetrix: function getMetrix() {
+      var _this5 = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee5() {
+        var response;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee5$(_context5) {
+          while (1) {
+            switch (_context5.prev = _context5.next) {
+              case 0:
+                _context5.next = 2;
+                return axios__WEBPACK_IMPORTED_MODULE_1___default().get('attachment-helper');
+
+              case 2:
+                response = _context5.sent;
+                _this5.users = response.data.users;
+                _this5.files = response.data.files;
+                _this5.tags = response.data.tags;
+
+              case 6:
+              case "end":
+                return _context5.stop();
+            }
+          }
+        }, _callee5);
+      }))();
     }
   },
-  computed: _objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_2__.mapGetters)(['user']))
+  computed: _objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_2__.mapGetters)(["user"]))
 });
 
 /***/ }),
@@ -189,7 +400,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\nbody[data-v-5942d39c]{\n    background:#f5f5f5;\n    margin-top:20px;}\n/*------- portfolio -------*/\n.project[data-v-5942d39c] {\n  margin: 15px 0;\n}\n.no-gutter .project[data-v-5942d39c] {\n  margin: 0 !important;\n  padding: 0 !important;\n}\n.has-spacer[data-v-5942d39c] {\n  margin-left: 30px;\n  margin-right: 30px;\n  margin-bottom: 30px;\n}\n.has-spacer-extra-space[data-v-5942d39c] {\n  margin-left: 30px;\n  margin-right: 30px;\n  margin-bottom: 30px;\n}\n.has-side-spacer[data-v-5942d39c] {\n  margin-left: 30px;\n  margin-right: 30px;\n}\n.project-title[data-v-5942d39c] {\n  font-size: 1.25rem;\n}\n.project-skill[data-v-5942d39c] {\n  font-size: 0.9rem;\n  font-weight: 400;\n  letter-spacing: 0.06rem;\n}\n.project-info-box[data-v-5942d39c] {\n  margin: 15px 0;\n  background-color: #fff;\n  padding: 30px 40px;\n  border-radius: 5px;\n}\n.project-info-box p[data-v-5942d39c] {\n  margin-bottom: 15px;\n  padding-bottom: 15px;\n  border-bottom: 1px solid #d5dadb;\n}\n.project-info-box p[data-v-5942d39c]:last-child {\n  margin-bottom: 0;\n  padding-bottom: 0;\n  border-bottom: none;\n}\nimg[data-v-5942d39c] {\n    width: 100%;\n    max-width: 100%;\n    height: auto;\n    -webkit-backface-visibility: hidden;\n}\n.rounded[data-v-5942d39c] {\n    border-radius: 5px !important;\n}\n.btn-xs.btn-icon[data-v-5942d39c] {\n    width: 34px;\n    height: 34px;\n    max-width: 34px !important;\n    max-height: 34px !important;\n    font-size: 10px;\n    line-height: 34px;\n}\n/* facebook button */\n.btn-facebook[data-v-5942d39c], .btn-facebook[data-v-5942d39c]:active, .btn-facebook[data-v-5942d39c]:focus {\n  color: #fff !important;\n  background: #4e68a1;\n  border: 2px solid #4e68a1;\n}\n.btn-facebook[data-v-5942d39c]:hover {\n  color: #fff !important;\n  background: #3b4f7a;\n  border: 2px solid #3b4f7a;\n}\n.btn-facebook-link[data-v-5942d39c], .btn-facebook-link[data-v-5942d39c]:active, .btn-facebook-link[data-v-5942d39c]:focus {\n  color: #4e68a1 !important;\n  background: transparent;\n  border: none;\n}\n.btn-facebook-link[data-v-5942d39c]:hover {\n  color: #3b4f7a !important;\n}\n.btn-outline-facebook[data-v-5942d39c], .btn-outline-facebook[data-v-5942d39c]:active, .btn-outline-facebook[data-v-5942d39c]:focus {\n  color: #4e68a1 !important;\n  background: transparent;\n  border: 2px solid #4e68a1;\n}\n.btn-outline-facebook[data-v-5942d39c]:hover {\n  color: #fff !important;\n  background: #4e68a1;\n  border: 2px solid #4e68a1;\n}\n\n/* twitter button */\n.btn-twitter[data-v-5942d39c], .btn-twitter[data-v-5942d39c]:active, .btn-twitter[data-v-5942d39c]:focus {\n  color: #fff !important;\n  background: #65b5f2;\n  border: 2px solid #65b5f2;\n}\n.btn-twitter[data-v-5942d39c]:hover {\n  color: #fff !important;\n  background: #5294c6;\n  border: 2px solid #5294c6;\n}\n.btn-twitter[data-v-5942d39c]:hover {\n  color: #fff !important;\n  background: #5294c6;\n  border: 2px solid #5294c6;\n}\n.btn-twitter-link[data-v-5942d39c], .btn-twitter-link[data-v-5942d39c]:active, .btn-twitter-link[data-v-5942d39c]:focus {\n  color: #65b5f2 !important;\n  background: transparent;\n  border: none;\n}\n.btn-twitter-link[data-v-5942d39c]:hover {\n  color: #5294c6 !important;\n}\n.btn-outline-twitter[data-v-5942d39c], .btn-outline-twitter[data-v-5942d39c]:active, .btn-outline-twitter[data-v-5942d39c]:focus {\n  color: #65b5f2 !important;\n  background: transparent;\n  border: 2px solid #65b5f2;\n}\n.btn-outline-twitter[data-v-5942d39c]:hover {\n  color: #fff !important;\n  background: #65b5f2;\n  border: 2px solid #65b5f2;\n}\n\n/* google button */\n.btn-google[data-v-5942d39c], .btn-google[data-v-5942d39c]:active, .btn-google[data-v-5942d39c]:focus {\n  color: #fff !important;\n  background: #e05d4b;\n  border: 2px solid #e05d4b;\n}\n.btn-google[data-v-5942d39c]:hover {\n  color: #fff !important;\n  background: #b94c3d;\n  border: 2px solid #b94c3d;\n}\n.btn-google-link[data-v-5942d39c], .btn-google-link[data-v-5942d39c]:active, .btn-google-link[data-v-5942d39c]:focus {\n  color: #e05d4b !important;\n  background: transparent;\n  border: none;\n}\n.btn-google-link[data-v-5942d39c]:hover {\n  color: #b94c3d !important;\n}\n.btn-outline-google[data-v-5942d39c], .btn-outline-google[data-v-5942d39c]:active, .btn-outline-google[data-v-5942d39c]:focus {\n  color: #e05d4b !important;\n  background: transparent;\n  border: 2px solid #e05d4b;\n}\n.btn-outline-google[data-v-5942d39c]:hover {\n  color: #fff !important;\n  background: #e05d4b;\n  border: 2px solid #e05d4b;\n}\n\n/* linkedin button */\n.btn-linkedin[data-v-5942d39c], .btn-linkedin[data-v-5942d39c]:active, .btn-linkedin[data-v-5942d39c]:focus {\n  color: #fff !important;\n  background: #2083bc;\n  border: 2px solid #2083bc;\n}\n.btn-linkedin[data-v-5942d39c]:hover {\n  color: #fff !important;\n  background: #186592;\n  border: 2px solid #186592;\n}\n.btn-linkedin-link[data-v-5942d39c], .btn-linkedin-link[data-v-5942d39c]:active, .btn-linkedin-link[data-v-5942d39c]:focus {\n  color: #2083bc !important;\n  background: transparent;\n  border: none;\n}\n.btn-linkedin-link[data-v-5942d39c]:hover {\n  color: #186592 !important;\n}\n.btn-outline-linkedin[data-v-5942d39c], .btn-outline-linkedin[data-v-5942d39c]:active, .btn-outline-linkedin[data-v-5942d39c]:focus {\n  color: #2083bc !important;\n  background: transparent;\n  border: 2px solid #2083bc;\n}\n.btn-outline-linkedin[data-v-5942d39c]:hover {\n  color: #fff !important;\n  background: #2083bc;\n  border: 2px solid #2083bc;\n}\n\n/* pinterest button */\n.btn-pinterest[data-v-5942d39c], .btn-pinterest[data-v-5942d39c]:active, .btn-pinterest[data-v-5942d39c]:focus {\n  color: #fff !important;\n  background: #d2373b;\n  border: 2px solid #d2373b;\n}\n.btn-pinterest[data-v-5942d39c]:hover {\n  color: #fff !important;\n  background: #ad2c2f;\n  border: 2px solid #ad2c2f;\n}\n.btn-pinterest-link[data-v-5942d39c], .btn-pinterest-link[data-v-5942d39c]:active, .btn-pinterest-link[data-v-5942d39c]:focus {\n  color: #d2373b !important;\n  background: transparent;\n  border: none;\n}\n.btn-pinterest-link[data-v-5942d39c]:hover {\n  color: #ad2c2f !important;\n}\n.btn-outline-pinterest[data-v-5942d39c], .btn-outline-pinterest[data-v-5942d39c]:active, .btn-outline-pinterest[data-v-5942d39c]:focus {\n  color: #d2373b !important;\n  background: transparent;\n  border: 2px solid #d2373b;\n}\n.btn-outline-pinterest[data-v-5942d39c]:hover {\n  color: #fff !important;\n  background: #d2373b;\n  border: 2px solid #d2373b;\n}\n\n/* dribble button */\n.btn-dribbble[data-v-5942d39c], .btn-dribbble[data-v-5942d39c]:active, .btn-dribbble[data-v-5942d39c]:focus {\n  color: #fff !important;\n  background: #ec5f94;\n  border: 2px solid #ec5f94;\n}\n.btn-dribbble[data-v-5942d39c]:hover {\n  color: #fff !important;\n  background: #b4446e;\n  border: 2px solid #b4446e;\n}\n.btn-dribbble-link[data-v-5942d39c], .btn-dribbble-link[data-v-5942d39c]:active, .btn-dribbble-link[data-v-5942d39c]:focus {\n  color: #ec5f94 !important;\n  background: transparent;\n  border: none;\n}\n.btn-dribbble-link[data-v-5942d39c]:hover {\n  color: #b4446e !important;\n}\n.btn-outline-dribbble[data-v-5942d39c], .btn-outline-dribbble[data-v-5942d39c]:active, .btn-outline-dribbble[data-v-5942d39c]:focus {\n  color: #ec5f94 !important;\n  background: transparent;\n  border: 2px solid #ec5f94;\n}\n.btn-outline-dribbble[data-v-5942d39c]:hover {\n  color: #fff !important;\n  background: #ec5f94;\n  border: 2px solid #ec5f94;\n}\n\n/* instagram button */\n.btn-instagram[data-v-5942d39c], .btn-instagram[data-v-5942d39c]:active, .btn-instagram[data-v-5942d39c]:focus {\n  color: #fff !important;\n  background: #4c5fd7;\n  border: 2px solid #4c5fd7;\n}\n.btn-instagram[data-v-5942d39c]:hover {\n  color: #fff !important;\n  background: #4252ba;\n  border: 2px solid #4252ba;\n}\n.btn-instagram-link[data-v-5942d39c], .btn-instagram-link[data-v-5942d39c]:active, .btn-instagram-link[data-v-5942d39c]:focus {\n  color: #4c5fd7 !important;\n  background: transparent;\n  border: none;\n}\n.btn-instagram-link[data-v-5942d39c]:hover {\n  color: #4252ba !important;\n}\n.btn-outline-instagram[data-v-5942d39c], .btn-outline-instagram[data-v-5942d39c]:active, .btn-outline-instagram[data-v-5942d39c]:focus {\n  color: #4c5fd7 !important;\n  background: transparent;\n  border: 2px solid #4c5fd7;\n}\n.btn-outline-instagram[data-v-5942d39c]:hover {\n  color: #fff !important;\n  background: #4c5fd7;\n  border: 2px solid #4c5fd7;\n}\n\n/* youtube button */\n.btn-youtube[data-v-5942d39c], .btn-youtube[data-v-5942d39c]:active, .btn-youtube[data-v-5942d39c]:focus {\n  color: #fff !important;\n  background: #e52d27;\n  border: 2px solid #e52d27;\n}\n.btn-youtube[data-v-5942d39c]:hover {\n  color: #fff !important;\n  background: #b31217;\n  border: 2px solid #b31217;\n}\n.btn-youtube-link[data-v-5942d39c], .btn-youtube-link[data-v-5942d39c]:active, .btn-youtube-link[data-v-5942d39c]:focus {\n  color: #e52d27 !important;\n  background: transparent;\n  border: none;\n}\n.btn-youtube-link[data-v-5942d39c]:hover {\n  color: #b31217 !important;\n}\n.btn-outline-youtube[data-v-5942d39c], .btn-outline-youtube[data-v-5942d39c]:active, .btn-outline-youtube[data-v-5942d39c]:focus {\n  color: #e52d27 !important;\n  background: transparent;\n  border: 2px solid #e52d27;\n}\n.btn-outline-youtube[data-v-5942d39c]:hover {\n  color: #fff !important;\n  background: #e52d27;\n  border: 2px solid #e52d27;\n}\n.btn-xs.btn-icon span[data-v-5942d39c], .btn-xs.btn-icon i[data-v-5942d39c] {\n    line-height: 34px;\n}\n.btn-icon.btn-circle span[data-v-5942d39c], .btn-icon.btn-circle i[data-v-5942d39c] {\n    margin-top: -1px;\n    margin-right: -1px;\n}\n.btn-icon i[data-v-5942d39c] {\n    margin-top: -1px;\n}\n.btn-icon span[data-v-5942d39c], .btn-icon i[data-v-5942d39c] {\n    display: block;\n    line-height: 50px;\n}\na.btn[data-v-5942d39c], a.btn-social[data-v-5942d39c] {\n    display: inline-block;\n}\n.mr-5[data-v-5942d39c] {\n    margin-right: 5px !important;\n}\n.mb-0[data-v-5942d39c] {\n    margin-bottom: 0 !important;\n}\n.btn-facebook[data-v-5942d39c], .btn-facebook[data-v-5942d39c]:active, .btn-facebook[data-v-5942d39c]:focus {\n    color: #fff !important;\n    background: #4e68a1;\n    border: 2px solid #4e68a1;\n}\n.btn-circle[data-v-5942d39c] {\n    border-radius: 50% !important;\n}\n.project-info-box p[data-v-5942d39c] {\n    margin-bottom: 15px;\n    padding-bottom: 15px;\n    border-bottom: 1px solid #d5dadb;\n}\np[data-v-5942d39c] {\n    font-family: \"Barlow\", sans-serif !important;\n    font-weight: 300;\n    font-size: 1rem;\n    color: #686c6d;\n    letter-spacing: 0.03rem;\n    margin-bottom: 10px;\n}\nb[data-v-5942d39c], strong[data-v-5942d39c] {\n    font-weight: 700 !important;\n}\n\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\nbody[data-v-5942d39c] {\r\n  background: #f5f5f5;\r\n  margin-top: 20px;\n}\r\n/*------- portfolio -------*/\n.project[data-v-5942d39c] {\r\n  margin: 15px 0;\n}\n.no-gutter .project[data-v-5942d39c] {\r\n  margin: 0 !important;\r\n  padding: 0 !important;\n}\n.has-spacer[data-v-5942d39c] {\r\n  margin-left: 30px;\r\n  margin-right: 30px;\r\n  margin-bottom: 30px;\n}\n.has-spacer-extra-space[data-v-5942d39c] {\r\n  margin-left: 30px;\r\n  margin-right: 30px;\r\n  margin-bottom: 30px;\n}\n.has-side-spacer[data-v-5942d39c] {\r\n  margin-left: 30px;\r\n  margin-right: 30px;\n}\n.project-title[data-v-5942d39c] {\r\n  font-size: 1.25rem;\n}\n.project-skill[data-v-5942d39c] {\r\n  font-size: 0.9rem;\r\n  font-weight: 400;\r\n  letter-spacing: 0.06rem;\n}\n.project-info-box[data-v-5942d39c] {\r\n  margin: 15px 0;\r\n  background-color: #fff;\r\n  padding: 30px 40px;\r\n  border-radius: 5px;\n}\n.project-info-box p[data-v-5942d39c] {\r\n  margin-bottom: 15px;\r\n  padding-bottom: 15px;\r\n  border-bottom: 1px solid #d5dadb;\n}\n.project-info-box p[data-v-5942d39c]:last-child {\r\n  margin-bottom: 0;\r\n  padding-bottom: 0;\r\n  border-bottom: none;\n}\n.rounded[data-v-5942d39c] {\r\n  border-radius: 5px !important;\n}\n.mr-5[data-v-5942d39c] {\r\n  margin-right: 5px !important;\n}\n.mb-0[data-v-5942d39c] {\r\n  margin-bottom: 0 !important;\n}\n.project-info-box p[data-v-5942d39c] {\r\n  margin-bottom: 15px;\r\n  padding-bottom: 15px;\r\n  border-bottom: 1px solid #d5dadb;\n}\np[data-v-5942d39c] {\r\n  font-family: \"Barlow\", sans-serif !important;\r\n  font-weight: 300;\r\n  font-size: 1rem;\r\n  color: #686c6d;\r\n  letter-spacing: 0.03rem;\r\n  margin-bottom: 10px;\n}\nb[data-v-5942d39c],\r\nstrong[data-v-5942d39c] {\r\n  font-weight: 700 !important;\n}\r\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -680,7 +891,7 @@ var render = function() {
     "div",
     {
       staticClass:
-        "app-container app-theme-white body-tabs-shadow fixed-sidebar fixed-header"
+        "\n    app-container app-theme-white\n    body-tabs-shadow\n    fixed-sidebar fixed-header\n  "
     },
     [
       _c("Header"),
@@ -694,7 +905,375 @@ var render = function() {
           _c(
             "div",
             { staticClass: "app-main__outer" },
-            [_vm._m(0), _vm._v(" "), _c("Footer")],
+            [
+              _c("div", { staticClass: "app-main__inner" }, [
+                _vm._m(0),
+                _vm._v(" "),
+                _c("div", { staticClass: "row" }, [
+                  _c("div", { staticClass: "col-md-12" }, [
+                    _c("div", { staticClass: "main-card mb-3 card" }, [
+                      _c("div", { staticClass: "container-fluid" }, [
+                        _c("div", { staticClass: "row" }, [
+                          _c("div", { staticClass: "col-md-8" }, [
+                            _c(
+                              "div",
+                              { staticClass: "project-info-box mt-0" },
+                              [
+                                _c("h5", [
+                                  _c("strong", [
+                                    _vm._v(_vm._s(_vm.group.name) + " Details")
+                                  ])
+                                ]),
+                                _vm._v(" "),
+                                _c("p", { staticClass: "mb-0 text-justify" }, [
+                                  _c("small", [
+                                    _vm._v(_vm._s(_vm.group.description))
+                                  ])
+                                ])
+                              ]
+                            ),
+                            _vm._v(" "),
+                            _c("div", { staticClass: "project-info-box" }, [
+                              _c("p", [
+                                _c("strong", [_vm._v("Creator Name:")]),
+                                _vm._v(
+                                  " " +
+                                    _vm._s(_vm.group.user.name) +
+                                    "\n                      "
+                                )
+                              ]),
+                              _vm._v(" "),
+                              _c("p", [
+                                _c("strong", [_vm._v("Creator Email:")]),
+                                _vm._v(
+                                  " " +
+                                    _vm._s(_vm.group.user.email) +
+                                    "\n                      "
+                                )
+                              ]),
+                              _vm._v(" "),
+                              _c("p", [
+                                _c("strong", [_vm._v("Creator Phone:")]),
+                                _vm._v(
+                                  " " +
+                                    _vm._s(_vm.group.user.phone) +
+                                    "\n                      "
+                                )
+                              ]),
+                              _vm._v(" "),
+                              _c("p", [
+                                _c("strong", [_vm._v("Created Date:")]),
+                                _vm._v(
+                                  "\n                        " +
+                                    _vm._s(
+                                      _vm.formatDate(_vm.group.created_at)
+                                    ) +
+                                    "\n                      "
+                                )
+                              ])
+                            ])
+                          ]),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "col-md-4" }, [
+                            _c("div", { staticClass: "project-info-box" }, [
+                              _c(
+                                "div",
+                                { staticClass: "form-group" },
+                                [
+                                  _vm._m(1),
+                                  _vm._v(" "),
+                                  _c(
+                                    "select",
+                                    {
+                                      directives: [
+                                        {
+                                          name: "model",
+                                          rawName: "v-model",
+                                          value: _vm.selected_user,
+                                          expression: "selected_user"
+                                        }
+                                      ],
+                                      staticClass:
+                                        "form-control form-control-md",
+                                      on: {
+                                        change: function($event) {
+                                          var $$selectedVal = Array.prototype.filter
+                                            .call(
+                                              $event.target.options,
+                                              function(o) {
+                                                return o.selected
+                                              }
+                                            )
+                                            .map(function(o) {
+                                              var val =
+                                                "_value" in o
+                                                  ? o._value
+                                                  : o.value
+                                              return val
+                                            })
+                                          _vm.selected_user = $event.target
+                                            .multiple
+                                            ? $$selectedVal
+                                            : $$selectedVal[0]
+                                        }
+                                      }
+                                    },
+                                    _vm._l(_vm.users, function(
+                                      userData,
+                                      index
+                                    ) {
+                                      return _c(
+                                        "option",
+                                        {
+                                          key: index,
+                                          staticClass: "text-dark",
+                                          domProps: { value: userData.id }
+                                        },
+                                        [
+                                          _vm._v(
+                                            "\n                              " +
+                                              _vm._s(userData.name) +
+                                              "\n                              "
+                                          )
+                                        ]
+                                      )
+                                    }),
+                                    0
+                                  ),
+                                  _c("br"),
+                                  _vm._v(" "),
+                                  _c(
+                                    "button",
+                                    {
+                                      staticClass: "btn btn-dark btn-lg",
+                                      attrs: {
+                                        type: "submit",
+                                        title: "Add user to group"
+                                      },
+                                      on: {
+                                        click: function($event) {
+                                          return _vm.onSubmitUser()
+                                        }
+                                      }
+                                    },
+                                    [_c("i", { staticClass: "pe-7s-add-user" })]
+                                  ),
+                                  _vm._v(" "),
+                                  _c(
+                                    "router-link",
+                                    {
+                                      staticClass: "btn btn-success btn-lg",
+                                      attrs: {
+                                        to: "/",
+                                        title: "View all users in this group"
+                                      }
+                                    },
+                                    [_c("i", { staticClass: "pe-7s-look" })]
+                                  )
+                                ],
+                                1
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "div",
+                                { staticClass: "form-group" },
+                                [
+                                  _vm._m(2),
+                                  _vm._v(" "),
+                                  _c(
+                                    "select",
+                                    {
+                                      directives: [
+                                        {
+                                          name: "model",
+                                          rawName: "v-model",
+                                          value: _vm.selected_file,
+                                          expression: "selected_file"
+                                        }
+                                      ],
+                                      staticClass:
+                                        "form-control form-control-md",
+                                      on: {
+                                        change: function($event) {
+                                          var $$selectedVal = Array.prototype.filter
+                                            .call(
+                                              $event.target.options,
+                                              function(o) {
+                                                return o.selected
+                                              }
+                                            )
+                                            .map(function(o) {
+                                              var val =
+                                                "_value" in o
+                                                  ? o._value
+                                                  : o.value
+                                              return val
+                                            })
+                                          _vm.selected_file = $event.target
+                                            .multiple
+                                            ? $$selectedVal
+                                            : $$selectedVal[0]
+                                        }
+                                      }
+                                    },
+                                    _vm._l(_vm.files, function(file, index) {
+                                      return _c(
+                                        "option",
+                                        {
+                                          key: index,
+                                          staticClass: "text-dark",
+                                          domProps: { value: file.id }
+                                        },
+                                        [
+                                          _vm._v(
+                                            "\n                              " +
+                                              _vm._s(file.name) +
+                                              "\n                              "
+                                          )
+                                        ]
+                                      )
+                                    }),
+                                    0
+                                  ),
+                                  _c("br"),
+                                  _vm._v(" "),
+                                  _c(
+                                    "button",
+                                    {
+                                      staticClass: "btn btn-dark btn-lg",
+                                      attrs: {
+                                        type: "submit",
+                                        title: "Add file to group"
+                                      },
+                                      on: {
+                                        click: function($event) {
+                                          return _vm.onSubmitFile()
+                                        }
+                                      }
+                                    },
+                                    [_c("i", { staticClass: "pe-7s-add-user" })]
+                                  ),
+                                  _vm._v(" "),
+                                  _c(
+                                    "router-link",
+                                    {
+                                      staticClass: "btn btn-success btn-lg",
+                                      attrs: {
+                                        to: "/",
+                                        title:
+                                          "View all all files in this group"
+                                      }
+                                    },
+                                    [_c("i", { staticClass: "pe-7s-look" })]
+                                  )
+                                ],
+                                1
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "div",
+                                { staticClass: "form-group" },
+                                [
+                                  _vm._m(3),
+                                  _vm._v(" "),
+                                  _c(
+                                    "select",
+                                    {
+                                      directives: [
+                                        {
+                                          name: "model",
+                                          rawName: "v-model",
+                                          value: _vm.selected,
+                                          expression: "selected"
+                                        }
+                                      ],
+                                      staticClass:
+                                        "form-control form-control-md",
+                                      on: {
+                                        change: function($event) {
+                                          var $$selectedVal = Array.prototype.filter
+                                            .call(
+                                              $event.target.options,
+                                              function(o) {
+                                                return o.selected
+                                              }
+                                            )
+                                            .map(function(o) {
+                                              var val =
+                                                "_value" in o
+                                                  ? o._value
+                                                  : o.value
+                                              return val
+                                            })
+                                          _vm.selected = $event.target.multiple
+                                            ? $$selectedVal
+                                            : $$selectedVal[0]
+                                        }
+                                      }
+                                    },
+                                    _vm._l(_vm.tags, function(tag, index) {
+                                      return _c(
+                                        "option",
+                                        {
+                                          key: index,
+                                          staticClass: "text-dark",
+                                          domProps: { value: tag.id }
+                                        },
+                                        [
+                                          _vm._v(
+                                            "\n                              " +
+                                              _vm._s(tag.name) +
+                                              "\n                              "
+                                          )
+                                        ]
+                                      )
+                                    }),
+                                    0
+                                  ),
+                                  _c("br"),
+                                  _vm._v(" "),
+                                  _c(
+                                    "button",
+                                    {
+                                      staticClass: "btn btn-dark btn-lg",
+                                      attrs: {
+                                        type: "submit",
+                                        title: "Add tag to group"
+                                      },
+                                      on: {
+                                        click: function($event) {
+                                          return _vm.onSubmitTag()
+                                        }
+                                      }
+                                    },
+                                    [_c("i", { staticClass: "pe-7s-add-user" })]
+                                  ),
+                                  _vm._v(" "),
+                                  _c(
+                                    "router-link",
+                                    {
+                                      staticClass: "btn btn-success btn-lg",
+                                      attrs: {
+                                        to: "/",
+                                        title: "view all tags in this group"
+                                      }
+                                    },
+                                    [_c("i", { staticClass: "pe-7s-look" })]
+                                  )
+                                ],
+                                1
+                              )
+                            ])
+                          ])
+                        ])
+                      ])
+                    ])
+                  ])
+                ])
+              ]),
+              _vm._v(" "),
+              _c("Footer")
+            ],
             1
           )
         ],
@@ -709,157 +1288,47 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "app-main__inner" }, [
-      _c("div", { staticClass: "app-page-title" }, [
-        _c("div", { staticClass: "page-title-wrapper" }, [
-          _c("div", { staticClass: "page-title-heading" }, [
-            _c("div", { staticClass: "page-title-icon" }, [
-              _c("i", { staticClass: "pe-7s-home icon-gradient bg-mean-fruit" })
-            ]),
-            _vm._v(" "),
-            _c("div", [
-              _vm._v(" All Groups\r\n                            "),
-              _c("div", { staticClass: "page-title-subheading" }, [
-                _vm._v(
-                  "\r\n                                Welcome to C80 electronic document management system\r\n                            "
-                )
-              ])
-            ])
-          ])
-        ])
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "row" }, [
-        _c("div", { staticClass: "col-md-12" }, [
-          _c("div", { staticClass: "main-card mb-3 card" }, [
-            _c("link", {
-              attrs: {
-                rel: "stylesheet",
-                href:
-                  "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css",
-                integrity:
-                  "sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=",
-                crossorigin: "anonymous"
-              }
-            }),
-            _vm._v(" "),
-            _c("div", { staticClass: "container" }, [
-              _c("div", { staticClass: "row" }, [
-                _c("div", { staticClass: "col-md-5" }, [
-                  _c("div", { staticClass: "project-info-box mt-0" }, [
-                    _c("h5", [_vm._v("PROJECT DETAILS")]),
-                    _vm._v(" "),
-                    _c("p", { staticClass: "mb-0" }, [
-                      _vm._v(
-                        "Vivamus pellentesque, felis in aliquam ullamcorper, lorem tortor porttitor erat, hendrerit porta nunc tellus eu lectus. Ut vel imperdiet est. Pellentesque condimentum, dui et blandit laoreet, quam nisi tincidunt tortor."
-                      )
-                    ])
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "project-info-box" }, [
-                    _c("p", [
-                      _c("b", [_vm._v("Client:")]),
-                      _vm._v(" CUPCAKE CO")
-                    ]),
-                    _vm._v(" "),
-                    _c("p", [
-                      _c("b", [_vm._v("Date:")]),
-                      _vm._v(" 14.02.2020")
-                    ]),
-                    _vm._v(" "),
-                    _c("p", [
-                      _c("b", [_vm._v("Designer:")]),
-                      _vm._v(" James Doe")
-                    ]),
-                    _vm._v(" "),
-                    _c("p", [
-                      _c("b", [_vm._v("Tools:")]),
-                      _vm._v(" Illustrator")
-                    ]),
-                    _vm._v(" "),
-                    _c("p", { staticClass: "mb-0" }, [
-                      _c("b", [_vm._v("Budget:")]),
-                      _vm._v(" $500")
-                    ])
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "project-info-box mt-0 mb-0" }, [
-                    _c("p", { staticClass: "mb-0" }, [
-                      _c(
-                        "span",
-                        { staticClass: "fw-bold mr-10 va-middle hide-mobile" },
-                        [_vm._v("Share:")]
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "a",
-                        {
-                          staticClass:
-                            "btn btn-xs btn-facebook btn-circle btn-icon mr-5 mb-0",
-                          attrs: { href: "#x" }
-                        },
-                        [_c("i", { staticClass: "fab fa-facebook-f" })]
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "a",
-                        {
-                          staticClass:
-                            "btn btn-xs btn-twitter btn-circle btn-icon mr-5 mb-0",
-                          attrs: { href: "#x" }
-                        },
-                        [_c("i", { staticClass: "fab fa-twitter" })]
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "a",
-                        {
-                          staticClass:
-                            "btn btn-xs btn-pinterest btn-circle btn-icon mr-5 mb-0",
-                          attrs: { href: "#x" }
-                        },
-                        [_c("i", { staticClass: "fab fa-pinterest" })]
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "a",
-                        {
-                          staticClass:
-                            "btn btn-xs btn-linkedin btn-circle btn-icon mr-5 mb-0",
-                          attrs: { href: "#x" }
-                        },
-                        [_c("i", { staticClass: "fab fa-linkedin-in" })]
-                      )
-                    ])
-                  ])
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "col-md-7" }, [
-                  _c("img", {
-                    staticClass: "rounded",
-                    attrs: {
-                      src: "https://via.placeholder.com/400x300/FFB6C1/000000",
-                      alt: "project-image"
-                    }
-                  }),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "project-info-box" }, [
-                    _c("p", [
-                      _c("b", [_vm._v("Categories:")]),
-                      _vm._v(" Design, Illustration")
-                    ]),
-                    _vm._v(" "),
-                    _c("p", [
-                      _c("b", [_vm._v("Skills:")]),
-                      _vm._v(" Illustrator")
-                    ])
-                  ])
-                ])
-              ])
+    return _c("div", { staticClass: "app-page-title" }, [
+      _c("div", { staticClass: "page-title-wrapper" }, [
+        _c("div", { staticClass: "page-title-heading" }, [
+          _c("div", { staticClass: "page-title-icon" }, [
+            _c("i", { staticClass: "pe-7s-home icon-gradient bg-mean-fruit" })
+          ]),
+          _vm._v(" "),
+          _c("div", [
+            _vm._v("\n                Group Details\n                "),
+            _c("div", { staticClass: "page-title-subheading" }, [
+              _vm._v(
+                "\n                  Welcome to C80 electronic document management system\n                "
+              )
             ])
           ])
         ])
       ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("label", { attrs: { for: "name" } }, [
+      _c("strong", [_vm._v("Add User")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("label", { attrs: { for: "name" } }, [
+      _c("strong", [_vm._v("Add File")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("label", { attrs: { for: "name" } }, [
+      _c("strong", [_vm._v("Add Tag")])
     ])
   }
 ]

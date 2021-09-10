@@ -18,6 +18,10 @@ class Tag extends Model
         return $this->belongsTo(User::class);
     }
 
+    public function tag_groups() {
+        return $this->belongsToMany(Group::class);
+    }
+
     public function sluggable(): array
     {
         return [

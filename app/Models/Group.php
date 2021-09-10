@@ -18,6 +18,18 @@ class Group extends Model
         return $this->belongsTo(User::class);
     }
 
+    public function group_users() {
+        return $this->belongsToMany(User::class);
+    }
+
+    public function group_files() {
+        return $this->belongsToMany(File::class);
+    }
+
+    public function group_tags() {
+        return $this->belongsToMany(Tag::class);
+    }
+
     public function sluggable(): array
     {
         return [

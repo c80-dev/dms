@@ -49,6 +49,12 @@ class RepositoryServiceProvider extends ServiceProvider
             \App\Repositories\TagRepository::class
         );
 
+        //files repository binding
+        $this->app->bind(
+            \App\Repositories\Contracts\FileRepositoryInterface::class,
+            \App\Repositories\FileRepository::class
+        );
+
 
     }
 

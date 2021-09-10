@@ -14,4 +14,10 @@ interface GroupRepositoryInterface
 
     public function deleteGroup($id);
 
+    public function attachUserToGroup($request);
+
+   public function  attachFileToGroup($request);
+
+   public function attachTagToGroup($request);
+
 }

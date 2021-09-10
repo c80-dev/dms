@@ -99,6 +99,15 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
@@ -217,7 +226,34 @@ var render = function() {
     _vm._m(2),
     _vm._v(" "),
     _c("div", { staticClass: "app-header__content" }, [
-      _vm._m(3),
+      _c("div", { staticClass: "app-header-left" }, [
+        _vm._m(3),
+        _vm._v(" "),
+        _c("ul", { staticClass: "header-menu nav" }, [
+          _vm._m(4),
+          _vm._v(" "),
+          _c(
+            "li",
+            { staticClass: "dropdown nav-item" },
+            [
+              _c(
+                "router-link",
+                {
+                  staticClass: "nav-link",
+                  attrs: { to: "/change-password/" + _vm.user.id }
+                },
+                [
+                  _c("i", { staticClass: "nav-link-icon fa fa-key" }),
+                  _vm._v(
+                    "\n                            Change Password\n                        "
+                  )
+                ]
+              )
+            ],
+            1
+          )
+        ])
+      ]),
       _vm._v(" "),
       _c("div", { staticClass: "app-header-right" }, [
         _c("div", {}, [
@@ -237,27 +273,51 @@ var render = function() {
             _c("div", { staticClass: "widget-content-wrapper" }, [
               _c("div", { staticClass: "widget-content-left" }, [
                 _c("div", { staticClass: "btn-group" }, [
-                  _c(
-                    "a",
-                    {
-                      staticClass: "p-0 btn",
-                      attrs: {
-                        "data-toggle": "dropdown",
-                        "aria-haspopup": "true",
-                        "aria-expanded": "false"
-                      }
-                    },
-                    [
-                      _c("img", {
-                        staticClass: "rounded-circle",
-                        attrs: {
-                          width: "42",
-                          src: _vm.asset("images/avt.png"),
-                          alt: ""
-                        }
-                      })
-                    ]
-                  ),
+                  _vm.user.image_path
+                    ? _c(
+                        "a",
+                        {
+                          staticClass: "p-0 btn",
+                          attrs: {
+                            "data-toggle": "dropdown",
+                            "aria-haspopup": "true",
+                            "aria-expanded": "false"
+                          }
+                        },
+                        [
+                          _c("img", {
+                            staticClass: "rounded-circle",
+                            attrs: {
+                              width: "42",
+                              src: _vm.asset(
+                                "storage/uploads/" + _vm.user.image_path
+                              ),
+                              alt: ""
+                            }
+                          })
+                        ]
+                      )
+                    : _c(
+                        "a",
+                        {
+                          staticClass: "p-0 btn",
+                          attrs: {
+                            "data-toggle": "dropdown",
+                            "aria-haspopup": "true",
+                            "aria-expanded": "false"
+                          }
+                        },
+                        [
+                          _c("img", {
+                            staticClass: "rounded-circle",
+                            attrs: {
+                              width: "42",
+                              src: _vm.asset("images/avt.png"),
+                              alt: ""
+                            }
+                          })
+                        ]
+                      ),
                   _vm._v(" "),
                   _c(
                     "div",
@@ -376,34 +436,34 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "app-header-left" }, [
-      _c("div", { staticClass: "search-wrapper" }, [
-        _c("div", { staticClass: "input-holder" }, [
-          _c("input", {
-            staticClass: "search-input",
-            attrs: { type: "text", placeholder: "Type to search" }
-          }),
-          _vm._v(" "),
-          _c("button", { staticClass: "search-icon" }, [_c("span")])
-        ]),
+    return _c("div", { staticClass: "search-wrapper" }, [
+      _c("div", { staticClass: "input-holder" }, [
+        _c("input", {
+          staticClass: "search-input",
+          attrs: { type: "text", placeholder: "Type to search" }
+        }),
         _vm._v(" "),
-        _c("button", { staticClass: "close" })
+        _c("button", { staticClass: "search-icon" }, [_c("span")])
       ]),
       _vm._v(" "),
-      _c("ul", { staticClass: "header-menu nav" }, [
-        _c("li", { staticClass: "dropdown nav-item" }, [
-          _c(
-            "a",
-            { staticClass: "nav-link", attrs: { href: "javascript:void(0);" } },
-            [
-              _c("i", { staticClass: "nav-link-icon fa fa-cog" }),
-              _vm._v(
-                "\n                            Settings\n                        "
-              )
-            ]
+      _c("button", { staticClass: "close" })
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("li", { staticClass: "dropdown nav-item" }, [
+      _c(
+        "a",
+        { staticClass: "nav-link", attrs: { href: "javascript:void(0);" } },
+        [
+          _c("i", { staticClass: "nav-link-icon fa fa-cog" }),
+          _vm._v(
+            "\n                            Settings\n                        "
           )
-        ])
-      ])
+        ]
+      )
     ])
   }
 ]

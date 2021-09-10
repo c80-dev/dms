@@ -80,17 +80,42 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  name: 'ChangePassword',
+  name: "ChangePassword",
   data: function data() {
     return {
-      old_password: '',
-      password: '',
-      password_confirmation: '',
-      error: '',
-      success: ''
+      old_password: "",
+      password: "",
+      password_confirmation: "",
+      error: "",
+      success: ""
     };
   },
   components: {
@@ -122,7 +147,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               case 0:
                 _context.prev = 0;
                 _context.next = 3;
-                return axios__WEBPACK_IMPORTED_MODULE_1___default().post('change-password/' + id, {
+                return axios__WEBPACK_IMPORTED_MODULE_1___default().post("change-password/" + id, {
                   old_password: _this.old_password,
                   password: _this.password,
                   password_confirmation: _this.password_confirmation,
@@ -131,26 +156,25 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
               case 3:
                 response = _context.sent;
-                console.log(response);
                 _this.success = response.data.message;
-                _context.next = 11;
+                _context.next = 10;
                 break;
 
-              case 8:
-                _context.prev = 8;
+              case 7:
+                _context.prev = 7;
                 _context.t0 = _context["catch"](0);
                 _this.error = _context.t0.response.data.message;
 
-              case 11:
+              case 10:
               case "end":
                 return _context.stop();
             }
           }
-        }, _callee, null, [[0, 8]]);
+        }, _callee, null, [[0, 7]]);
       }))();
     }
   },
-  computed: _objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_2__.mapGetters)(['user']))
+  computed: _objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_2__.mapGetters)(["user"]))
 });
 
 /***/ }),
@@ -243,7 +267,7 @@ var render = function() {
     "div",
     {
       staticClass:
-        "app-container app-theme-white body-tabs-shadow fixed-sidebar fixed-header"
+        "\n    app-container app-theme-white\n    body-tabs-shadow\n    fixed-sidebar fixed-header\n  "
     },
     [
       _c("Header"),
@@ -259,26 +283,7 @@ var render = function() {
             { staticClass: "app-main__outer" },
             [
               _c("div", { staticClass: "app-main__inner" }, [
-                _c("div", { staticClass: "app-page-title" }, [
-                  _c("div", { staticClass: "page-title-wrapper" }, [
-                    _c("div", { staticClass: "page-title-heading" }, [
-                      _vm._m(0),
-                      _vm._v(" "),
-                      _c("div", [
-                        _vm._v(
-                          " Change User Password\n                                "
-                        ),
-                        _c("div", { staticClass: "page-title-subheading" }, [
-                          _vm._v(
-                            "\n                                    Welcome to C80 electronic document management system\n                                    " +
-                              _vm._s(_vm.user.id) +
-                              "\n                                "
-                          )
-                        ])
-                      ])
-                    ])
-                  ])
-                ]),
+                _vm._m(0),
                 _vm._v(" "),
                 _c(
                   "div",
@@ -383,7 +388,7 @@ var render = function() {
                           }
                         }
                       },
-                      [_vm._v("Submit")]
+                      [_vm._v("\n            Submit\n          ")]
                     )
                   ],
                   1
@@ -406,8 +411,23 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "page-title-icon" }, [
-      _c("i", { staticClass: "pe-7s-home icon-gradient bg-mean-fruit" })
+    return _c("div", { staticClass: "app-page-title" }, [
+      _c("div", { staticClass: "page-title-wrapper" }, [
+        _c("div", { staticClass: "page-title-heading" }, [
+          _c("div", { staticClass: "page-title-icon" }, [
+            _c("i", { staticClass: "pe-7s-home icon-gradient bg-mean-fruit" })
+          ]),
+          _vm._v(" "),
+          _c("div", [
+            _vm._v("\n                Change User Password\n                "),
+            _c("div", { staticClass: "page-title-subheading" }, [
+              _vm._v(
+                "\n                   Welcome to C80 electronic document management system\n                "
+              )
+            ])
+          ])
+        ])
+      ])
     ])
   },
   function() {
