@@ -22,6 +22,15 @@ class Tag extends Model
         return $this->belongsToMany(Group::class);
     }
 
+    public function tag_users() {
+        return $this->belongsToMany(User::class);
+    }
+
+    public function tag_files() {
+        return $this->belongsToMany(File::class);
+    }
+
+
     public function sluggable(): array
     {
         return [

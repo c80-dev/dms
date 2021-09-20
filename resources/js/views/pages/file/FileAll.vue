@@ -1,11 +1,5 @@
 <template>
-  <div
-    class="
-      app-container app-theme-white
-      body-tabs-shadow
-      fixed-sidebar fixed-header
-    "
-  >
+  <div class="app-container app-theme-white body-tabs-shadow fixed-sidebar fixed-header">
     <Header />
 
     <div class="app-main">
@@ -16,55 +10,48 @@
             <div class="page-title-wrapper">
               <div class="page-title-heading">
                 <div class="page-title-icon">
-                  <i class="pe-7s-home icon-gradient bg-mean-fruit"> </i>
+                  <i class="pe-7s-home icon-gradient bg-mean-fruit"></i>
                 </div>
                 <div>
                   All Files
-                  <div class="page-title-subheading">
-                    Welcome to C80 electronic document management system
-                  </div>
+                  <div
+                    class="page-title-subheading"
+                  >Welcome to C80 electronic document management system</div>
                 </div>
               </div>
             </div>
           </div>
           <Error v-if="error" :error="error" />
           <Success v-if="success" :success="success" />
-          <div class="row">
-            <div class="col-md-12">
-              <div class="main-card mb-3 card">
-                <div class="col-sm-4 col-md-4 p-3">
-                  <div
-                    class="card mb-3"
-                    style="max-width: 540px"
-                    id="showFolder"
-                  >
-                    <div class="row g-0">
-                      <div class="col-md-2" style="font-size: 0.9rem">
-                        <!-- <i class="fas fa-file-pdf text-danger fa-10x"></i> -->
-                        <i class="fas fa-file-word text-primary fa-10x"></i>
-                      </div>
-                      <div class="col-md-8">
-                        <div class="card-body ml-5">
-                          <h5 class="card-title">
-                            <strong>sdhflsdhfdsf</strong>
-                          </h5>
-                          <p class="card-text mt-3">dslsdfdsfdsfdsfdsfdfds</p>
-                          <br />
-                          <p class="card-text">
-                            <small class="text-muted">1</small>
-                          </p>
-                        </div>
-                      </div>
-                      <div class="col-md-2">
+          <div class="col-md-12">
+            <div class="row">
+              <div class="col-sm-4 col-md-4 p-3" v-for="(file, index) in files" :index="index" :key="file.id">
+                <div class="card mb-3" style="max-width: 540px" id="showFolder">
+                  <div class="row g-0">
+                    <div class="col-md-2" style="font-size: 1.1rem">
+                      <i class="fas fa-file-pdf text-danger fa-10x" v-if="getFileExtention(file.file_path) == 'pdf'"></i>
+                      <i class="fas fa-file-word text-primary fa-10x" v-else></i>
+                    </div>
+                    <div class="col-md-10 pl-5">
+                      <div class="card-body ml-5">
+                        <h5 class="card-title">
+                          <strong>{{ file.name }} </strong>
+                        </h5>
+                        <p class="card-text mt-3">
+                          {{ shortText(file.description) }}
+                        </p>
                         <br />
-                        <i class="fas fa-download text-danger fa-1x mt-3"></i>
-                        <!-- <a href="/edit/<?php echo $file['id']; ?>/#fileEditModal" class="fas fa-edit text-danger fa-1x mt-2 mr-5"  data-userid="<?php echo $file['user_id']; ?>" data-bs-toggle="modal"></a> -->
-                        <i class="fas fa-trash text-danger fa-1x mt-2"></i>
+                        <p class="card-text">
+                          <small class="text-muted">
+                            {{  formatDate(file.created_at) }}
+                          </small>
+                        </p>
                       </div>
                     </div>
                   </div>
                 </div>
               </div>
+
             </div>
           </div>
         </div>
@@ -84,7 +71,7 @@ export default {
     return {
       files: [],
       error: "",
-      success: "",
+      success: ""
     };
   },
   components: {
@@ -92,7 +79,7 @@ export default {
     Header: () => import("../../../components/Header.vue"),
     Footer: () => import("../../../components/Footer.vue"),
     Error: () => import("../../../components/Error.vue"),
-    Success: () => import("../../../components/Success.vue"),
+    Success: () => import("../../../components/Success.vue")
   },
   created() {
     this.getTags();
@@ -114,10 +101,19 @@ export default {
         this.error = e.response.data.message;
       }
     },
+    shortText(stringValue) {
+      if (stringValue.length > 10) {
+          return  stringValue = stringValue.substring(0, 30) + "...";
+      }
+    },
+    getFileExtention(filePath) {
+       var ext =  filePath.split('.').pop();
+       return ext; 
+    }
   },
   computed: {
-    ...mapGetters(["user"]),
-  },
+    ...mapGetters(["user"])
+  }
 };
 </script>
 

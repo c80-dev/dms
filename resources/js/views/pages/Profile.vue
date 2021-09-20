@@ -92,11 +92,11 @@
                               dolore.
                             </span>
                             <br>
-                              <small> <strong>Joined : </strong> {{ user.created_at }}</small>
+                              <small> <strong>Joined : </strong> {{ formatDate(user.created_at) }}</small>
                             <div class="margin-top-20 profile-desc-link">
                               <i class="fa fa-twitter"></i>
                               <span
-                                >@{{user.twitter}}</span
+                                >{{user.twitter}}</span
                               >
                             </div>
                             <div class="margin-top-20 profile-desc-link">
@@ -155,7 +155,7 @@ export default {
     Header: () => import("../../components/Header.vue"),
     Footer: () => import("../../components/Footer.vue"),
   },
-  created() {
+  beforeCreate() {
         this.getProfile(this.$route.params.id);
   },
   methods: {

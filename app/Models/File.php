@@ -14,6 +14,16 @@ class File extends Model
       'name', 'description', 'tag_id', 'file_path', 'slug', 'user_id'
     ];
 
+    public function tag()
+    {
+        return $this->belongsTo(Tag::class);
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
     public function file_groups() {
         return $this->belongsToMany(Group::class);
     }

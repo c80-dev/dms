@@ -9,7 +9,7 @@ use App\Models\Tag;
 
 class Helper
 {
-    public function dashbaordMetix()
+    public function dashbaordMatix()
     {
         return response()->json([
             'users' =>  User::count(),

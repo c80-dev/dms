@@ -63,6 +63,57 @@ class TagAction
       }
     }
 
+        //add user to tag
+        public function attachUserToTag($request)
+        {
+            $data = $this->model->where('id', '=', $request->tag_id)->exists();
+            if ($data) {
+                $tag = $this->model->where('id', '=', $request->tag_id)->where('user_id', auth()->user()->id)->first();
+                $tag->tag_users()->attach($request->user_id);
+                return response()->json([
+                    'message' => 'User added to tag successfully'
+                ], 200);
+            }else {
+                return response()->json([
+                    'message' => 'Sorry this data do not exist'
+                ], 404);
+            }
+        }
+    
+         //add user to tag
+         public function attachFileToTag($request)
+         {
+             $data = $this->model->where('id', '=', $request->tag_id)->exists();
+             if ($data) {
+                 $tag = $this->model->where('id', '=', $request->tag_id)->where('user_id', auth()->user()->id)->first();
+                 $tag->tag_files()->attach($request->file_id);
+                 return response()->json([
+                     'message' => 'File added to tag successfully'
+                 ], 200);
+             }else {
+                 return response()->json([
+                     'message' => 'Sorry this data do not exist'
+                 ], 404);
+             }
+         }
+    
+         //attach tag
+         public function attachtagToTag($request)
+         {
+            $data = $this->model->where('id', '=', $request->tag_id)->exists();
+            if ($data) {
+                $tag = $this->model->where('id', '=', $request->tag_id)->where('user_id', auth()->user()->id)->first();
+                $tag->tag_groups()->attach($request->tag_id);
+                return response()->json([
+                    'message' => 'Tag added to tag successfully'
+                ], 200);
+            }else {
+                return response()->json([
+                    'message' => 'Sorry this data do not exist'
+                ], 404);
+            }
+         }
+
     //update
     public function update($request, $id)
     {

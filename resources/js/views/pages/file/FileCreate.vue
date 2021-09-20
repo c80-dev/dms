@@ -118,16 +118,21 @@ export default {
   },
   methods: {
     selectFile(event) {
-      this.file = event.target.files[0].name;
+      this.file = event.target.files[0];
     },
     async onSubmit() {
+      const config = {
+          headers: {
+            'content-type': 'multipart/form-data'
+          }
+      }
+      let data = new FormData();
+      data.append('file_path', this.file);
+      data.append('name', this.name);
+      data.append('description', this.description);
+      data.append('tag_id', this.selected);
       try {
-        const response = await axios.post("files", {
-          name: this.name,
-          description: this.description,
-          file_path: this.file,
-          tag_id: this.selected,
-        });
+        const response = await axios.post("files", data, config );
         this.success = response.data.message;
         this.setDataToNull();
       } catch (e) {

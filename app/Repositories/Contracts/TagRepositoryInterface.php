@@ -14,4 +14,10 @@ interface TagRepositoryInterface
 
     public function deleteTag($id);
 
+    public function attachUserToTag($request);
+
+    public function  attachFileToTag($request);
+
+    public function attachGroupToTag($request);
+
 }

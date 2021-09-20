@@ -122,9 +122,9 @@ class UserAction
             $update = $user->update([
              'name' => empty($request->name) ? $user->name : $request->name,
              'phone' =>   empty($request->phone) ? $user->phone : $request->phone,
-             'facebook' =>  empty($request->facebook) ? $user->facebook : $request->facebook,
-             'twitter' =>  empty($request->twitter) ? $user->twitter : $request->twitter,
-             'linkedin' =>  empty($request->linkedin) ? $user->linkedin : $request->linkedin
+             'facebook' =>  empty($request->facebook) ? $user->facebook : "https://www.facebook.com/".$request->facebook,
+             'twitter' =>  empty($request->twitter) ? $user->twitter : "https://twitter.com/". $request->twitter,
+             'linkedin' =>  empty($request->linkedin) ? $user->linkedin : "https://www.linkedin.com/". $request->linkedin
             ]);
             if ($update) {
                 return response()->json([

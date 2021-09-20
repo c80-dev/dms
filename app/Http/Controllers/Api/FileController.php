@@ -20,7 +20,7 @@ class FileController extends Controller
     public function index()
     {
         $files = $this->fileRepository->allFiles();
-        return $Files;
+        return $files;
     }
 
     //create

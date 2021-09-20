@@ -45,13 +45,13 @@ class FileAction
     //all
     public function all()
     {
-      $Files = $this->model->with(['user','tag'])->latest()->paginate(20);
-      if (count($Files) < 1) {
+      $files = $this->model->with(['user','tag'])->latest()->paginate(20);
+      if (count($files) < 1) {
         return response()->json([
             'message' => 'Sorry no File found'
         ], 400);
       }else {
-        return FileResource::collection($Files);
+        return FileResource::collection($files);
       }
     }
 

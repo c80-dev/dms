@@ -33,7 +33,7 @@
               <div class="main-card mb-3 card">
                 <div class="container-fluid">
                   <div class="row">
-                    <div class="col-md-5">
+                    <div class="col-md-8">
                       <div class="project-info-box mt-0">
                         <h5>
                           <strong>{{ tag.name }} Details</strong>
@@ -61,7 +61,7 @@
                       <!-- / project-info-box -->
                     </div>
                     <!-- / column -->
-                    <div class="col-md-7">
+                    <div class="col-md-4">
                       <div class="project-info-box">
                        <div class="form-group">
                             <label for="name"> <strong>Add User</strong></label>
@@ -79,9 +79,12 @@
                             type="submit"
                             @click="onSubmitUser()"
                             class="btn btn-dark btn-lg"
+                            title="Add user to group"
                             >
-                            Add User
+                            <i class="pe-7s-add-user"></i>
                             </button>
+                            <router-link to="/" class="btn btn-success btn-lg" title="View all users in this group"> <i class="pe-7s-look"></i
+                          > </router-link>
                         </div>
                         <div class="form-group">
                             <label for="name"> <strong>Add File</strong></label>
@@ -99,9 +102,12 @@
                             type="submit"
                             @click="onSubmitFile()"
                             class="btn btn-dark btn-lg"
+                            title="Add user to group"
                             >
-                            Add File
+                            <i class="pe-7s-add-user"></i>
                             </button>
+                            <router-link to="/" class="btn btn-success btn-lg" title="View all users in this group"> <i class="pe-7s-look"></i
+                          > </router-link>
                         </div>
                         <div class="form-group">
                             <label for="name"> <strong>Add Group</strong></label>
@@ -115,13 +121,16 @@
                                 {{ group.name }}
                                 </option>
                             </select><br>
-                              <button
+                            <button
                             type="submit"
                             @click="onSubmitGroup()"
                             class="btn btn-dark btn-lg"
+                            title="Add user to group"
                             >
-                            Add Group
+                            <i class="pe-7s-add-user"></i>
                             </button>
+                            <router-link to="/" class="btn btn-success btn-lg" title="View all users in this group"> <i class="pe-7s-look"></i
+                          > </router-link>
                         </div>
                       </div>
                       <!-- / project-info-box -->
@@ -151,7 +160,7 @@ export default {
       users: [],
       files: [],
       groups: [],
-      selected_tag: "",
+      selected_group: "",
       selected_user: "",
       selected_file: "",
     };
@@ -173,6 +182,42 @@ export default {
     formatDate(dateString) {
       const options = { year: "numeric", month: "long", day: "numeric" };
       return new Date(dateString).toLocaleDateString(undefined, options);
+    },
+    //add users to group
+    async onSubmitUser() {
+        try {
+          const response = await axios.post("add-user-to-tag", {
+            user_id: this.selected_user,
+            tag_id: this.$route.params.id,
+          });
+          alert(response.data.message);
+        } catch (e) {
+          alert("Sorry select a user");
+        }
+    },
+    //add file to group
+    async onSubmitFile() {
+        try {
+          const response = await axios.post("add-file-to-tag", {
+            file_id: this.selected_file,
+            tag_id: this.$route.params.id,
+          });
+          alert(response.data.message);
+        } catch (e) {
+          alert("Sorry select a file");
+        }
+    },
+    //add tag to group
+    async onSubmitGroup() {
+        try {
+          const response = await axios.post("add-group-to-tag", {
+            tag_id: this.$route.params.id,
+            group_id: this.selected_group,
+          });
+          alert(response.data.message);
+        } catch (e) {
+          alert("Sorry select a group");
+        }
     },
     async getMetrix() {
         const response = await axios.get('attachment-helper');

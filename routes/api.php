@@ -38,10 +38,15 @@ Route::group(['middleware' => 'api', 'prefix' => 'v0.01'], function ($router) {
                 Route::patch('/groups/{id}', [App\Http\Controllers\Api\GroupController::class, 'update']);
                 Route::delete('/groups/{id}', [App\Http\Controllers\Api\GroupController::class, 'destroy']);
 
-            //add
+            //add to group
             Route::post('/add-user-to-group', [App\Http\Controllers\Api\GroupController::class, 'addUserToGroup']);
                 Route::post('/add-file-to-group', [App\Http\Controllers\Api\GroupController::class, 'addFileToGroup']);
                 Route::post('/add-tag-to-group', [App\Http\Controllers\Api\GroupController::class, 'addTagToGroup']);
+
+             //add to tag
+            Route::post('/add-user-to-tag', [App\Http\Controllers\Api\TagController::class, 'addUserToTag']);
+                Route::post('/add-file-to-tag', [App\Http\Controllers\Api\TagController::class, 'addFileToTag']);
+                Route::post('/add-group-to-tag', [App\Http\Controllers\Api\TagController::class, 'addGroupToTag']);
 
             //groups
             Route::get('/tags', [App\Http\Controllers\Api\TagController::class, 'index']);
@@ -74,7 +79,7 @@ Route::group(['middleware' => 'api', 'prefix' => 'v0.01'], function ($router) {
 
         //only admin secured routes
         Route::group(['middleware' => ['admin']], function () {
-            Route::get('/dashboard-metrix', [App\Helpers\Helper::class, 'dashbaordMetix']);
+            Route::get('/dashboard-matrix', [App\Helpers\Helper::class, 'dashbaordMatix']);
             //settings routes
             Route::apiResource('/settings', App\Http\Controllers\Api\SettingController::class);
                 Route::delete('/delete-user/{id}', [App\Http\Controllers\Api\AuthController::class, 'delete']);

@@ -91,19 +91,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
@@ -199,6 +186,15 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           }
         }, _callee2, null, [[0, 7]]);
       }))();
+    },
+    shortText: function shortText(stringValue) {
+      if (stringValue.length > 10) {
+        return stringValue = stringValue.substring(0, 30) + "...";
+      }
+    },
+    getFileExtention: function getFileExtention(filePath) {
+      var ext = filePath.split('.').pop();
+      return ext;
     }
   },
   computed: _objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_2__.mapGetters)(["user"]))
@@ -713,7 +709,7 @@ var render = function() {
     "div",
     {
       staticClass:
-        "\n    app-container app-theme-white\n    body-tabs-shadow\n    fixed-sidebar fixed-header\n  "
+        "app-container app-theme-white body-tabs-shadow fixed-sidebar fixed-header"
     },
     [
       _c("Header"),
@@ -742,7 +738,110 @@ var render = function() {
                     ? _c("Success", { attrs: { success: _vm.success } })
                     : _vm._e(),
                   _vm._v(" "),
-                  _vm._m(1)
+                  _c("div", { staticClass: "col-md-12" }, [
+                    _c(
+                      "div",
+                      { staticClass: "row" },
+                      _vm._l(_vm.files, function(file, index) {
+                        return _c(
+                          "div",
+                          {
+                            key: file.id,
+                            staticClass: "col-sm-4 col-md-4 p-3",
+                            attrs: { index: index }
+                          },
+                          [
+                            _c(
+                              "div",
+                              {
+                                staticClass: "card mb-3",
+                                staticStyle: { "max-width": "540px" },
+                                attrs: { id: "showFolder" }
+                              },
+                              [
+                                _c("div", { staticClass: "row g-0" }, [
+                                  _c(
+                                    "div",
+                                    {
+                                      staticClass: "col-md-2",
+                                      staticStyle: { "font-size": "1.1rem" }
+                                    },
+                                    [
+                                      _vm.getFileExtention(file.file_path) ==
+                                      "pdf"
+                                        ? _c("i", {
+                                            staticClass:
+                                              "fas fa-file-pdf text-danger fa-10x"
+                                          })
+                                        : _c("i", {
+                                            staticClass:
+                                              "fas fa-file-word text-primary fa-10x"
+                                          })
+                                    ]
+                                  ),
+                                  _vm._v(" "),
+                                  _c("div", { staticClass: "col-md-10 pl-5" }, [
+                                    _c(
+                                      "div",
+                                      { staticClass: "card-body ml-5" },
+                                      [
+                                        _c(
+                                          "h5",
+                                          { staticClass: "card-title" },
+                                          [
+                                            _c("strong", [
+                                              _vm._v(_vm._s(file.name) + " ")
+                                            ])
+                                          ]
+                                        ),
+                                        _vm._v(" "),
+                                        _c(
+                                          "p",
+                                          { staticClass: "card-text mt-3" },
+                                          [
+                                            _vm._v(
+                                              "\n                        " +
+                                                _vm._s(
+                                                  _vm.shortText(
+                                                    file.description
+                                                  )
+                                                ) +
+                                                "\n                      "
+                                            )
+                                          ]
+                                        ),
+                                        _vm._v(" "),
+                                        _c("br"),
+                                        _vm._v(" "),
+                                        _c("p", { staticClass: "card-text" }, [
+                                          _c(
+                                            "small",
+                                            { staticClass: "text-muted" },
+                                            [
+                                              _vm._v(
+                                                "\n                          " +
+                                                  _vm._s(
+                                                    _vm.formatDate(
+                                                      file.created_at
+                                                    )
+                                                  ) +
+                                                  "\n                        "
+                                              )
+                                            ]
+                                          )
+                                        ])
+                                      ]
+                                    )
+                                  ])
+                                ])
+                              ]
+                            )
+                          ]
+                        )
+                      }),
+                      0
+                    )
+                  ])
                 ],
                 1
               ),
@@ -773,79 +872,8 @@ var staticRenderFns = [
           _c("div", [
             _vm._v("\n                All Files\n                "),
             _c("div", { staticClass: "page-title-subheading" }, [
-              _vm._v(
-                "\n                  Welcome to C80 electronic document management system\n                "
-              )
+              _vm._v("Welcome to C80 electronic document management system")
             ])
-          ])
-        ])
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "row" }, [
-      _c("div", { staticClass: "col-md-12" }, [
-        _c("div", { staticClass: "main-card mb-3 card" }, [
-          _c("div", { staticClass: "col-sm-4 col-md-4 p-3" }, [
-            _c(
-              "div",
-              {
-                staticClass: "card mb-3",
-                staticStyle: { "max-width": "540px" },
-                attrs: { id: "showFolder" }
-              },
-              [
-                _c("div", { staticClass: "row g-0" }, [
-                  _c(
-                    "div",
-                    {
-                      staticClass: "col-md-2",
-                      staticStyle: { "font-size": "0.9rem" }
-                    },
-                    [
-                      _c("i", {
-                        staticClass: "fas fa-file-word text-primary fa-10x"
-                      })
-                    ]
-                  ),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "col-md-8" }, [
-                    _c("div", { staticClass: "card-body ml-5" }, [
-                      _c("h5", { staticClass: "card-title" }, [
-                        _c("strong", [_vm._v("sdhflsdhfdsf")])
-                      ]),
-                      _vm._v(" "),
-                      _c("p", { staticClass: "card-text mt-3" }, [
-                        _vm._v("dslsdfdsfdsfdsfdsfdfds")
-                      ]),
-                      _vm._v(" "),
-                      _c("br"),
-                      _vm._v(" "),
-                      _c("p", { staticClass: "card-text" }, [
-                        _c("small", { staticClass: "text-muted" }, [
-                          _vm._v("1")
-                        ])
-                      ])
-                    ])
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "col-md-2" }, [
-                    _c("br"),
-                    _vm._v(" "),
-                    _c("i", {
-                      staticClass: "fas fa-download text-danger fa-1x mt-3"
-                    }),
-                    _vm._v(" "),
-                    _c("i", {
-                      staticClass: "fas fa-trash text-danger fa-1x mt-2"
-                    })
-                  ])
-                ])
-              ]
-            )
           ])
         ])
       ])

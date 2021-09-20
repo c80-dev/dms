@@ -29,11 +29,11 @@
 
 export default {
     name: 'Footer',
-    mounted() {
+    created() {
 
-      let scriptOne = document.createElement('script')
-      scriptOne.setAttribute('src', 'http://maps.google.com/maps/api/js?sensor=true')
-      document.head.appendChild(scriptOne)
+    //   let scriptOne = document.createElement('script')
+    //   scriptOne.setAttribute('src', 'http://maps.google.com/maps/api/js?sensor=true')
+    //   document.head.appendChild(scriptOne)
 
       let scriptTwo = document.createElement('script')
       scriptTwo.setAttribute('src', 'https://demo.dashboardpack.com/architectui-html-free/assets/scripts/main.js')

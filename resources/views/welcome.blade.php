@@ -9,6 +9,7 @@
         <meta name="description" content="This is an example dashboard created using build-in elements and components.">
         <meta name="msapplication-tap-highlight" content="no">
         <title>{{ config('app.name') }}</title>
+        <link rel="icon" href="{{ asset('images/logo.png') }}">
         <link rel="stylesheet" href="{{mix('css/app.css')}}">
         <link href="https://demo.dashboardpack.com/architectui-html-free/main.css" rel="stylesheet">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">

@@ -111,7 +111,7 @@
                         </div>
                         <div class="form-group">
                             <label for="name"> <strong>Add Tag</strong></label>
-                             <select v-model="selected" class="form-control form-control-md">
+                             <select v-model="selected_tag" class="form-control form-control-md">
                                 <option
                                 v-for="(tag, index) in tags"
                                 v-bind:value="tag.id"

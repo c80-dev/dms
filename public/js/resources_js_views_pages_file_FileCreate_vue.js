@@ -156,46 +156,51 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   },
   methods: {
     selectFile: function selectFile(event) {
-      this.file = event.target.files[0].name;
+      this.file = event.target.files[0];
     },
     onSubmit: function onSubmit() {
       var _this = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
-        var response;
+        var config, data, response;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
-                _context.prev = 0;
-                _context.next = 3;
-                return axios__WEBPACK_IMPORTED_MODULE_1___default().post("files", {
-                  name: _this.name,
-                  description: _this.description,
-                  file_path: _this.file,
-                  tag_id: _this.selected
-                });
+                config = {
+                  headers: {
+                    'content-type': 'multipart/form-data'
+                  }
+                };
+                data = new FormData();
+                data.append('file_path', _this.file);
+                data.append('name', _this.name);
+                data.append('description', _this.description);
+                data.append('tag_id', _this.selected);
+                _context.prev = 6;
+                _context.next = 9;
+                return axios__WEBPACK_IMPORTED_MODULE_1___default().post("files", data, config);
 
-              case 3:
+              case 9:
                 response = _context.sent;
                 _this.success = response.data.message;
 
                 _this.setDataToNull();
 
-                _context.next = 11;
+                _context.next = 17;
                 break;
 
-              case 8:
-                _context.prev = 8;
-                _context.t0 = _context["catch"](0);
+              case 14:
+                _context.prev = 14;
+                _context.t0 = _context["catch"](6);
                 _this.error = _context.t0.response.data.message;
 
-              case 11:
+              case 17:
               case "end":
                 return _context.stop();
             }
           }
-        }, _callee, null, [[0, 8]]);
+        }, _callee, null, [[6, 14]]);
       }))();
     },
     setDataToNull: function setDataToNull() {

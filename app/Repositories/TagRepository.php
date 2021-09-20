@@ -61,6 +61,53 @@ class TagRepository implements TagRepositoryInterface
           }
     }
 
+        //attach users to Tag
+        public function attachUserToTag($request)
+        {
+            $validator =  Validator::make($request->all(),[
+                'user_id' => 'required'
+            ]);
+    
+            if ($validator->fails()) {
+                return response()->json([
+                    'message' => $validator->errors()->first()
+                ], 422);
+            }else {
+                return $this->action->attachUserToTag($request);
+            }
+        }
+    
+         //attach users to Tag
+         public function attachFileToTag($request)
+         {
+             $validator =  Validator::make($request->all(),[
+                 'file_id' => 'required'
+             ]);
+    
+             if ($validator->fails()) {
+                 return response()->json([
+                     'message' => $validator->errors()->first()
+                 ], 422);
+             }else {
+                 return $this->action->attachFileToTag($request);
+             }
+         }
+    
+         public function attachGroupToTag($request)
+         {
+            $validator =  Validator::make($request->all(),[
+                'tag_id' => 'required'
+            ]);
+    
+            if ($validator->fails()) {
+                return response()->json([
+                    'message' => $validator->errors()->first()
+                ], 422);
+            }else {
+                return $this->action->attachTagToTag($request);
+            }
+         }
+
     //delete
     public function deleteTag($id)
     {

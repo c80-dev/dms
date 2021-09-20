@@ -16,8 +16,8 @@ interface GroupRepositoryInterface
 
     public function attachUserToGroup($request);
 
-   public function  attachFileToGroup($request);
+    public function  attachFileToGroup($request);
 
-   public function attachTagToGroup($request);
+    public function attachTagToGroup($request);
 
 }

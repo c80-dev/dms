@@ -56,6 +56,7 @@
 </template>
 
 <script>
+    import {mapGetters} from 'vuex'
     import axios from 'axios'
     export default {
         name: 'DashboardMetrix',
@@ -69,15 +70,18 @@
         },
         methods: {
             async getMetrix() {
-                const response = await axios.get('dashboard-metrix');
+                const response = await axios.get('dashboard-matrix');
                 this.users = response.data.users;
                 this.files = response.data.files;
                 this.groups = response.data.groups;
                 this.tags = response.data.tags;
             }
         },
-        mounted() {
+        created() {
             this.getMetrix();
+        },
+        computed: {
+        ...mapGetters(['user'])
         }
     }
 </script>

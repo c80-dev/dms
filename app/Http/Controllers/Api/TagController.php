@@ -43,6 +43,24 @@ class TagController extends Controller
         return $tag;
     }
 
+     //add users to Tag
+     public function addUserToTag(Request $request)
+     {
+        return $this->tagRepository->attachUserToTag($request);
+     }
+ 
+     //add file to Tag
+     public function addFileToTag(Request $request)
+     {
+        return $this->tagRepository->attachFileToTag($request);
+     }
+ 
+     //add file to Tag
+     public function addGroupToTag(Request $request)
+     {
+        return $this->tagRepository->attachGroupToTag($request);
+     }
+
     //delete
     public function destroy($id)
     {

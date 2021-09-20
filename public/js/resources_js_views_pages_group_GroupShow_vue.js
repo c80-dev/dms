@@ -1183,8 +1183,8 @@ var render = function() {
                                         {
                                           name: "model",
                                           rawName: "v-model",
-                                          value: _vm.selected,
-                                          expression: "selected"
+                                          value: _vm.selected_tag,
+                                          expression: "selected_tag"
                                         }
                                       ],
                                       staticClass:
@@ -1205,7 +1205,8 @@ var render = function() {
                                                   : o.value
                                               return val
                                             })
-                                          _vm.selected = $event.target.multiple
+                                          _vm.selected_tag = $event.target
+                                            .multiple
                                             ? $$selectedVal
                                             : $$selectedVal[0]
                                         }
