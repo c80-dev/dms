@@ -41,12 +41,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: 'Footer',
   created: function created() {
-    //   let scriptOne = document.createElement('script')
-    //   scriptOne.setAttribute('src', 'http://maps.google.com/maps/api/js?sensor=true')
-    //   document.head.appendChild(scriptOne)
-    var scriptTwo = document.createElement('script');
+    var scriptOne = document.createElement('script');
     scriptTwo.setAttribute('src', 'https://demo.dashboardpack.com/architectui-html-free/assets/scripts/main.js');
-    document.head.appendChild(scriptTwo);
+    document.head.appendChild(scriptOne);
   }
 });
 

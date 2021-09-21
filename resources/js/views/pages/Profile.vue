@@ -155,7 +155,7 @@ export default {
     Header: () => import("../../components/Header.vue"),
     Footer: () => import("../../components/Footer.vue"),
   },
-  beforeCreate() {
+  created() {
         this.getProfile(this.$route.params.id);
   },
   methods: {

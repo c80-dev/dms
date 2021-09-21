@@ -182,7 +182,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       return __webpack_require__.e(/*! import() */ "resources_js_components_Footer_vue").then(__webpack_require__.bind(__webpack_require__, /*! ../../components/Footer.vue */ "./resources/js/components/Footer.vue"));
     }
   },
-  beforeCreate: function beforeCreate() {
+  created: function created() {
     this.getProfile(this.$route.params.id);
   },
   methods: {

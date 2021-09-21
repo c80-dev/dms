@@ -76,8 +76,10 @@
                         password_confirmation: this.password_confirmation
                     });
                     this.success = response.data.message;
+                    console.log(this.success);
                 } catch (e) {
                     this.error = e.response.data.message;
+                    console.log(this.error)
                 }
             }
         },

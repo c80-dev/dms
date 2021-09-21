@@ -179,7 +179,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       return __webpack_require__.e(/*! import() */ "resources_js_components_Footer_vue").then(__webpack_require__.bind(__webpack_require__, /*! ../components/Footer.vue */ "./resources/js/components/Footer.vue"));
     },
     DashboardMetrix: function DashboardMetrix() {
-      return __webpack_require__.e(/*! import() */ "resources_js_components_DashboardMetrix_vue").then(__webpack_require__.bind(__webpack_require__, /*! ../components/DashboardMetrix.vue */ "./resources/js/components/DashboardMetrix.vue"));
+      return __webpack_require__.e(/*! import() */ "resources_js_components_DashboardMatrix_vue").then(__webpack_require__.bind(__webpack_require__, /*! ../components/DashboardMatrix.vue */ "./resources/js/components/DashboardMatrix.vue"));
     }
   },
   created: function created() {

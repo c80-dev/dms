@@ -91,6 +91,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
@@ -187,11 +188,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         }, _callee2, null, [[0, 7]]);
       }))();
     },
-    shortText: function shortText(stringValue) {
-      if (stringValue.length > 10) {
-        return stringValue = stringValue.substring(0, 30) + "...";
-      }
-    },
     getFileExtention: function getFileExtention(filePath) {
       var ext = filePath.split('.').pop();
       return ext;
@@ -218,7 +214,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n#showFolder[data-v-17724dfc] {\r\n  border-radius: 10px;\n}\r\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n#showFolder[data-v-17724dfc] {\r\n  border-radius: 10px;\n}\n.card-title[data-v-17724dfc], .card-text[data-v-17724dfc] {\r\n  text-overflow: ellipsis;\r\n  overflow: hidden;\r\n  white-space: nowrap;\r\n  margin-left: 3rem;\n}\r\n\r\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -747,7 +743,7 @@ var render = function() {
                           "div",
                           {
                             key: file.id,
-                            staticClass: "col-sm-4 col-md-4 p-3",
+                            staticClass: "col-md-3 col-xl-3",
                             attrs: { index: index }
                           },
                           [
@@ -755,7 +751,6 @@ var render = function() {
                               "div",
                               {
                                 staticClass: "card mb-3",
-                                staticStyle: { "max-width": "540px" },
                                 attrs: { id: "showFolder" }
                               },
                               [
@@ -764,74 +759,67 @@ var render = function() {
                                     "div",
                                     {
                                       staticClass: "col-md-2",
-                                      staticStyle: { "font-size": "1.1rem" }
+                                      staticStyle: { "font-size": "1.6rem" }
                                     },
                                     [
                                       _vm.getFileExtention(file.file_path) ==
                                       "pdf"
                                         ? _c("i", {
                                             staticClass:
-                                              "fas fa-file-pdf text-danger fa-10x"
+                                              "fas fa-file-pdf text-danger fa-5x"
                                           })
                                         : _c("i", {
                                             staticClass:
-                                              "fas fa-file-word text-primary fa-10x"
+                                              "fas fa-file-word text-primary fa-5x"
                                           })
                                     ]
                                   ),
                                   _vm._v(" "),
-                                  _c("div", { staticClass: "col-md-10 pl-5" }, [
-                                    _c(
-                                      "div",
-                                      { staticClass: "card-body ml-5" },
-                                      [
+                                  _c("div", { staticClass: "col-md-10" }, [
+                                    _c("div", { staticClass: "card-body" }, [
+                                      _c("h6", { staticClass: "card-title" }, [
+                                        _vm._v(
+                                          "\n                        " +
+                                            _vm._s(file.name) +
+                                            "\n                      "
+                                        )
+                                      ]),
+                                      _vm._v(" "),
+                                      _c("p", { staticClass: "card-text" }, [
                                         _c(
-                                          "h5",
-                                          { staticClass: "card-title" },
-                                          [
-                                            _c("strong", [
-                                              _vm._v(_vm._s(file.name) + " ")
-                                            ])
-                                          ]
-                                        ),
-                                        _vm._v(" "),
-                                        _c(
-                                          "p",
-                                          { staticClass: "card-text mt-3" },
+                                          "small",
+                                          { staticClass: "text-muted" },
                                           [
                                             _vm._v(
-                                              "\n                        " +
-                                                _vm._s(
-                                                  _vm.shortText(
-                                                    file.description
-                                                  )
-                                                ) +
-                                                "\n                      "
+                                              "\n                            " +
+                                                _vm._s(file.description) +
+                                                "\n                          "
                                             )
                                           ]
-                                        ),
-                                        _vm._v(" "),
-                                        _c("br"),
-                                        _vm._v(" "),
-                                        _c("p", { staticClass: "card-text" }, [
-                                          _c(
-                                            "small",
-                                            { staticClass: "text-muted" },
-                                            [
-                                              _vm._v(
-                                                "\n                          " +
-                                                  _vm._s(
-                                                    _vm.formatDate(
-                                                      file.created_at
-                                                    )
-                                                  ) +
-                                                  "\n                        "
-                                              )
-                                            ]
-                                          )
-                                        ])
-                                      ]
-                                    )
+                                        )
+                                      ]),
+                                      _vm._v(" "),
+                                      _c("p", { staticClass: "card-text" }, [
+                                        _c(
+                                          "small",
+                                          { staticClass: "text-muted" },
+                                          [
+                                            _c("strong", [
+                                              _vm._v("Created : ")
+                                            ]),
+                                            _vm._v(
+                                              "  " +
+                                                _vm._s(
+                                                  _vm.formatDate(
+                                                    file.created_at
+                                                  )
+                                                ) +
+                                                "\n                          "
+                                            )
+                                          ]
+                                        )
+                                      ])
+                                    ])
                                   ])
                                 ])
                               ]

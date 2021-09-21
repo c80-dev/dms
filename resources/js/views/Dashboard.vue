@@ -144,7 +144,7 @@ export default {
     SideBar: () => import("../components/SideBar.vue"),
     Header: () => import("../components/Header.vue"),
     Footer: () => import("../components/Footer.vue"),
-    DashboardMetrix: () => import("../components/DashboardMetrix.vue"),
+    DashboardMetrix: () => import("../components/DashboardMatrix.vue"),
   },
   created() {
     this.getEmployees();

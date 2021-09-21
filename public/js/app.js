@@ -2107,12 +2107,6 @@ vue__WEBPACK_IMPORTED_MODULE_0__.default.use(vue_router__WEBPACK_IMPORTED_MODULE
       return __webpack_require__.e(/*! import() */ "resources_js_views_pages_file_FileAll_vue").then(__webpack_require__.bind(__webpack_require__, /*! ./views/pages/file/FileAll.vue */ "./resources/js/views/pages/file/FileAll.vue"));
     }
   }, {
-    path: '/file-edit/:id',
-    name: 'FileEdit',
-    component: function component() {
-      return __webpack_require__.e(/*! import() */ "resources_js_views_pages_file_FileEdit_vue").then(__webpack_require__.bind(__webpack_require__, /*! ./views/pages/file/FileEdit.vue */ "./resources/js/views/pages/file/FileEdit.vue"));
-    }
-  }, {
     path: '/file-show/:id',
     name: 'FileShow',
     component: function component() {
@@ -55120,7 +55114,7 @@ var index = {
 /******/ 		// This function allow to reference async chunks
 /******/ 		__webpack_require__.u = (chunkId) => {
 /******/ 			// return url for filenames not based on template
-/******/ 			if ({"resources_js_views_pages_auth_Login_vue":1,"resources_js_views_pages_auth_Register_vue":1,"resources_js_views_pages_auth_ForgotPassword_vue":1,"resources_js_views_Dashboard_vue":1,"resources_js_views_pages_group_GroupCreate_vue":1,"resources_js_views_pages_group_GroupAll_vue":1,"resources_js_views_pages_group_GroupEdit_vue":1,"resources_js_views_pages_group_GroupShow_vue":1,"resources_js_views_pages_tag_TagCreate_vue":1,"resources_js_views_pages_tag_TagAll_vue":1,"resources_js_views_pages_tag_TagEdit_vue":1,"resources_js_views_pages_tag_TagShow_vue":1,"resources_js_views_pages_file_FileCreate_vue":1,"resources_js_views_pages_file_FileAll_vue":1,"resources_js_views_pages_file_FileEdit_vue":1,"resources_js_views_pages_file_FileShow_vue":1,"resources_js_views_pages_Profile_vue":1,"resources_js_views_pages_user_UserEdit_vue":1,"resources_js_views_pages_user_UserAll_vue":1,"resources_js_views_pages_user_ChangePassword_vue":1,"resources_js_components_Nav_vue":1,"resources_js_components_Error_vue":1,"resources_js_components_Success_vue":1,"resources_js_components_SideBar_vue":1,"resources_js_components_Header_vue":1,"resources_js_components_Footer_vue":1,"resources_js_components_DashboardMetrix_vue":1}[chunkId]) return "js/" + chunkId + ".js";
+/******/ 			if ({"resources_js_views_pages_auth_Login_vue":1,"resources_js_views_pages_auth_Register_vue":1,"resources_js_views_pages_auth_ForgotPassword_vue":1,"resources_js_views_Dashboard_vue":1,"resources_js_views_pages_group_GroupCreate_vue":1,"resources_js_views_pages_group_GroupAll_vue":1,"resources_js_views_pages_group_GroupEdit_vue":1,"resources_js_views_pages_group_GroupShow_vue":1,"resources_js_views_pages_tag_TagCreate_vue":1,"resources_js_views_pages_tag_TagAll_vue":1,"resources_js_views_pages_tag_TagEdit_vue":1,"resources_js_views_pages_tag_TagShow_vue":1,"resources_js_views_pages_file_FileCreate_vue":1,"resources_js_views_pages_file_FileAll_vue":1,"resources_js_views_pages_file_FileShow_vue":1,"resources_js_views_pages_Profile_vue":1,"resources_js_views_pages_user_UserEdit_vue":1,"resources_js_views_pages_user_UserAll_vue":1,"resources_js_views_pages_user_ChangePassword_vue":1,"resources_js_components_Nav_vue":1,"resources_js_components_Error_vue":1,"resources_js_components_Success_vue":1,"resources_js_components_SideBar_vue":1,"resources_js_components_Header_vue":1,"resources_js_components_Footer_vue":1,"resources_js_components_DashboardMatrix_vue":1}[chunkId]) return "js/" + chunkId + ".js";
 /******/ 			// return url for filenames based on template
 /******/ 			return undefined;
 /******/ 		};

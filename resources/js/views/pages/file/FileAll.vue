@@ -25,33 +25,34 @@
           <Success v-if="success" :success="success" />
           <div class="col-md-12">
             <div class="row">
-              <div class="col-sm-4 col-md-4 p-3" v-for="(file, index) in files" :index="index" :key="file.id">
-                <div class="card mb-3" style="max-width: 540px" id="showFolder">
+
+              <div class="col-md-3 col-xl-3" v-for="(file, index) in files" :index="index" :key="file.id">
+                <div class="card mb-3" id="showFolder">
                   <div class="row g-0">
-                    <div class="col-md-2" style="font-size: 1.1rem">
-                      <i class="fas fa-file-pdf text-danger fa-10x" v-if="getFileExtention(file.file_path) == 'pdf'"></i>
-                      <i class="fas fa-file-word text-primary fa-10x" v-else></i>
+                    <div class="col-md-2" style="font-size: 1.6rem">
+                      <i class="fas fa-file-pdf text-danger fa-5x" v-if="getFileExtention(file.file_path) == 'pdf'"></i>
+                      <i class="fas fa-file-word text-primary fa-5x" v-else></i>
                     </div>
-                    <div class="col-md-10 pl-5">
-                      <div class="card-body ml-5">
-                        <h5 class="card-title">
-                          <strong>{{ file.name }} </strong>
-                        </h5>
-                        <p class="card-text mt-3">
-                          {{ shortText(file.description) }}
+                    <div class="col-md-10">
+                      <div class="card-body">
+                        <h6 class="card-title">
+                          {{ file.name }}
+                        </h6>
+                         <p class="card-text">
+                            <small class="text-muted">
+                              {{  file.description }}
+                            </small>
                         </p>
-                        <br />
                         <p class="card-text">
-                          <small class="text-muted">
-                            {{  formatDate(file.created_at) }}
-                          </small>
+                            <small class="text-muted">
+                              <strong>Created : </strong>  {{  formatDate(file.created_at) }}
+                            </small>
                         </p>
                       </div>
                     </div>
                   </div>
                 </div>
               </div>
-
             </div>
           </div>
         </div>
@@ -101,11 +102,6 @@ export default {
         this.error = e.response.data.message;
       }
     },
-    shortText(stringValue) {
-      if (stringValue.length > 10) {
-          return  stringValue = stringValue.substring(0, 30) + "...";
-      }
-    },
     getFileExtention(filePath) {
        var ext =  filePath.split('.').pop();
        return ext; 
@@ -122,4 +118,11 @@ export default {
 #showFolder {
   border-radius: 10px;
 }
+.card-title, .card-text {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  margin-left: 3rem;
+}
+
 </style>
