@@ -4,7 +4,11 @@
             <div class="card mb-3 widget-content bg-midnight-bloom">
                 <div class="widget-content-wrapper text-white">
                     <div class="widget-content-left">
-                        <div class="widget-heading">Total Users</div>
+                        <div class="widget-heading">
+                            <router-link to="/users" id="router-link">
+                                Total Users
+                            </router-link>
+                        </div>
                         <div class="widget-subheading">Total users</div>
                     </div>
                     <div class="widget-content-right">
@@ -17,7 +21,11 @@
             <div class="card mb-3 widget-content bg-arielle-smile">
                 <div class="widget-content-wrapper text-white">
                     <div class="widget-content-left">
-                        <div class="widget-heading">Total Files</div>
+                        <div class="widget-heading">
+                            <router-link to="/file-all" id="router-link">
+                                Total Files
+                            </router-link>
+                        </div>
                         <div class="widget-subheading">Total files </div>
                     </div>
                     <div class="widget-content-right">
@@ -30,7 +38,11 @@
             <div class="card mb-3 widget-content bg-info">
                 <div class="widget-content-wrapper text-white">
                     <div class="widget-content-left">
-                        <div class="widget-heading">Total Tags</div>
+                        <div class="widget-heading">  
+                            <router-link to="/tag-all" id="router-link">
+                                Total Tags
+                            </router-link>
+                        </div>
                         <div class="widget-subheading">Total files </div>
                     </div>
                     <div class="widget-content-right">
@@ -43,7 +55,11 @@
             <div class="card mb-3 widget-content bg-grow-early">
                 <div class="widget-content-wrapper text-white">
                     <div class="widget-content-left">
-                        <div class="widget-heading">Total Groups</div>
+                        <div class="widget-heading">
+                            <router-link to="/group-all" id="router-link">
+                                Total Groups
+                            </router-link>
+                        </div>
                         <div class="widget-subheading">Total grops</div>
                     </div>
                     <div class="widget-content-right">
@@ -82,3 +98,10 @@
         }
     }
 </script>
+
+<style scoped>
+    #router-link {
+        text-decoration: none;
+        color: #ffffff;
+    }
+</style>

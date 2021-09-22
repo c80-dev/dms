@@ -23,36 +23,46 @@
           </div>
           <Error v-if="error" :error="error" />
           <Success v-if="success" :success="success" />
-          <div class="col-md-12">
+          <div class="col-12">
             <div class="row">
 
-              <div class="col-md-3 col-xl-3" v-for="(file, index) in files" :index="index" :key="file.id">
+              <div class="col-md-4 col-sm-6 col-lg-4" v-for="(file, index) in files" :index="index" :key="file.id">
                 <div class="card mb-3" id="showFolder">
                   <div class="row g-0">
-                    <div class="col-md-2" style="font-size: 1.6rem">
+                    <div class="col-2" style="font-size: 1.6rem">
                       <i class="fas fa-file-pdf text-danger fa-5x" v-if="getFileExtention(file.file_path) == 'pdf'"></i>
                       <i class="fas fa-file-word text-primary fa-5x" v-else></i>
                     </div>
-                    <div class="col-md-10">
+                    <div class="col-8">
                       <div class="card-body">
-                        <h6 class="card-title">
+                        <h6 class="card-title" :title="file.name">
                           {{ file.name }}
                         </h6>
-                         <p class="card-text">
+                         <p class="card-text" :title="file.description">
                             <small class="text-muted">
                               {{  file.description }}
                             </small>
                         </p>
                         <p class="card-text">
-                            <small class="text-muted">
+                            <small class="text-muted" :title="file.user.name">
                               <strong>Created : </strong>  {{  formatDate(file.created_at) }}
                             </small>
                         </p>
                       </div>
                     </div>
+                    <div class="col-2"> <br><br>
+                        <a v-bind:href="asset(`storage/uploads/${file.file_path}`)" download>
+                            <i class="fas fa-download text-danger fa-1x"></i>
+                        </a> <br>
+                        <i class="fas fa-edit text-danger fa-1x"></i> <br>
+                        <a @click="deleteFile(file.id)">
+                            <i class="fas fa-trash text-danger fa-1x"></i>
+                        </a>
+                    </div>
                   </div>
                 </div>
               </div>
+              <vue-cli-laravel-pagination :data="files" align="center" :onChange="changed_value" buttonLimit="10" v-if="files.length > 10"></vue-cli-laravel-pagination>
             </div>
           </div>
         </div>
@@ -70,7 +80,7 @@ export default {
   name: "GroupAll",
   data() {
     return {
-      files: [],
+      files: {},
       error: "",
       success: ""
     };
@@ -86,6 +96,16 @@ export default {
     this.getTags();
   },
   methods: {
+    mounted() {
+      this.fetch();
+    },
+    changed_value(options){
+      this.fetch(options.page)
+    },
+	  async fetch(page = 1) {
+        const response = await axios.get('files?page=' + page)
+        this.files = response.data.data;
+	  },
     async getTags() {
       const response = await axios.get("files");
       this.files = response.data.data;
@@ -93,6 +113,14 @@ export default {
     formatDate(dateString) {
       const options = { year: "numeric", month: "long", day: "numeric" };
       return new Date(dateString).toLocaleDateString(undefined, options);
+    },
+    async deleteFile(id) {
+        try {
+          const response = await axios.delete("files/" + id);
+          this.success = response.data.message;
+        } catch (e) {
+          this.error = e.response.data.message;
+        }
     },
     async delteTags(id) {
       try {

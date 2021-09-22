@@ -3,7 +3,6 @@
 namespace App\Actions;
 
 use App\Models\File;
-use \Cviebrock\EloquentSluggable\Services\SlugService;
 use App\Http\Resources\FileResource;
 use App\Helpers\FileProcessing;
 use Illuminate\Support\Facades\Storage;
@@ -28,8 +27,7 @@ class FileAction
             'tag_id' => $request->tag_id,
             'name' => $request->name,
             'description' => $request->description,
-            'file_path' => $this->fileProcessing->file_processing($request, 'file_path'),
-            'slug' => SlugService::createSlug($this->model, 'slug', $request->name)
+            'file_path' => $this->fileProcessing->file_processing($request, 'file_path')
         ]);
         if ($File) {
             return response()->json([

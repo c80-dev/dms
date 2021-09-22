@@ -3,7 +3,6 @@
 namespace App\Actions;
 
 use App\Models\Group;
-use \Cviebrock\EloquentSluggable\Services\SlugService;
 use App\Http\Resources\GroupResource;
 
 class GroupAction
@@ -22,8 +21,7 @@ class GroupAction
         $group = $this->model->create([
             'user_id' => auth()->user()->id,
             'name' => $request->name,
-            'description' => $request->description,
-            'slug' => SlugService::createSlug($this->model, 'slug', $request->name)
+            'description' => $request->description
         ]);
         if ($group) {
             return response()->json([
@@ -39,7 +37,7 @@ class GroupAction
     //all
     public function all()
     {
-      $groups = $this->model->with(['user'])->latest()->paginate(20);
+      $groups = $this->model->with(['user'])->latest()->paginate(10);
       if (count($groups) < 1) {
         return response()->json([
             'message' => 'Sorry no group found'
@@ -141,7 +139,6 @@ class GroupAction
             $update = $group->update([
              'name' => empty($request->name) ? $group->name : $request->name,
              'description' =>   empty($request->description) ? $group->description : $request->description,
-
             ]);
             if ($update) {
                 return response()->json([

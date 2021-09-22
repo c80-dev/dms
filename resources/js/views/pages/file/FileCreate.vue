@@ -66,10 +66,10 @@
             </div>
 
             <div class="form-group">
-              <label for="description"> <strong>File to Upload</strong> </label>
+              <label for="file"> <strong>File to Upload</strong> </label>
               <input
                 type="file"
-                class="form-control form-control-md"
+                class="form-control form-control-md inputfile"
                 id="file"
                 name="file"
                 @change="selectFile"
@@ -83,9 +83,9 @@
             >
               Submit
             </button>
+            <BackButton />
           </div>
         </div>
-
         <Footer />
       </div>
     </div>
@@ -115,6 +115,7 @@ export default {
     Footer: () => import("../../../components/Footer.vue"),
     Error: () => import("../../../components/Error.vue"),
     Success: () => import("../../../components/Success.vue"),
+    BackButton: () => import("../../../components/BackButton.vue"),
   },
   methods: {
     selectFile(event) {
@@ -142,13 +143,13 @@ export default {
     setDataToNull() {
       this.name = "";
       (this.description = ""), (this.selectFile = ""), (this.selected = "");
-    },
+    },  
     async allTags() {
       try {
         const response = await axios.get("tags");
         this.tags = response.data.data;
       } catch (e) {
-        this.error = e.response.data.message;
+        this.tags = e.response.data.message;
       }
     },
   },
@@ -163,4 +164,5 @@ export default {
 
 
 <style scoped>
+
 </style>

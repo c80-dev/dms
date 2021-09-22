@@ -152,6 +152,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     },
     Success: function Success() {
       return __webpack_require__.e(/*! import() */ "resources_js_components_Success_vue").then(__webpack_require__.bind(__webpack_require__, /*! ../../../components/Success.vue */ "./resources/js/components/Success.vue"));
+    },
+    BackButton: function BackButton() {
+      return __webpack_require__.e(/*! import() */ "resources_js_components_BackButton_vue").then(__webpack_require__.bind(__webpack_require__, /*! ../../../components/BackButton.vue */ "./resources/js/components/BackButton.vue"));
     }
   },
   methods: {
@@ -229,7 +232,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               case 7:
                 _context2.prev = 7;
                 _context2.t0 = _context2["catch"](0);
-                _this2.error = _context2.t0.response.data.message;
+                _this2.tags = _context2.t0.response.data.message;
 
               case 10:
               case "end":
@@ -476,7 +479,7 @@ var render = function() {
                       _vm._m(4),
                       _vm._v(" "),
                       _c("input", {
-                        staticClass: "form-control form-control-md",
+                        staticClass: "form-control form-control-md inputfile",
                         attrs: { type: "file", id: "file", name: "file" },
                         on: { change: _vm.selectFile }
                       })
@@ -494,7 +497,9 @@ var render = function() {
                         }
                       },
                       [_vm._v("\n            Submit\n          ")]
-                    )
+                    ),
+                    _vm._v(" "),
+                    _c("BackButton")
                   ],
                   1
                 )
@@ -563,7 +568,7 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("label", { attrs: { for: "description" } }, [
+    return _c("label", { attrs: { for: "file" } }, [
       _c("strong", [_vm._v("File to Upload")])
     ])
   }

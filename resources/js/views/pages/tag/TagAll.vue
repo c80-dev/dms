@@ -40,7 +40,7 @@
                       table table-borderless table-striped table-hover
                     "
                   >
-                    <thead class="bg-dark text-light">
+                    <thead>
                       <tr>
                         <th>No..</th>
                         <th>Name</th>
@@ -68,7 +68,7 @@
                             </div>
                           </div>
                         </td>
-                        <td id="description">{{  shortText(tag.description) }}</td>
+                        <td id="desc">{{  tag.description }}</td>
                         <td>
                           {{ formatDate(tag.created_at) }}
                         </td>
@@ -102,6 +102,7 @@
                 </div>
               </div>
             </div>
+            <vue-cli-laravel-pagination :data="tags" align="center" :onChange="changed_value" buttonLimit="10" v-if="tags.length > 10"></vue-cli-laravel-pagination>
           </div>
         </div>
         <Footer />
@@ -115,10 +116,10 @@ import { mapGetters } from "vuex";
 import axios from "axios";
 
 export default {
-  name: "GroupAll",
+  name: "TagAll",
   data() {
     return {
-      tags: [],
+      tags: {},
       error: "",
       success: "",
     };
@@ -133,14 +134,21 @@ export default {
   created() {
     this.getTags();
   },
-  updated() {
-    this.getTags();
-  },
   methods: {
     async getTags() {
       const response = await axios.get("tags");
       this.tags = response.data.data;
     },
+    mounted() {
+      this.fetch();
+    },
+    changed_value(options){
+      this.fetch(options.page)
+    },
+	  async fetch(page = 1) {
+        const response = await axios.get('tags?page=' + page)
+        this.tags = response.data.data;
+	  },
     formatDate(dateString) {
       const options = { year: "numeric", month: "long", day: "numeric" };
       return new Date(dateString).toLocaleDateString(undefined, options);
@@ -155,7 +163,7 @@ export default {
     },
     shortText(stringValue) {
         if (stringValue.length > 70) {
-           return  stringValue = stringValue.substring(0, 70) + "...";
+           return  stringValue = stringValue.substring(0, 20) + "...";
         }
     }
   },
@@ -167,9 +175,9 @@ export default {
 
 
 <style scoped>
-    #description {
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
+    #desc {
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
 </style>

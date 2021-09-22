@@ -40,7 +40,7 @@
                       table table-borderless table-striped table-hover
                     "
                   >
-                    <thead class="bg-dark text-light">
+                    <thead>
                       <tr>
                         <th>No..</th>
                         <th>Name</th>
@@ -129,6 +129,7 @@
                 </div>
               </div>
             </div>
+            <vue-cli-laravel-pagination :data="users" align="center" :onChange="changed_value" buttonLimit="10" v-if="users.length > 10"></vue-cli-laravel-pagination>
           </div>
         </div>
         <Footer />
@@ -145,7 +146,7 @@ export default {
   name: "UserAll",
   data() {
     return {
-      users: [],
+      users: {},
       error: "",
       success: "",
     };
@@ -160,10 +161,17 @@ export default {
   created() {
     this.getUsers();
   },
-  updated() {
-    this.getUsers();
-  },
   methods: {
+    mounted() {
+      this.fetch();
+    },
+    changed_value(options){
+      this.fetch(options.page)
+    },
+	  async fetch(page = 1) {
+        const response = await axios.get('users?page=' + page)
+        this.users = response.data.data;
+	  },
     async getUsers() {
       const response = await axios.get("users");
       this.users = response.data.data;

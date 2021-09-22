@@ -40,7 +40,7 @@
                       table table-borderless table-striped table-hover
                     "
                   >
-                    <thead class="bg-dark text-light">
+                    <thead>
                       <tr>
                         <th>No..</th>
                         <th>Name</th>
@@ -97,7 +97,6 @@
                           >
                             <i class="pe-7s-trash"></i>
                           </button>
-
                         </td>
                       </tr>
                     </tbody>
@@ -105,6 +104,7 @@
                 </div>
               </div>
             </div>
+            <vue-cli-laravel-pagination :data="groups" align="center" :onChange="changed_value" buttonLimit="10" v-if="groups.length > 10"></vue-cli-laravel-pagination>
           </div>
         </div>
         <Footer />
@@ -121,7 +121,7 @@ export default {
   name: "GroupAll",
   data() {
     return {
-      groups: [],
+      groups: {},
       error: "",
       success: "",
     };
@@ -136,14 +136,21 @@ export default {
   created() {
     this.getGroups();
   },
-  updated() {
-    this.getGroups();
-  },
   methods: {
     async getGroups() {
       const response = await axios.get("groups");
       this.groups = response.data.data;
     },
+    mounted() {
+      this.fetch();
+    },
+    changed_value(options){
+      this.fetch(options.page)
+    },
+	  async fetch(page = 1) {
+        const response = await axios.get('groups?page=' + page)
+        this.groups = response.data.data;
+	  },
     formatDate(dateString) {
       const options = { year: "numeric", month: "long", day: "numeric" };
       return new Date(dateString).toLocaleDateString(undefined, options);

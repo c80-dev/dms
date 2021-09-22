@@ -105,6 +105,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
@@ -133,6 +134,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     },
     Success: function Success() {
       return __webpack_require__.e(/*! import() */ "resources_js_components_Success_vue").then(__webpack_require__.bind(__webpack_require__, /*! ../../../components/Success.vue */ "./resources/js/components/Success.vue"));
+    },
+    BackButton: function BackButton() {
+      return __webpack_require__.e(/*! import() */ "resources_js_components_BackButton_vue").then(__webpack_require__.bind(__webpack_require__, /*! ../../../components/BackButton.vue */ "./resources/js/components/BackButton.vue"));
     }
   },
   methods: {
@@ -389,7 +393,9 @@ var render = function() {
                         }
                       },
                       [_vm._v("\n            Submit\n          ")]
-                    )
+                    ),
+                    _vm._v(" "),
+                    _c("BackButton")
                   ],
                   1
                 )

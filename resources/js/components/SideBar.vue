@@ -110,7 +110,12 @@
                             Users
                         </router-link>
                     </li>
-
+                    <li>
+                        <router-link   v-bind:to="'/profile/'+ user.id">
+                            <i class="metismenu-icon pe-7s-user"></i>
+                           Profile
+                        </router-link>
+                    </li>
                     <li>
                         <a href="javascript:void(0)" @click="onLogout()" >
                             <i class="metismenu-icon pe-7s-power"></i>
@@ -125,6 +130,7 @@
 
 <script>
 
+    import {mapGetters} from 'vuex'
     import axios from 'axios'
 
     export default {
@@ -136,5 +142,8 @@
                 this.$router.push('/')
             }
         },
+        computed: {
+            ...mapGetters(['user'])
+        }
     }
 </script>

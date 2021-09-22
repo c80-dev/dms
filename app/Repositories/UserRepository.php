@@ -47,24 +47,23 @@ class UserRepository implements UserRepositoryInterface
       }
 
       //update account
-      public function updateUserAcount($request, $id)
-      {
-          $validator =  Validator::make($request->all(),[
-              'name' => 'required',
-              'phone' => 'sometimes',
-              'facebook' => 'sometimes',
-              'twitter' => 'sometimes',
-              'linkedin' => 'sometimes'
-          ]);
-
-          if ($validator->fails()) {
-              return response()->json([
-                  'message' => $$validator->errors()->first()
-              ], 422);
-          }else {
-                return $this->action->update($request, $id);
-          }
-      }
+    public function updateUserAcount($request, $id)
+    {
+        $validator =  Validator::make($request->all(),[
+            'name' => 'sometimes',
+            'phone' => 'nullable|sometimes',
+            'facebook' => 'nullable|sometimes|url',
+            'twitter' => 'nullable|sometimes|url',
+            'linkedin' => 'nullable|sometimes|url'
+        ]);
+        if ($validator->fails()) {
+            return response()->json([
+                'message' => $validator->errors()->first()
+            ], 422);
+        }else {
+            return $this->action->update($request, $id);
+        }
+    }
 
       //update user password
       public function changePassword($request, $id)

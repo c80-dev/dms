@@ -58,6 +58,7 @@
             >
               Submit
             </button>
+            <BackButton />
           </div>
         </div>
 
@@ -87,6 +88,7 @@ export default {
     Footer: () => import("../../../components/Footer.vue"),
     Error: () => import("../../../components/Error.vue"),
     Success: () => import("../../../components/Success.vue"),
+    BackButton: () => import("../../../components/BackButton.vue"),
   },
   methods: {
     async onSubmit() {

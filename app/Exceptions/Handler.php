@@ -86,7 +86,6 @@ class Handler extends ExceptionHandler
                     'errors' => $e->getMessage()
                 ], 401);
             }
-            dd($e);
         }
     }
 }

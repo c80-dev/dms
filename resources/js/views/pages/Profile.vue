@@ -37,14 +37,13 @@
                       <div class="profile-sidebar">
                         <!-- SIDEBAR USER TITLE -->
                         <div class="profile-usertitle">
-                            <div class="profile-userpic" v-if="user.image_path">
-                                <img width="40" class="rounded-circle" :src="asset(`storage/uploads/${user.image_path}`)" alt="">
+                            <div class="profile-userpic" v-if="userData.image_path">
+                                <img width="40" class="rounded-circle" :src="asset(`storage/uploads/${userData.image_path}`)" alt="">
                             </div>
                              <div class="profile-userpic" v-else>
                                 <img width="40" class="rounded-circle" :src="asset('images/avt.png')" alt="">
                             </div>
-                          <div class="profile-usertitle-name"> {{ user.name }} </div>
-                          <div class="profile-usertitle-job"> {{ user.roles[0].name }}</div>
+                          <div class="profile-usertitle-name"> {{ userData.name }} </div>
                         </div>
                         <!-- END SIDEBAR USER TITLE -->
                         <!-- SIDEBAR BUTTONS -->
@@ -56,7 +55,7 @@
                                 name="file"
                                 @change="selectFile"
                             /> <br>
-                          <button type="button" @click="onSubmit(user.id)" class="btn btn-success btn-sm">
+                          <button type="button" @click="onSubmit(userData.id)" class="btn btn-success btn-sm">
                            Change Picture
                           </button>
                         </div>
@@ -72,9 +71,9 @@
                             </li>
                             <li>
                               <router-link
-                                v-bind:to="'/profile-edit/' + user.id"
+                                v-bind:to="'/profile-edit/' + userData.id"
                               >
-                                <i class="glyphicon glyphicon-user"></i>
+                              <i class="glyphicon glyphicon-user"></i>
                                 Account Settings
                               </router-link>
                             </li>
@@ -85,42 +84,42 @@
                         <div class="portlet light bordered">
                           <div>
                             <h4 class="profile-desc-title">
-                              About {{ user.name }}
+                              About {{ userData.name }}
                             </h4>
                             <span class="profile-desc-text">
                               Lorem ipsum dolor sit amet diam nonummy nibh
                               dolore.
                             </span>
                             <br>
-                              <small> <strong>Joined : </strong> {{ formatDate(user.created_at) }}</small>
+                              <small> <strong>Joined : </strong> {{ formatDate(userData.created_at) }}</small>
                             <div class="margin-top-20 profile-desc-link">
                               <i class="fa fa-twitter"></i>
                               <span
-                                >{{user.twitter}}</span
+                                >{{userData.twitter}}</span
                               >
                             </div>
                             <div class="margin-top-20 profile-desc-link">
                               <i class="fa fa-facebook"></i>
                               <span
-                                >{{user.facebook}}</span
+                                >{{userData.facebook}}</span
                               >
                             </div>
                             <div class="margin-top-20 profile-desc-link">
                               <i class="fa fa-linkedin"></i>
                               <span
-                                >{{user.linkedin}}</span
+                                >{{userData.linkedin}}</span
                               >
                             </div>
                             <div class="margin-top-20 profile-desc-link">
                               <i class="fa fa-envelope"></i>
                               <span
-                                >{{user.email}}</span
+                                >{{userData.email}}</span
                               >
                             </div>
                             <div class="margin-top-20 profile-desc-link">
                               <i class="fa fa-phone"></i>
                               <span
-                                >{{user.phone}}</span
+                                >{{userData.phone}}</span
                               >
                             </div>
                           </div>
@@ -146,7 +145,7 @@ export default {
   name: "Profile",
   data() {
     return {
-      user: {},
+      userData: {},
       file: null,
     };
   },
@@ -176,7 +175,7 @@ export default {
     },
     async getProfile(id) {
         const response = await axios.get("users/" + id);
-        this.user = response.data.data;
+        this.userData = response.data.data;
     },
     formatDate(dateString) {
         const options = { year: "numeric", month: "long", day: "numeric" };
@@ -188,207 +187,5 @@ export default {
 
 
 <style scoped>
-/***
-User Profile Sidebar by @keenthemes
-A component of Metronic Theme - #1 Selling Bootstrap 3 Admin Theme in Themeforest: https://j.mp/metronictheme
-Licensed under MIT
-***/
-
-body {
-  background: #f1f3fa;
-}
-
-/* Profile container */
-.profile {
-  margin: 20px 0;
-}
-
-/* Profile sidebar */
-.profile-sidebar {
-  padding: 20px 0 10px 0;
-  background: #fff;
-}
-
-.profile-userpic img {
-  width: 20%;
-  height: 20%;
-  -webkit-border-radius: 50% !important;
-  -moz-border-radius: 50% !important;
-  border-radius: 50% !important;
-}
-#file{
-    border: 0px solid black;
-}
-
-.profile-usertitle {
-  text-align: center;
-  margin-top: 20px;
-}
-
-.profile-usertitle-name {
-  color: #5a7391;
-  font-size: 16px;
-  font-weight: 600;
-  margin-bottom: 7px;
-}
-
-.profile-usertitle-job {
-  text-transform: uppercase;
-  color: #5b9bd1;
-  font-size: 12px;
-  font-weight: 600;
-  margin-bottom: 15px;
-}
-
-.profile-userbuttons {
-  text-align: center;
-  margin-top: 10px;
-}
-
-.profile-userbuttons .btn {
-  text-transform: uppercase;
-  font-size: 11px;
-  font-weight: 600;
-  padding: 6px 15px;
-  margin-right: 5px;
-}
-
-.profile-userbuttons .btn:last-child {
-  margin-right: 0px;
-}
-
-.profile-usermenu {
-  margin-top: 30px;
-}
-
-.profile-usermenu ul li {
-  border-bottom: 1px solid #f0f4f7;
-}
-
-.profile-usermenu ul li:last-child {
-  border-bottom: none;
-}
-
-.profile-usermenu ul li a {
-  color: #93a3b5;
-  font-size: 14px;
-  font-weight: 400;
-}
-
-.profile-usermenu ul li a i {
-  margin-right: 8px;
-  font-size: 14px;
-}
-
-.profile-usermenu ul li a:hover {
-  background-color: #fafcfd;
-  color: #5b9bd1;
-}
-
-.profile-usermenu ul li.active {
-  border-bottom: none;
-}
-
-.profile-usermenu ul li.active a {
-  color: #5b9bd1;
-  background-color: #f6f9fb;
-  border-left: 2px solid #5b9bd1;
-  margin-left: -2px;
-}
-
-/* Profile Content */
-.profile-content {
-  padding: 20px;
-  background: #fff;
-  min-height: 460px;
-}
-a,
-button,
-code,
-div,
-img,
-input,
-label,
-li,
-p,
-pre,
-select,
-span,
-svg,
-table,
-td,
-textarea,
-th,
-ul {
-  -webkit-border-radius: 0 !important;
-  -moz-border-radius: 0 !important;
-  border-radius: 0 !important;
-}
-.portlet {
-  margin-top: 0;
-  margin-bottom: 25px;
-  padding: 0;
-  border-radius: 4px;
-}
-.portlet.bordered {
-  border-left: 2px solid #e6e9ec !important;
-}
-.portlet.light {
-  padding: 12px 20px 15px;
-  background-color: #fff;
-}
-.portlet.light.bordered {
-  border: 1px solid #e7ecf1 !important;
-}
-.list-separated {
-  margin-top: 10px;
-  margin-bottom: 15px;
-}
-.profile-stat {
-  padding-bottom: 20px;
-  border-bottom: 1px solid #f0f4f7;
-}
-.profile-stat-title {
-  color: #7f90a4;
-  font-size: 25px;
-  text-align: center;
-}
-.uppercase {
-  text-transform: uppercase !important;
-}
-
-.profile-stat-text {
-  color: #5b9bd1;
-  font-size: 10px;
-  font-weight: 600;
-  text-align: center;
-}
-.profile-desc-title {
-  color: #7f90a4;
-  font-size: 17px;
-  font-weight: 600;
-}
-.profile-desc-text {
-  color: #7e8c9e;
-  font-size: 14px;
-}
-.margin-top-20 {
-  margin-top: 20px !important;
-}
-[class*=" fa-"]:not(.fa-stack),
-[class*=" glyphicon-"],
-[class*=" icon-"],
-[class^="fa-"]:not(.fa-stack),
-[class^="glyphicon-"],
-[class^="icon-"] {
-  display: inline-block;
-  line-height: 14px;
-  -webkit-font-smoothing: antialiased;
-}
-.profile-desc-link i {
-  width: 22px;
-  font-size: 19px;
-  color: #abb6c4;
-  margin-right: 5px;
-}
+   @import "../../assets/css/profile-edit.css";
 </style>

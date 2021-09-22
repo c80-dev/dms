@@ -16,7 +16,7 @@ class FileController extends Controller
         $this->middleware('auth:api');
     }
 
-    // all categories
+    //all
     public function index()
     {
         $files = $this->fileRepository->allFiles();

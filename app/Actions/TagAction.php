@@ -3,7 +3,6 @@
 namespace App\Actions;
 
 use App\Models\Tag;
-use \Cviebrock\EloquentSluggable\Services\SlugService;
 use App\Http\Resources\TagResource;
 
 class TagAction
@@ -22,8 +21,7 @@ class TagAction
         $tag = $this->model->create([
             'user_id' => auth()->user()->id,
             'name' => "#".$request->name,
-            'description' => $request->description,
-            'slug' => SlugService::createSlug($this->model, 'slug', $request->name)
+            'description' => $request->description
         ]);
         if ($tag) {
             return response()->json([
@@ -39,7 +37,7 @@ class TagAction
     //all
     public function all()
     {
-      $tags = $this->model->with(['user'])->latest()->paginate(20);
+      $tags = $this->model->with(['user'])->latest()->paginate(10);
       if (count($tags) < 1) {
         return response()->json([
             'message' => 'Sorry no Tag found'
@@ -63,56 +61,56 @@ class TagAction
       }
     }
 
-        //add user to tag
-        public function attachUserToTag($request)
-        {
-            $data = $this->model->where('id', '=', $request->tag_id)->exists();
-            if ($data) {
-                $tag = $this->model->where('id', '=', $request->tag_id)->where('user_id', auth()->user()->id)->first();
-                $tag->tag_users()->attach($request->user_id);
-                return response()->json([
-                    'message' => 'User added to tag successfully'
-                ], 200);
-            }else {
-                return response()->json([
-                    'message' => 'Sorry this data do not exist'
-                ], 404);
-            }
+    //add user to tag
+    public function attachUserToTag($request)
+    {
+        $data = $this->model->where('id', '=', $request->tag_id)->exists();
+        if ($data) {
+            $tag = $this->model->where('id', '=', $request->tag_id)->where('user_id', auth()->user()->id)->first();
+            $tag->tag_users()->attach($request->user_id);
+            return response()->json([
+                'message' => 'User added to tag successfully'
+            ], 200);
+        }else {
+            return response()->json([
+                'message' => 'Sorry this data do not exist'
+            ], 404);
         }
+    }
     
-         //add user to tag
-         public function attachFileToTag($request)
-         {
-             $data = $this->model->where('id', '=', $request->tag_id)->exists();
-             if ($data) {
-                 $tag = $this->model->where('id', '=', $request->tag_id)->where('user_id', auth()->user()->id)->first();
-                 $tag->tag_files()->attach($request->file_id);
-                 return response()->json([
-                     'message' => 'File added to tag successfully'
-                 ], 200);
-             }else {
-                 return response()->json([
-                     'message' => 'Sorry this data do not exist'
-                 ], 404);
-             }
-         }
+    //add user to tag
+    public function attachFileToTag($request)
+    {
+        $data = $this->model->where('id', '=', $request->tag_id)->exists();
+        if ($data) {
+            $tag = $this->model->where('id', '=', $request->tag_id)->where('user_id', auth()->user()->id)->first();
+            $tag->tag_files()->attach($request->file_id);
+            return response()->json([
+                'message' => 'File added to tag successfully'
+            ], 200);
+        }else {
+            return response()->json([
+                'message' => 'Sorry this data do not exist'
+            ], 404);
+        }
+    }
     
-         //attach tag
-         public function attachtagToTag($request)
-         {
-            $data = $this->model->where('id', '=', $request->tag_id)->exists();
-            if ($data) {
-                $tag = $this->model->where('id', '=', $request->tag_id)->where('user_id', auth()->user()->id)->first();
-                $tag->tag_groups()->attach($request->tag_id);
-                return response()->json([
-                    'message' => 'Tag added to tag successfully'
-                ], 200);
-            }else {
-                return response()->json([
-                    'message' => 'Sorry this data do not exist'
-                ], 404);
-            }
-         }
+    //attach tag
+    public function attachtagToTag($request)
+    {
+        $data = $this->model->where('id', '=', $request->tag_id)->exists();
+        if ($data) {
+            $tag = $this->model->where('id', '=', $request->tag_id)->where('user_id', auth()->user()->id)->first();
+            $tag->tag_groups()->attach($request->tag_id);
+            return response()->json([
+                'message' => 'Tag added to tag successfully'
+            ], 200);
+        }else {
+            return response()->json([
+                'message' => 'Sorry this data do not exist'
+            ], 404);
+        }
+    }
 
     //update
     public function update($request, $id)

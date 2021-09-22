@@ -121,6 +121,7 @@
                 </div>
               </div>
             </div>
+            <vue-cli-laravel-pagination :data="users" align="center" :onChange="changed_value" buttonLimit="10" v-if="users.length > 10"></vue-cli-laravel-pagination>
           </div>
         </div>
         <Footer />
@@ -137,7 +138,7 @@ export default {
   name: "Dashboard",
   data() {
     return {
-      users: [],
+      users: {},
     };
   },
   components: {
@@ -149,10 +150,17 @@ export default {
   created() {
     this.getEmployees();
   },
-  updated() {
-    this.getEmployees();
-  },
   methods: {
+    mounted() {
+      this.fetch();
+    },
+    changed_value(options){
+      this.fetch(options.page)
+    },
+	  async fetch(page = 1) {
+        const response = await axios.get('users?page=' + page)
+        this.users = response.data.data;
+	  },
     async getEmployees() {
       const response = await axios.get("users");
       this.users = response.data.data;

@@ -9,6 +9,7 @@ use App\Models\Tag;
 
 class Helper
 {
+    //dashboard matrix
     public function dashbaordMatix()
     {
         return response()->json([
@@ -19,6 +20,7 @@ class Helper
         ], 200);
     }
 
+    //attachment helper
     public function attachmentHelper()
     {
         return response()->json([

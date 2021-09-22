@@ -21,6 +21,7 @@ class CreateFilesTable extends Migration
             $table->foreignId('tag_id')->constrained()->onDelete('cascade');
             $table->binary('file_path');
             $table->string('slug')->unique();
+            $table->softDeletes();
             $table->timestamps();
         });
     }

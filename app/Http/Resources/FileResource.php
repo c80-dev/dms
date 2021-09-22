@@ -3,6 +3,7 @@
 namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
+use App\Helpers\General;
 
 class FileResource extends JsonResource
 {
@@ -14,6 +15,18 @@ class FileResource extends JsonResource
      */
     public function toArray($request)
     {
-        return parent::toArray($request);
+        $general_helper = new General();
+        return [
+            'id'        => $this->id,
+            'name'      => $general_helper->clean($this->name),
+            'description'     => $general_helper->clean($this->description),
+            'user'        => new UserResource($this->whenLoaded('user')),
+            'tag'        => new TagResource($this->whenLoaded('tag')),
+            'file_path'   => $this->file_path,
+            'slug'      => $general_helper->clean($this->slug),
+            'roles'     => $general_helper->clean($this->whenLoaded('roles')),
+            'created_at'=> $this->created_at,
+            'updated_at'=> $this->updated_at
+        ];
     }
 }

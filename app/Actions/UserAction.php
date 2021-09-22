@@ -10,7 +10,6 @@ use App\Models\VerificationToken;
 use App\Http\Resources\UserResource;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
-use \Cviebrock\EloquentSluggable\Services\SlugService;
 use App\Helpers\FileProcessing;
 use Illuminate\Support\Facades\Storage;
 
@@ -21,6 +20,7 @@ class UserAction
     public $verification_token;
     public $role;
     public $fileProcessing;
+    public $urlValidator;
 
     public function __construct(User $model,  VerificationToken $verification_token, Role $role, FileProcessing $fileProcessing)
     {
@@ -37,8 +37,7 @@ class UserAction
             'name' => $request->name,
             'email' => $request->email,
             'phone' => $request->phone,
-            'password' => bcrypt($request->password),
-            'slug' => SlugService::createSlug($this->model, 'slug', $request->name)
+            'password' => bcrypt($request->password)
         ]);
         $roleAttach =  $this->role->where('name', 'User')->first();
         $user->roles()->attach($roleAttach->id);
@@ -75,32 +74,32 @@ class UserAction
     //get all users
     public function all()
     {
-      $users = $this->model->with(['roles' => function($query) {
-        $query->select(['name']);
-   } ])->latest()->paginate(20);
-      if (count($users) < 1) {
-        return response()->json([
-            'message' => 'Sorry no user found'
-        ], 400);
-      }else {
-        return UserResource::collection($users);
-      }
+        $users = $this->model->with(['roles' => function($query) {
+            $query->select(['name']);
+        } ])->latest()->paginate(10);
+        if (count($users) < 1) {
+            return response()->json([
+                'message' => 'Sorry no user found'
+            ], 400);
+        }else {
+            return UserResource::collection($users);
+        }
     }
 
     //get single user
     public function get($id)
     {
-      $data = $this->model->where('id', '=', $id)->exists();
-      if ($data) {
-          $user = $this->model->with(['roles' => function($query) {
-            $query->select(['name']);
-       } ])->find($id);
-          return new UserResource($user);
-      }else {
-        return response()->json([
-            'message' => 'Sorry this user do not exist'
-        ], 400);
-      }
+        $data = $this->model->where('id', '=', $id)->exists();
+        if ($data) {
+            $user = $this->model->with(['roles' => function($query) {
+                $query->select(['name']);
+        } ])->find($id);
+            return new UserResource($user);
+        }else {
+            return response()->json([
+                'message' => 'Sorry this user do not exist'
+            ], 400);
+        }
     }
 
     //get authenticated user
@@ -108,8 +107,8 @@ class UserAction
     {
         $user = $this->model->with(['roles' => function($query) {
             $query->select(['name']);
-       } ])->find(auth()->user()->id);
-       return new UserResource($user);
+        } ])->find(auth()->user()->id);
+        return new UserResource($user);
     }
 
     //update user account
@@ -122,9 +121,9 @@ class UserAction
             $update = $user->update([
              'name' => empty($request->name) ? $user->name : $request->name,
              'phone' =>   empty($request->phone) ? $user->phone : $request->phone,
-             'facebook' =>  empty($request->facebook) ? $user->facebook : "https://www.facebook.com/".$request->facebook,
-             'twitter' =>  empty($request->twitter) ? $user->twitter : "https://twitter.com/". $request->twitter,
-             'linkedin' =>  empty($request->linkedin) ? $user->linkedin : "https://www.linkedin.com/". $request->linkedin
+             'facebook' =>  empty($request->facebook) ? $user->facebook : $request->facebook,
+             'twitter' =>  empty($request->twitter) ? $user->twitter : $request->twitter,
+             'linkedin' =>  empty($request->linkedin) ? $user->linkedin : $request->linkedin
             ]);
             if ($update) {
                 return response()->json([

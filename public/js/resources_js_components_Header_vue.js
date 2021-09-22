@@ -108,6 +108,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
@@ -211,15 +216,103 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "app-header header-shadow" }, [
-    _c("div", { staticClass: "app-header__logo" }, [
-      _c("div", {}, [
-        _c("img", {
-          attrs: { width: "50", src: _vm.asset("images/logo.png"), alt: "" }
-        })
-      ]),
-      _vm._v(" "),
-      _vm._m(0)
-    ]),
+    _c(
+      "div",
+      { staticClass: "app-header__logo" },
+      [
+        _c("router-link", { attrs: { to: "/dashboard" } }, [
+          _c(
+            "svg",
+            {
+              attrs: {
+                xmlns: "http://www.w3.org/2000/svg",
+                width: "197.792",
+                height: "30",
+                viewBox: "0 0 297.792 92"
+              }
+            },
+            [
+              _c(
+                "g",
+                {
+                  attrs: {
+                    id: "Group_482",
+                    "data-name": "Group 482",
+                    transform: "translate(-1326.208 -68)"
+                  }
+                },
+                [
+                  _c(
+                    "g",
+                    {
+                      attrs: {
+                        id: "Group_479",
+                        "data-name": "Group 479",
+                        transform: "translate(1324.208 74.474)"
+                      }
+                    },
+                    [
+                      _c("path", {
+                        attrs: {
+                          id: "Path_518",
+                          "data-name": "Path 518",
+                          d:
+                            "M25.758,40.517A14.758,14.758,0,1,1,40.517,25.758,14.758,14.758,0,0,1,25.758,40.517Z",
+                          transform: "translate(13.137 13.137)"
+                        }
+                      }),
+                      _vm._v(" "),
+                      _c("path", {
+                        attrs: {
+                          id: "Path_519",
+                          "data-name": "Path 519",
+                          d:
+                            "M8.954,19.688c-4.277.754-7.208,4.885-5.567,8.906a36.9,36.9,0,0,0,68.782-1.2c1.5-4.076-1.574-8.1-5.874-8.706S58.134,21.213,56.01,25a21.169,21.169,0,0,1-36.555.638C17.2,21.928,13.231,18.934,8.954,19.688Z",
+                          transform: "translate(1.35 24.249)",
+                          fill: "#404040"
+                        }
+                      }),
+                      _vm._v(" "),
+                      _c("path", {
+                        attrs: {
+                          id: "Path_520",
+                          "data-name": "Path 520",
+                          d:
+                            "M75.506,43.507A36.9,36.9,0,1,0,2,38.9a37.163,37.163,0,0,0,.467,5.888,11.514,11.514,0,0,1,7.2-4.48A11.946,11.946,0,0,1,17.94,41.91,21.17,21.17,0,1,1,60.065,38.9a21.443,21.443,0,0,1-.122,2.282,11.945,11.945,0,0,1,8.216-1.895A11.514,11.514,0,0,1,75.506,43.507Z",
+                          transform: "translate(0 0)",
+                          fill: "#f7b029"
+                        }
+                      })
+                    ]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "text",
+                    {
+                      attrs: {
+                        id: "Kasha",
+                        transform: "translate(1407 134)",
+                        "font-size": "69",
+                        "font-family":
+                          "BlaakBlackPERSONALUSE, Blaak Black PERSONAL USE"
+                      }
+                    },
+                    [
+                      _c("tspan", { attrs: { x: "0", y: "0" } }, [
+                        _vm._v("Kasha")
+                      ])
+                    ]
+                  )
+                ]
+              )
+            ]
+          )
+        ]),
+        _vm._v(" "),
+        _vm._m(0)
+      ],
+      1
+    ),
     _vm._v(" "),
     _vm._m(1),
     _vm._v(" "),
@@ -230,7 +323,29 @@ var render = function() {
         _vm._m(3),
         _vm._v(" "),
         _c("ul", { staticClass: "header-menu nav" }, [
-          _vm._m(4),
+          _c(
+            "li",
+            { staticClass: "dropdown nav-item" },
+            [
+              _c(
+                "router-link",
+                {
+                  staticClass: "nav-link",
+                  attrs: {
+                    to: "/profile-edit/" + _vm.user.id,
+                    href: "javascript:void(0);"
+                  }
+                },
+                [
+                  _c("i", { staticClass: "nav-link-icon fa fa-cog" }),
+                  _vm._v(
+                    "\n                            Settings\n                        "
+                  )
+                ]
+              )
+            ],
+            1
+          ),
           _vm._v(" "),
           _c(
             "li",
@@ -317,47 +432,7 @@ var render = function() {
                             }
                           })
                         ]
-                      ),
-                  _vm._v(" "),
-                  _c(
-                    "div",
-                    {
-                      staticClass: "dropdown-menu dropdown-menu-right",
-                      attrs: {
-                        tabindex: "-1",
-                        role: "menu",
-                        "aria-hidden": "true"
-                      }
-                    },
-                    [
-                      _c(
-                        "button",
-                        {
-                          staticClass: "dropdown-item",
-                          attrs: { type: "button", tabindex: "0" }
-                        },
-                        [_vm._v("Profile")]
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "a",
-                        {
-                          staticClass: "dropdown-item",
-                          attrs: {
-                            href: "javascript:void(0)",
-                            type: "button",
-                            tabindex: "0"
-                          },
-                          on: {
-                            click: function($event) {
-                              return _vm.onLogout()
-                            }
-                          }
-                        },
-                        [_vm._v("Logout")]
                       )
-                    ]
-                  )
                 ])
               ])
             ])
@@ -447,23 +522,6 @@ var staticRenderFns = [
       ]),
       _vm._v(" "),
       _c("button", { staticClass: "close" })
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("li", { staticClass: "dropdown nav-item" }, [
-      _c(
-        "a",
-        { staticClass: "nav-link", attrs: { href: "javascript:void(0);" } },
-        [
-          _c("i", { staticClass: "nav-link-icon fa fa-cog" }),
-          _vm._v(
-            "\n                            Settings\n                        "
-          )
-        ]
-      )
     ])
   }
 ]

@@ -16,7 +16,7 @@ class GroupController extends Controller
         $this->middleware('auth:api');
     }
 
-    // all categories
+    //all
     public function index()
     {
         $groups = $this->groupRepository->allGroups();

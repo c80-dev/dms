@@ -167,13 +167,14 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "UserAll",
   data: function data() {
     return {
-      users: [],
+      users: {},
       error: "",
       success: ""
     };
@@ -198,32 +199,61 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   created: function created() {
     this.getUsers();
   },
-  updated: function updated() {
-    this.getUsers();
-  },
   methods: {
-    getUsers: function getUsers() {
-      var _this = this;
+    mounted: function mounted() {
+      this.fetch();
+    },
+    changed_value: function changed_value(options) {
+      this.fetch(options.page);
+    },
+    fetch: function fetch() {
+      var _arguments = arguments,
+          _this = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
-        var response;
+        var page, response;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
-                _context.next = 2;
-                return axios__WEBPACK_IMPORTED_MODULE_1___default().get("users");
+                page = _arguments.length > 0 && _arguments[0] !== undefined ? _arguments[0] : 1;
+                _context.next = 3;
+                return axios__WEBPACK_IMPORTED_MODULE_1___default().get('users?page=' + page);
 
-              case 2:
+              case 3:
                 response = _context.sent;
                 _this.users = response.data.data;
 
-              case 4:
+              case 5:
               case "end":
                 return _context.stop();
             }
           }
         }, _callee);
+      }))();
+    },
+    getUsers: function getUsers() {
+      var _this2 = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee2() {
+        var response;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee2$(_context2) {
+          while (1) {
+            switch (_context2.prev = _context2.next) {
+              case 0:
+                _context2.next = 2;
+                return axios__WEBPACK_IMPORTED_MODULE_1___default().get("users");
+
+              case 2:
+                response = _context2.sent;
+                _this2.users = response.data.data;
+
+              case 4:
+              case "end":
+                return _context2.stop();
+            }
+          }
+        }, _callee2);
       }))();
     },
     formatDate: function formatDate(dateString) {
@@ -235,35 +265,35 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       return new Date(dateString).toLocaleDateString(undefined, options);
     },
     delteTags: function delteTags(id) {
-      var _this2 = this;
+      var _this3 = this;
 
-      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee2() {
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee3() {
         var response;
-        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee2$(_context2) {
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee3$(_context3) {
           while (1) {
-            switch (_context2.prev = _context2.next) {
+            switch (_context3.prev = _context3.next) {
               case 0:
-                _context2.prev = 0;
-                _context2.next = 3;
+                _context3.prev = 0;
+                _context3.next = 3;
                 return axios__WEBPACK_IMPORTED_MODULE_1___default().delete("users/" + id);
 
               case 3:
-                response = _context2.sent;
-                _this2.success = response.data.message;
-                _context2.next = 10;
+                response = _context3.sent;
+                _this3.success = response.data.message;
+                _context3.next = 10;
                 break;
 
               case 7:
-                _context2.prev = 7;
-                _context2.t0 = _context2["catch"](0);
-                _this2.error = _context2.t0.response.data.message;
+                _context3.prev = 7;
+                _context3.t0 = _context3["catch"](0);
+                _this3.error = _context3.t0.response.data.message;
 
               case 10:
               case "end":
-                return _context2.stop();
+                return _context3.stop();
             }
           }
-        }, _callee2, null, [[0, 7]]);
+        }, _callee3, null, [[0, 7]]);
       }))();
     }
   },
@@ -389,240 +419,262 @@ var render = function() {
                     ? _c("Success", { attrs: { success: _vm.success } })
                     : _vm._e(),
                   _vm._v(" "),
-                  _c("div", { staticClass: "row" }, [
-                    _c("div", { staticClass: "col-md-12" }, [
-                      _c("div", { staticClass: "main-card mb-3 card" }, [
-                        _c("div", { staticClass: "table-responsive" }, [
-                          _c(
-                            "table",
-                            {
-                              staticClass:
-                                "\n                    align-middle\n                    mb-0\n                    table table-borderless table-striped table-hover\n                  "
-                            },
-                            [
-                              _vm._m(1),
-                              _vm._v(" "),
-                              _c(
-                                "tbody",
-                                _vm._l(_vm.users, function(userData, index) {
-                                  return _c(
-                                    "tr",
-                                    {
-                                      key: userData.id,
-                                      attrs: { index: index }
-                                    },
-                                    [
-                                      _c("td", { staticClass: "text-muted" }, [
-                                        _vm._v(_vm._s(index + 1))
-                                      ]),
-                                      _vm._v(" "),
-                                      _c("td", [
+                  _c(
+                    "div",
+                    { staticClass: "row" },
+                    [
+                      _c("div", { staticClass: "col-md-12" }, [
+                        _c("div", { staticClass: "main-card mb-3 card" }, [
+                          _c("div", { staticClass: "table-responsive" }, [
+                            _c(
+                              "table",
+                              {
+                                staticClass:
+                                  "\n                    align-middle\n                    mb-0\n                    table table-borderless table-striped table-hover\n                  "
+                              },
+                              [
+                                _vm._m(1),
+                                _vm._v(" "),
+                                _c(
+                                  "tbody",
+                                  _vm._l(_vm.users, function(userData, index) {
+                                    return _c(
+                                      "tr",
+                                      {
+                                        key: userData.id,
+                                        attrs: { index: index }
+                                      },
+                                      [
                                         _c(
-                                          "div",
-                                          { staticClass: "widget-content p-0" },
+                                          "td",
+                                          { staticClass: "text-muted" },
+                                          [_vm._v(_vm._s(index + 1))]
+                                        ),
+                                        _vm._v(" "),
+                                        _c("td", [
+                                          _c(
+                                            "div",
+                                            {
+                                              staticClass: "widget-content p-0"
+                                            },
+                                            [
+                                              _c(
+                                                "div",
+                                                {
+                                                  staticClass:
+                                                    "widget-content-wrapper"
+                                                },
+                                                [
+                                                  _c(
+                                                    "div",
+                                                    {
+                                                      staticClass:
+                                                        "widget-content-left mr-3"
+                                                    },
+                                                    [
+                                                      userData.image_path
+                                                        ? _c(
+                                                            "div",
+                                                            {
+                                                              staticClass:
+                                                                "widget-content-left"
+                                                            },
+                                                            [
+                                                              _c("img", {
+                                                                staticClass:
+                                                                  "rounded-circle",
+                                                                attrs: {
+                                                                  width: "40",
+                                                                  src: _vm.asset(
+                                                                    "storage/uploads/" +
+                                                                      userData.image_path
+                                                                  ),
+                                                                  alt: ""
+                                                                }
+                                                              })
+                                                            ]
+                                                          )
+                                                        : _c(
+                                                            "div",
+                                                            {
+                                                              staticClass:
+                                                                "widget-content-left"
+                                                            },
+                                                            [
+                                                              _c("img", {
+                                                                staticClass:
+                                                                  "rounded-circle",
+                                                                attrs: {
+                                                                  width: "40",
+                                                                  src: _vm.asset(
+                                                                    "images/avt.png"
+                                                                  ),
+                                                                  alt: ""
+                                                                }
+                                                              })
+                                                            ]
+                                                          )
+                                                    ]
+                                                  ),
+                                                  _vm._v(" "),
+                                                  _c(
+                                                    "div",
+                                                    {
+                                                      staticClass:
+                                                        "widget-content-left flex2"
+                                                    },
+                                                    [
+                                                      _c(
+                                                        "div",
+                                                        {
+                                                          staticClass:
+                                                            "widget-heading"
+                                                        },
+                                                        [
+                                                          _vm._v(
+                                                            "\n                                " +
+                                                              _vm._s(
+                                                                userData.name
+                                                              ) +
+                                                              "\n                              "
+                                                          )
+                                                        ]
+                                                      ),
+                                                      _vm._v(" "),
+                                                      _c(
+                                                        "div",
+                                                        {
+                                                          staticClass:
+                                                            "widget-subheading opacity-7"
+                                                        },
+                                                        [
+                                                          _vm._v(
+                                                            "\n                                " +
+                                                              _vm._s(
+                                                                userData
+                                                                  .roles[0].name
+                                                              ) +
+                                                              "\n                              "
+                                                          )
+                                                        ]
+                                                      )
+                                                    ]
+                                                  )
+                                                ]
+                                              )
+                                            ]
+                                          )
+                                        ]),
+                                        _vm._v(" "),
+                                        _c("td", [
+                                          _vm._v(_vm._s(userData.email))
+                                        ]),
+                                        _vm._v(" "),
+                                        _c("td", [
+                                          _vm._v(_vm._s(userData.phone))
+                                        ]),
+                                        _vm._v(" "),
+                                        _c("td", [
+                                          _vm._v(
+                                            _vm._s(
+                                              _vm.formatDate(
+                                                userData.created_at
+                                              )
+                                            )
+                                          )
+                                        ]),
+                                        _vm._v(" "),
+                                        _c(
+                                          "td",
                                           [
                                             _c(
-                                              "div",
+                                              "router-link",
                                               {
                                                 staticClass:
-                                                  "widget-content-wrapper"
+                                                  "btn btn-primary btn-sm",
+                                                attrs: {
+                                                  to:
+                                                    "/profile-edit/" +
+                                                    userData.id,
+                                                  id: "PopoverCustomT-1",
+                                                  title: "Edit users"
+                                                }
                                               },
                                               [
-                                                _c(
-                                                  "div",
-                                                  {
-                                                    staticClass:
-                                                      "widget-content-left mr-3"
-                                                  },
-                                                  [
-                                                    userData.image_path
-                                                      ? _c(
-                                                          "div",
-                                                          {
-                                                            staticClass:
-                                                              "widget-content-left"
-                                                          },
-                                                          [
-                                                            _c("img", {
-                                                              staticClass:
-                                                                "rounded-circle",
-                                                              attrs: {
-                                                                width: "40",
-                                                                src: _vm.asset(
-                                                                  "storage/uploads/" +
-                                                                    userData.image_path
-                                                                ),
-                                                                alt: ""
-                                                              }
-                                                            })
-                                                          ]
-                                                        )
-                                                      : _c(
-                                                          "div",
-                                                          {
-                                                            staticClass:
-                                                              "widget-content-left"
-                                                          },
-                                                          [
-                                                            _c("img", {
-                                                              staticClass:
-                                                                "rounded-circle",
-                                                              attrs: {
-                                                                width: "40",
-                                                                src: _vm.asset(
-                                                                  "images/avt.png"
-                                                                ),
-                                                                alt: ""
-                                                              }
-                                                            })
-                                                          ]
-                                                        )
-                                                  ]
-                                                ),
-                                                _vm._v(" "),
-                                                _c(
-                                                  "div",
-                                                  {
-                                                    staticClass:
-                                                      "widget-content-left flex2"
-                                                  },
-                                                  [
-                                                    _c(
-                                                      "div",
-                                                      {
-                                                        staticClass:
-                                                          "widget-heading"
-                                                      },
-                                                      [
-                                                        _vm._v(
-                                                          "\n                                " +
-                                                            _vm._s(
-                                                              userData.name
-                                                            ) +
-                                                            "\n                              "
-                                                        )
-                                                      ]
-                                                    ),
-                                                    _vm._v(" "),
-                                                    _c(
-                                                      "div",
-                                                      {
-                                                        staticClass:
-                                                          "widget-subheading opacity-7"
-                                                      },
-                                                      [
-                                                        _vm._v(
-                                                          "\n                                " +
-                                                            _vm._s(
-                                                              userData.roles[0]
-                                                                .name
-                                                            ) +
-                                                            "\n                              "
-                                                        )
-                                                      ]
+                                                _c("i", {
+                                                  staticClass: "pe-7s-edit"
+                                                })
+                                              ]
+                                            ),
+                                            _vm._v(" "),
+                                            _c(
+                                              "router-link",
+                                              {
+                                                staticClass:
+                                                  "btn btn-success btn-sm",
+                                                attrs: {
+                                                  to: "/profile/" + userData.id,
+                                                  id: "PopoverCustomT-1",
+                                                  title: "View users details"
+                                                }
+                                              },
+                                              [
+                                                _c("i", {
+                                                  staticClass: "pe-7s-look"
+                                                })
+                                              ]
+                                            ),
+                                            _vm._v(" "),
+                                            _c(
+                                              "button",
+                                              {
+                                                staticClass:
+                                                  "btn btn-danger btn-sm",
+                                                attrs: {
+                                                  id: "PopoverCustomT-1",
+                                                  title: "Delete users"
+                                                },
+                                                on: {
+                                                  click: function($event) {
+                                                    return _vm.delteTags(
+                                                      userData.id
                                                     )
-                                                  ]
-                                                )
+                                                  }
+                                                }
+                                              },
+                                              [
+                                                _c("i", {
+                                                  staticClass: "pe-7s-trash"
+                                                })
                                               ]
                                             )
-                                          ]
+                                          ],
+                                          1
                                         )
-                                      ]),
-                                      _vm._v(" "),
-                                      _c("td", [
-                                        _vm._v(_vm._s(userData.email))
-                                      ]),
-                                      _vm._v(" "),
-                                      _c("td", [
-                                        _vm._v(_vm._s(userData.phone))
-                                      ]),
-                                      _vm._v(" "),
-                                      _c("td", [
-                                        _vm._v(
-                                          _vm._s(
-                                            _vm.formatDate(userData.created_at)
-                                          )
-                                        )
-                                      ]),
-                                      _vm._v(" "),
-                                      _c(
-                                        "td",
-                                        [
-                                          _c(
-                                            "router-link",
-                                            {
-                                              staticClass:
-                                                "btn btn-primary btn-sm",
-                                              attrs: {
-                                                to:
-                                                  "/profile-edit/" +
-                                                  userData.id,
-                                                id: "PopoverCustomT-1",
-                                                title: "Edit users"
-                                              }
-                                            },
-                                            [
-                                              _c("i", {
-                                                staticClass: "pe-7s-edit"
-                                              })
-                                            ]
-                                          ),
-                                          _vm._v(" "),
-                                          _c(
-                                            "router-link",
-                                            {
-                                              staticClass:
-                                                "btn btn-success btn-sm",
-                                              attrs: {
-                                                to: "/profile/" + userData.id,
-                                                id: "PopoverCustomT-1",
-                                                title: "View users details"
-                                              }
-                                            },
-                                            [
-                                              _c("i", {
-                                                staticClass: "pe-7s-look"
-                                              })
-                                            ]
-                                          ),
-                                          _vm._v(" "),
-                                          _c(
-                                            "button",
-                                            {
-                                              staticClass:
-                                                "btn btn-danger btn-sm",
-                                              attrs: {
-                                                id: "PopoverCustomT-1",
-                                                title: "Delete users"
-                                              },
-                                              on: {
-                                                click: function($event) {
-                                                  return _vm.delteTags(
-                                                    userData.id
-                                                  )
-                                                }
-                                              }
-                                            },
-                                            [
-                                              _c("i", {
-                                                staticClass: "pe-7s-trash"
-                                              })
-                                            ]
-                                          )
-                                        ],
-                                        1
-                                      )
-                                    ]
-                                  )
-                                }),
-                                0
-                              )
-                            ]
-                          )
+                                      ]
+                                    )
+                                  }),
+                                  0
+                                )
+                              ]
+                            )
+                          ])
                         ])
-                      ])
-                    ])
-                  ])
+                      ]),
+                      _vm._v(" "),
+                      _vm.users.length > 10
+                        ? _c("vue-cli-laravel-pagination", {
+                            attrs: {
+                              data: _vm.users,
+                              align: "center",
+                              onChange: _vm.changed_value,
+                              buttonLimit: "10"
+                            }
+                          })
+                        : _vm._e()
+                    ],
+                    1
+                  )
                 ],
                 1
               ),
@@ -666,7 +718,7 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("thead", { staticClass: "bg-dark text-light" }, [
+    return _c("thead", [
       _c("tr", [
         _c("th", [_vm._v("No..")]),
         _vm._v(" "),

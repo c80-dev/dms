@@ -5,7 +5,7 @@
  class FileProcessing
  {
 
-    //file processing
+   //file processing
    public function file_processing($request, $file)
    {
       if ($request->hasFile("$file")) {
@@ -15,7 +15,7 @@
            $fileNameToStore = $filename  .'_'.time().'.'.$extension;
            $path = $request->file("$file")->storeAs('public/uploads', $fileNameToStore);
       }
-      return $path;
+      return  $fileNameToStore;
    }
 
  }

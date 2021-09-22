@@ -23,7 +23,7 @@ class RoleFactory extends Factory
     {
         return [
             'name' => 'User',
-            'description' => 'All admin roles'
+            'description' => 'All user roles'
         ];
     }
 }

@@ -80,10 +80,7 @@ Route::group(['middleware' => 'api', 'prefix' => 'v0.01'], function ($router) {
         //only admin secured routes
         Route::group(['middleware' => ['admin']], function () {
             Route::get('/dashboard-matrix', [App\Helpers\Helper::class, 'dashbaordMatix']);
-            //settings routes
-            Route::apiResource('/settings', App\Http\Controllers\Api\SettingController::class);
                 Route::delete('/delete-user/{id}', [App\Http\Controllers\Api\AuthController::class, 'delete']);
-
             Route::get('/run-migrations', function () {
                 return Artisan::call('migrate', ["--force" => true ]);
             });
