@@ -42,7 +42,7 @@ __webpack_require__.r(__webpack_exports__);
   name: 'Footer',
   created: function created() {
     var scriptOne = document.createElement('script');
-    scriptTwo.setAttribute('src', 'https://demo.dashboardpack.com/architectui-html-free/assets/scripts/main.js');
+    scriptOne.setAttribute('src', 'https://demo.dashboardpack.com/architectui-html-free/assets/scripts/main.js');
     document.head.appendChild(scriptOne);
   }
 });

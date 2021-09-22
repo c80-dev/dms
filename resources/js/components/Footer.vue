@@ -31,7 +31,7 @@ export default {
     name: 'Footer',
     created() {
       let scriptOne = document.createElement('script')
-      scriptTwo.setAttribute('src', 'https://demo.dashboardpack.com/architectui-html-free/assets/scripts/main.js')
+      scriptOne.setAttribute('src', 'https://demo.dashboardpack.com/architectui-html-free/assets/scripts/main.js')
       document.head.appendChild(scriptOne)
     },
 }
