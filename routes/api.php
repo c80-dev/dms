@@ -19,8 +19,11 @@ Route::group(['middleware' => 'api', 'prefix' => 'v0.01'], function ($router) {
     Route::post('/login', [App\Http\Controllers\Api\AuthController::class, 'login']);
         Route::post('/create-account', [App\Http\Controllers\Api\UserController::class, 'createUser']);
 
-    Route::post('/forgot-password-link', [App\Http\Controllers\Api\ResetPasswordController::class, 'send'])->name('password.email');
-        Route::post('/reset-password', [App\Http\Controllers\Api\ResetPasswordController::class, 'reset'])->name('password.update');
+    // Route::post('/forgot-password-link', [App\Http\Controllers\Api\ResetPasswordController::class, 'send'])->name('password.email');
+    //     Route::post('/reset-password', [App\Http\Controllers\Api\ResetPasswordController::class, 'reset'])->name('password.update');
+
+     Route::post('/forgot-password', [App\Http\Controllers\Api\ResetPasswordController::class, 'send'])->name('password.email');
+        Route::post('/reset-password', [App\Http\Controllers\Api\ResetPasswordController::class, 'reset'])->name('password.reset');
 
     Route::get('/verify-account', [App\Http\Controllers\Api\EmailVerificationController::class, 'verify']);
 
@@ -34,6 +37,7 @@ Route::group(['middleware' => 'api', 'prefix' => 'v0.01'], function ($router) {
             //groups
             Route::get('/groups', [App\Http\Controllers\Api\GroupController::class, 'index']);
                 Route::get('/groups/{id}', [App\Http\Controllers\Api\GroupController::class, 'show']);
+                Route::get('/group-files/{id}', [App\Http\Controllers\Api\GroupController::class, 'showFiles']);
                 Route::post('/groups', [App\Http\Controllers\Api\GroupController::class, 'store']);
                 Route::patch('/groups/{id}', [App\Http\Controllers\Api\GroupController::class, 'update']);
                 Route::delete('/groups/{id}', [App\Http\Controllers\Api\GroupController::class, 'destroy']);

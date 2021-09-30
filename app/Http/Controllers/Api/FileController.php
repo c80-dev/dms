@@ -19,8 +19,7 @@ class FileController extends Controller
     //all
     public function index()
     {
-        $files = $this->fileRepository->allFiles();
-        return $files;
+        return $this->fileRepository->allFiles();
     }
 
     //create
@@ -32,21 +31,18 @@ class FileController extends Controller
     //show
     public function show($id)
     {
-        $file = $this->fileRepository->showFile($id);
-        return $file;
+        return $this->fileRepository->showFile($id);
     }
 
     //update
     public function update(Request $request, $id)
     {
-        $file = $this->fileRepository->updateFile($request, $id);
-        return $file;
+        return $this->fileRepository->updateFile($request, $id);
     }
 
     //delete
     public function destroy($id)
     {
-        $file = $this->fileRepository->deleteFile($id);
-        return $file;
+        return $this->fileRepository->deleteFile($id);
     }
 }

@@ -19,15 +19,13 @@ class UserController extends Controller
     //all users
     public function index()
     {
-        $users = $this->userRepository->allUsers();
-        return $users;
+        return $this->userRepository->allUsers();
     }
 
     //users details
     public function show($id)
     {
-        $user = $this->userRepository->findUser($id);
-        return $user;
+        return $this->userRepository->findUser($id);
     }
 
     //create user account

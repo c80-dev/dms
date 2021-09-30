@@ -2,7 +2,7 @@
     <div class="vue-tempalte">
         <Nav />
         <div class="App">
-            <div class="vertical-center mt-10">
+            <div class="vertical-center mt-5">
                 <div class="inner-block">
                     <div v-if="!user">
                         <h3>Sign In</h3>

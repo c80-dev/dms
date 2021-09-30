@@ -4,6 +4,7 @@ namespace App\Actions;
 
 use App\Models\Group;
 use App\Http\Resources\GroupResource;
+use App\Http\Resources\FileResource;
 
 class GroupAction
 {
@@ -37,14 +38,33 @@ class GroupAction
     //all
     public function all()
     {
-      $groups = $this->model->with(['user'])->latest()->paginate(10);
-      if (count($groups) < 1) {
-        return response()->json([
-            'message' => 'Sorry no group found'
-        ], 400);
-      }else {
-        return GroupResource::collection($groups);
-      }
+        $user_roles = auth()->user()->roles->pluck('name');
+        if ($user_roles[0] == 'Admin') {
+            $groups = $this->model->with(['user'])->latest()->paginate(10);
+        }else {
+            $groups = auth()->user()->user_groups;
+        }
+        if (count($groups) < 1) {
+            return response()->json([
+                'message' => 'Sorry no group found'
+            ], 400);
+        }else {
+            return GroupResource::collection($groups);
+        }
+    }
+
+    //group files
+    public function groupFiles($id)
+    {
+        $data = $this->model->where('id', '=', $id)->exists();
+        if ($data) {
+            $files = $this->model->find($id)->group_files()->paginate(10);
+            return FileResource::collection($files);
+        }else {
+            return response()->json([
+                'message' => 'Sorry this group do not exist'
+            ], 400);
+        }
     }
 
     //get

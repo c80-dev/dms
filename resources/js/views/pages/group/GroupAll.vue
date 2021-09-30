@@ -63,7 +63,7 @@
                                 <div class="widget-heading">
                                   {{ group.name }}
                                 </div>
-                                <div class="widget-subheading opacity-7">
+                                <div class="widget-subheading opacity-7" v-if="user.roles[0] == 'Admin'">
                                   Created By <small> {{ group.user.name }} </small>
                                 </div>
                               </div>
@@ -74,7 +74,7 @@
                         <td>
                           {{ formatDate(group.created_at) }}
                         </td>
-                        <td>
+                        <td v-if="user.roles[0].name == 'Admin'">
                           <router-link
                             v-bind:to="'/group-edit/' + group.id"
                             id="PopoverCustomT-1"
@@ -97,6 +97,20 @@
                           >
                             <i class="pe-7s-trash"></i>
                           </button>
+                          <router-link
+                            v-bind:to="'/group-files/' + group.id"
+                            id="PopoverCustomT-1"
+                            class="btn btn-success btn-sm"
+                            title="View group files"
+                            > <i class="pe-7s-file"></i></router-link>
+                        </td>
+                        <td v-else>
+                            <router-link
+                            v-bind:to="'/group-files/' + group.id"
+                            id="PopoverCustomT-1"
+                            class="btn btn-success btn-sm"
+                            title="View group files"
+                            >All Files</router-link>
                         </td>
                       </tr>
                     </tbody>

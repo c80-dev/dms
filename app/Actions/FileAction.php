@@ -43,14 +43,19 @@ class FileAction
     //all
     public function all()
     {
-      $files = $this->model->with(['user','tag'])->latest()->paginate(20);
-      if (count($files) < 1) {
-        return response()->json([
-            'message' => 'Sorry no File found'
-        ], 400);
-      }else {
-        return FileResource::collection($files);
-      }
+        $user_roles = auth()->user()->roles->pluck('name');
+        if ($user_roles[0] == 'Admin') {
+                $files = $this->model->with(['user','tag'])->latest()->paginate(20);
+        }else {
+            $files = auth()->user()->files;
+        }
+        if (count($files) < 1) {
+            return response()->json([
+                'message' => 'Sorry no File found'
+            ], 400);
+        }else {
+            return FileResource::collection($files);
+        }
     }
 
     //get

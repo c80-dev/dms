@@ -39,81 +39,97 @@
                             Dashboard
                         </router-link>
                     </li>
-                    <li>
-                        <a href="#">
-                            <i class="metismenu-icon pe-7s-diamond"></i>
-                                Tag
-                            <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
-                        </a>
-                        <ul>
-                            <li>
-                                <router-link to="/tag-create">
-                                    <i class="metismenu-icon"></i>
-                                    Create
-                                </router-link>
-                            </li>
-                            <li>
-                                <router-link to="/tag-all">
-                                    <i class="metismenu-icon"></i>
-                                    All Tags
-                                </router-link>
-                            </li>
-                        </ul>
-                    </li>
+                    <span  v-if="user.roles[0].name == 'User'">
+                        <li>
+                            <router-link to="/file-create">
+                                <i class="metismenu-icon pe-7s-file"></i>
+                                Create File
+                            </router-link>
+                        </li>
+                        <li>
+                            <router-link to="/group-all">
+                                <i class="metismenu-icon pe-7s-folder"></i>
+                                My Groups
+                            </router-link>
+                        </li>
+                    </span>
+                    <span v-else>
+                        <li>
+                            <a href="#">
+                                <i class="metismenu-icon pe-7s-diamond"></i>
+                                    Tag
+                                <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
+                            </a>
+                            <ul>
+                                <li>
+                                    <router-link to="/tag-create">
+                                        <i class="metismenu-icon"></i>
+                                        Create
+                                    </router-link>
+                                </li>
+                                <li>
+                                    <router-link to="/tag-all">
+                                        <i class="metismenu-icon"></i>
+                                        All Tags
+                                    </router-link>
+                                </li>
+                            </ul>
+                        </li>
 
-                    <li>
-                        <a href="#">
-                            <i class="metismenu-icon pe-7s-folder"></i>
-                                Group
-                            <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
-                        </a>
-                        <ul>
-                            <li>
-                                <router-link to="/group-create">
-                                    <i class="metismenu-icon"></i>
-                                    Create
-                                </router-link>
-                            </li>
-                            <li>
-                                <router-link to="/group-all">
-                                    <i class="metismenu-icon"></i>
-                                    All Groups
-                                </router-link>
-                            </li>
-                        </ul>
-                    </li>
+                        <li>
+                            <a href="#">
+                                <i class="metismenu-icon pe-7s-folder"></i>
+                                    Group
+                                <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
+                            </a>
+                            <ul>
+                                <li>
+                                    <router-link to="/group-create">
+                                        <i class="metismenu-icon"></i>
+                                        Create
+                                    </router-link>
+                                </li>
+                                <li>
+                                    <router-link to="/group-all">
+                                        <i class="metismenu-icon"></i>
+                                        All Groups
+                                    </router-link>
+                                </li>
+                            </ul>
+                        </li>
 
-                    <li>
-                        <a href="#">
-                            <i class="metismenu-icon pe-7s-file"></i>
-                                Files
-                            <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
-                        </a>
-                        <ul>
-                            <li>
-                                <router-link to="/file-create">
-                                    <i class="metismenu-icon"></i>
-                                    Create
-                                </router-link>
-                            </li>
-                            <li>
-                                <router-link to="file-all">
-                                    <i class="metismenu-icon"></i>
-                                    All Files
-                                </router-link>
-                            </li>
-                        </ul>
-                    </li>
-                    <li>
-                        <router-link  to="/users">
-                            <i class="metismenu-icon pe-7s-users"></i>
-                            Users
-                        </router-link>
-                    </li>
+                        <li>
+                            <a href="#">
+                                <i class="metismenu-icon pe-7s-file"></i>
+                                    Files
+                                <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
+                            </a>
+                            <ul>
+                                <li>
+                                    <router-link to="/file-create">
+                                        <i class="metismenu-icon"></i>
+                                        Create
+                                    </router-link>
+                                </li>
+                                <li>
+                                    <router-link to="file-all">
+                                        <i class="metismenu-icon"></i>
+                                        All Files
+                                    </router-link>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <router-link  to="/users">
+                                <i class="metismenu-icon pe-7s-users"></i>
+                                Users
+                            </router-link>
+                        </li>
+                    </span>
                     <li>
                         <router-link   v-bind:to="'/profile/'+ user.id">
                             <i class="metismenu-icon pe-7s-user"></i>
-                           Profile
+                        Profile
                         </router-link>
                     </li>
                     <li>

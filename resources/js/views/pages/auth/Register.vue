@@ -2,7 +2,7 @@
     <div class="vue-tempalte">
         <Nav />
         <div class="App">
-            <div class="vertical-center mt-20">
+            <div class="vertical-center mt-5">
                 <div class="inner-block">
                     <div>
                         <h3>Sign Up</h3>

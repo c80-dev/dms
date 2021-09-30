@@ -52,6 +52,10 @@ class User extends Authenticatable implements  MustVerifyEmail, JWTSubject
         return $this->hasMany(Group::class);
     }
 
+    public function files() {
+        return $this->hasMany(File::class);
+    }
+
     public function tags() {
         return $this->hasMany(Tags::class);
     }

@@ -143,6 +143,20 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
@@ -250,7 +264,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               case 0:
                 _context3.prev = 0;
                 _context3.next = 3;
-                return axios__WEBPACK_IMPORTED_MODULE_1___default().delete("groups/" + id);
+                return axios__WEBPACK_IMPORTED_MODULE_1___default()["delete"]("groups/" + id);
 
               case 3:
                 response = _context3.sent;
@@ -326,11 +340,11 @@ var options = {};
 options.insert = "head";
 options.singleton = false;
 
-var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default()(_node_modules_css_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_2_node_modules_vue_loader_lib_index_js_vue_loader_options_GroupAll_vue_vue_type_style_index_0_id_1319ccfc_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_1__.default, options);
+var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default()(_node_modules_css_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_2_node_modules_vue_loader_lib_index_js_vue_loader_options_GroupAll_vue_vue_type_style_index_0_id_1319ccfc_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_1__["default"], options);
 
 
 
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_css_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_2_node_modules_vue_loader_lib_index_js_vue_loader_options_GroupAll_vue_vue_type_style_index_0_id_1319ccfc_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_1__.default.locals || {});
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_css_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_2_node_modules_vue_loader_lib_index_js_vue_loader_options_GroupAll_vue_vue_type_style_index_0_id_1319ccfc_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_1__["default"].locals || {});
 
 /***/ }),
 
@@ -356,8 +370,8 @@ __webpack_require__.r(__webpack_exports__);
 
 /* normalize component */
 
-var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__.default)(
-  _GroupAll_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__.default,
+var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__["default"])(
+  _GroupAll_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
   _GroupAll_vue_vue_type_template_id_1319ccfc_scoped_true___WEBPACK_IMPORTED_MODULE_0__.render,
   _GroupAll_vue_vue_type_template_id_1319ccfc_scoped_true___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
   false,
@@ -385,7 +399,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_GroupAll_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!../../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./GroupAll.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/pages/group/GroupAll.vue?vue&type=script&lang=js&");
- /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_GroupAll_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__.default); 
+ /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_GroupAll_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
 
 /***/ }),
 
@@ -535,28 +549,31 @@ var render = function() {
                                                         ]
                                                       ),
                                                       _vm._v(" "),
-                                                      _c(
-                                                        "div",
-                                                        {
-                                                          staticClass:
-                                                            "widget-subheading opacity-7"
-                                                        },
-                                                        [
-                                                          _vm._v(
-                                                            "\n                                Created By "
-                                                          ),
-                                                          _c("small", [
-                                                            _vm._v(
-                                                              " " +
-                                                                _vm._s(
-                                                                  group.user
-                                                                    .name
-                                                                ) +
-                                                                " "
-                                                            )
-                                                          ])
-                                                        ]
-                                                      )
+                                                      _vm.user.roles[0] ==
+                                                      "Admin"
+                                                        ? _c(
+                                                            "div",
+                                                            {
+                                                              staticClass:
+                                                                "widget-subheading opacity-7"
+                                                            },
+                                                            [
+                                                              _vm._v(
+                                                                "\n                                Created By "
+                                                              ),
+                                                              _c("small", [
+                                                                _vm._v(
+                                                                  " " +
+                                                                    _vm._s(
+                                                                      group.user
+                                                                        .name
+                                                                    ) +
+                                                                    " "
+                                                                )
+                                                              ])
+                                                            ]
+                                                          )
+                                                        : _vm._e()
                                                     ]
                                                   )
                                                 ]
@@ -583,71 +600,118 @@ var render = function() {
                                           )
                                         ]),
                                         _vm._v(" "),
-                                        _c(
-                                          "td",
-                                          [
-                                            _c(
-                                              "router-link",
-                                              {
-                                                staticClass:
-                                                  "btn btn-primary btn-sm",
-                                                attrs: {
-                                                  to: "/group-edit/" + group.id,
-                                                  id: "PopoverCustomT-1",
-                                                  title: "Edit group"
-                                                }
-                                              },
+                                        _vm.user.roles[0].name == "Admin"
+                                          ? _c(
+                                              "td",
                                               [
-                                                _c("i", {
-                                                  staticClass: "pe-7s-edit"
-                                                })
-                                              ]
-                                            ),
-                                            _vm._v(" "),
-                                            _c(
-                                              "router-link",
-                                              {
-                                                staticClass:
-                                                  "btn btn-success btn-sm",
-                                                attrs: {
-                                                  to: "/group-show/" + group.id,
-                                                  id: "PopoverCustomT-1",
-                                                  title: "View group details"
-                                                }
-                                              },
-                                              [
-                                                _c("i", {
-                                                  staticClass: "pe-7s-look"
-                                                })
-                                              ]
-                                            ),
-                                            _vm._v(" "),
-                                            _c(
-                                              "button",
-                                              {
-                                                staticClass:
-                                                  "btn btn-danger btn-sm",
-                                                attrs: {
-                                                  id: "PopoverCustomT-1",
-                                                  title: "Delete group"
-                                                },
-                                                on: {
-                                                  click: function($event) {
-                                                    return _vm.delteGroups(
-                                                      group.id
-                                                    )
-                                                  }
-                                                }
-                                              },
-                                              [
-                                                _c("i", {
-                                                  staticClass: "pe-7s-trash"
-                                                })
-                                              ]
+                                                _c(
+                                                  "router-link",
+                                                  {
+                                                    staticClass:
+                                                      "btn btn-primary btn-sm",
+                                                    attrs: {
+                                                      to:
+                                                        "/group-edit/" +
+                                                        group.id,
+                                                      id: "PopoverCustomT-1",
+                                                      title: "Edit group"
+                                                    }
+                                                  },
+                                                  [
+                                                    _c("i", {
+                                                      staticClass: "pe-7s-edit"
+                                                    })
+                                                  ]
+                                                ),
+                                                _vm._v(" "),
+                                                _c(
+                                                  "router-link",
+                                                  {
+                                                    staticClass:
+                                                      "btn btn-success btn-sm",
+                                                    attrs: {
+                                                      to:
+                                                        "/group-show/" +
+                                                        group.id,
+                                                      id: "PopoverCustomT-1",
+                                                      title:
+                                                        "View group details"
+                                                    }
+                                                  },
+                                                  [
+                                                    _c("i", {
+                                                      staticClass: "pe-7s-look"
+                                                    })
+                                                  ]
+                                                ),
+                                                _vm._v(" "),
+                                                _c(
+                                                  "button",
+                                                  {
+                                                    staticClass:
+                                                      "btn btn-danger btn-sm",
+                                                    attrs: {
+                                                      id: "PopoverCustomT-1",
+                                                      title: "Delete group"
+                                                    },
+                                                    on: {
+                                                      click: function($event) {
+                                                        return _vm.delteGroups(
+                                                          group.id
+                                                        )
+                                                      }
+                                                    }
+                                                  },
+                                                  [
+                                                    _c("i", {
+                                                      staticClass: "pe-7s-trash"
+                                                    })
+                                                  ]
+                                                ),
+                                                _vm._v(" "),
+                                                _c(
+                                                  "router-link",
+                                                  {
+                                                    staticClass:
+                                                      "btn btn-success btn-sm",
+                                                    attrs: {
+                                                      to:
+                                                        "/group-files/" +
+                                                        group.id,
+                                                      id: "PopoverCustomT-1",
+                                                      title: "View group files"
+                                                    }
+                                                  },
+                                                  [
+                                                    _c("i", {
+                                                      staticClass: "pe-7s-file"
+                                                    })
+                                                  ]
+                                                )
+                                              ],
+                                              1
                                             )
-                                          ],
-                                          1
-                                        )
+                                          : _c(
+                                              "td",
+                                              [
+                                                _c(
+                                                  "router-link",
+                                                  {
+                                                    staticClass:
+                                                      "btn btn-success btn-sm",
+                                                    attrs: {
+                                                      to:
+                                                        "/group-files/" +
+                                                        group.id,
+                                                      id: "PopoverCustomT-1",
+                                                      title: "View group files"
+                                                    }
+                                                  },
+                                                  [_vm._v("All Files")]
+                                                )
+                                              ],
+                                              1
+                                            )
                                       ]
                                     )
                                   }),

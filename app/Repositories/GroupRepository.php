@@ -108,6 +108,12 @@ class GroupRepository implements GroupRepositoryInterface
         }
      }
 
+    //group files
+    public function groupFiles($id)
+    {
+        return $this->action->groupFiles($id);
+    }
+
     //delete
     public function deleteGroup($id)
     {

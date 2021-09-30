@@ -32,42 +32,42 @@ class GroupController extends Controller
     //show
     public function show($id)
     {
-        $group = $this->groupRepository->showGroup($id);
-        return $group;
+        return $this->groupRepository->showGroup($id);
     }
 
     //update
     public function update(Request $request, $id)
     {
-        $group = $this->groupRepository->updateGroup($request, $id);
-        return $group;
+        return $this->groupRepository->updateGroup($request, $id);
     }
 
     //add users to group
     public function addUserToGroup(Request $request)
     {
-        $group = $this->groupRepository->attachUserToGroup($request);
-        return $group;
+        return $this->groupRepository->attachUserToGroup($request);
     }
 
     //add file to group
     public function addFileToGroup(Request $request)
     {
-         $group = $this->groupRepository->attachFileToGroup($request);
-         return $group;
+        return $this->groupRepository->attachFileToGroup($request);
     }
 
     //add file to group
     public function addTagToGroup(Request $request)
     {
-         $group = $this->groupRepository->attachTagToGroup($request);
-         return $group;
+        return $this->groupRepository->attachTagToGroup($request);
+    }
+
+    //show files
+    public function showFiles($id)
+    {
+        return $this->groupRepository->groupFiles($id);
     }
 
     //delete
     public function destroy($id)
     {
-        $group = $this->groupRepository->deleteGroup($id);
-        return $group;
+        return $this->groupRepository->deleteGroup($id);
     }
 }

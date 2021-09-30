@@ -2,12 +2,12 @@
     <div class="vue-tempalte">
         <Nav />
         <div class="App">
-            <div class="vertical-center mt-30">
+            <div class="vertical-center mt-5">
                 <div class="inner-block">
                     <div>
                         <h3>Forgot Password</h3>
                           <Error v-if="error" :error="error" />
-                          <Success v-if="success" :error="success" />
+                          <Success v-if="success" :success="success" />
                         <div class="form-group">
                             <label>Email address</label>
                             <input type="email" v-model="email" class="form-control form-control-lg" />
@@ -41,7 +41,7 @@
         methods: {
             async onSubmit() {
                 try {
-                    await axios.post('forgot-password-link', {
+                    await axios.post('forgot-password', {
                         email: this.email
                     });
                     this.success = response.data.message;

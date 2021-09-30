@@ -20,4 +20,6 @@ interface GroupRepositoryInterface
 
     public function attachTagToGroup($request);
 
+    public function groupFiles($id);
+
 }

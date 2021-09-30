@@ -19,8 +19,7 @@ class TagController extends Controller
     // all categories
     public function index()
     {
-        $tags = $this->tagRepository->allTags();
-        return $tags;
+        return $this->tagRepository->allTags();
     }
 
     //create
@@ -32,15 +31,13 @@ class TagController extends Controller
     //show
     public function show($id)
     {
-        $tag = $this->tagRepository->showTag($id);
-        return $tag;
+        return $this->tagRepository->showTag($id);
     }
 
     //update
     public function update(Request $request, $id)
     {
-        $tag = $this->tagRepository->updateTag($request, $id);
-        return $tag;
+        return $this->tagRepository->updateTag($request, $id);
     }
 
      //add users to Tag
@@ -64,7 +61,6 @@ class TagController extends Controller
     //delete
     public function destroy($id)
     {
-        $tag = $this->tagRepository->deleteTag($id);
-        return $tag;
+        return $this->tagRepository->deleteTag($id);
     }
 }

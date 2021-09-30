@@ -16,6 +16,7 @@ export default new VueRouter({
         { path: '/group-all', name: 'GroupAll', component: () => import('./views/pages/group/GroupAll.vue') },
         { path: '/group-edit/:id', name: 'GroupEdit', component: () => import('./views/pages/group/GroupEdit.vue') },
         { path: '/group-show/:id', name: 'GroupShow', component: () => import('./views/pages/group/GroupShow.vue') },
+        { path: '/group-files/:id', name: 'GroupFiles', component: () => import('./views/pages/group/GroupFiles.vue') },
 
         { path: '/tag-create', name: 'TagCreate', component: () => import('./views/pages/tag/TagCreate.vue') },
         { path: '/tag-all', name: 'TagAll', component: () => import('./views/pages/tag/TagAll.vue') },
@@ -29,6 +30,7 @@ export default new VueRouter({
         { path: '/profile/:id', name: 'Profile', component: () => import('./views/pages/Profile.vue') },
         { path: '/profile-edit/:id', name: 'UserEdit', component: () => import('./views/pages/user/UserEdit.vue') },
         { path: '/users', name: 'UserAll', component: () => import('./views/pages/user/UserAll.vue') },
+        { path: '/attach-file/:id', name: 'AttachFile', component: () => import('./views/pages/user/AttachFile.vue') },
 
         { path: '/change-password/:id', name: 'ChangePassword', component: () => import('./views/pages/user/ChangePassword.vue') }
     ]

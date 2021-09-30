@@ -29,7 +29,7 @@
           </div>
 
           <div class="row">
-            <div class="col-md-5 offset-md-3">
+            <div class="col-md-8 offset-md-2">
               <div class="main-card mb-3 card">
                 <div class="container">
                   <div class="row profile">
@@ -75,6 +75,14 @@
                               >
                               <i class="glyphicon glyphicon-user"></i>
                                 Account Settings
+                              </router-link>
+                            </li>
+                             <li  v-if="user.roles[0].name == 'Admin'">
+                              <router-link
+                                v-bind:to="'/attach-file/' + userData.id"
+                              >
+                              <i class="glyphicon glyphicon-user"></i>
+                               Attach File
                               </router-link>
                             </li>
                           </ul>
@@ -139,6 +147,8 @@
 </template>
 
 <script>
+
+import {mapGetters} from 'vuex'
 import axios from "axios";
 
 export default {
@@ -181,6 +191,9 @@ export default {
         const options = { year: "numeric", month: "long", day: "numeric" };
         return new Date(dateString).toLocaleDateString(undefined, options);
     },
+  },
+  computed: {
+      ...mapGetters(['user'])
   }
 };
 </script>

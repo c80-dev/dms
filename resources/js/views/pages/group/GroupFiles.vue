@@ -21,10 +21,8 @@
               </div>
             </div>
           </div>
-          <Error v-if="error" :error="error" />
-          <Success v-if="success" :success="success" />
-
-              <div class="col-md-12">
+          <div class="col-12">
+            <div class="col-md-12">
                 <div class="row">
                  <div class="col-md-4">
                   <div class="form-group">
@@ -47,11 +45,8 @@
               </div>
                 </div>
               </div>
-          <div class="col-12">
 
-
-               <Files :files="files" />
-
+            <Files :files="files" />
           </div>
         </div>
         <Footer />
@@ -65,25 +60,20 @@ import { mapGetters } from "vuex";
 import axios from "axios";
 
 export default {
-  name: "GroupAll",
+  name: "GroupFiles",
   data() {
     return {
-      files: {},
-      tags: [],
-      error: "",
-      success: ""
+      files: {}
     };
   },
   components: {
     SideBar: () => import("../../../components/SideBar.vue"),
     Header: () => import("../../../components/Header.vue"),
     Footer: () => import("../../../components/Footer.vue"),
-    Error: () => import("../../../components/Error.vue"),
-    Success: () => import("../../../components/Success.vue"),
     Files: () => import("../../../components/Files.vue")
   },
   created() {
-    this.getFiles();
+    this.getFiles(this.$route.params.id);
     this.getTags();
   },
   methods: {
@@ -94,11 +84,11 @@ export default {
       this.fetch(options.page)
     },
 	  async fetch(page = 1) {
-        const response = await axios.get('files?page=' + page)
+        const response = await axios.get('group-files?page=' + page)
         this.files = response.data.data;
 	  },
-    async getFiles() {
-      const response = await axios.get("files");
+    async getFiles(id) {
+      const response = await axios.get("group-files/" + id);
       this.files = response.data.data;
     },
     async getTags() {

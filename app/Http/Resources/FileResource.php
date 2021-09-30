@@ -18,6 +18,8 @@ class FileResource extends JsonResource
         $general_helper = new General();
         return [
             'id'        => $this->id,
+            'user_id'   => $this->user_id,
+            'tag_id'   => $this->tag_id,
             'name'      => $general_helper->clean($this->name),
             'description'     => $general_helper->clean($this->description),
             'user'        => new UserResource($this->whenLoaded('user')),
