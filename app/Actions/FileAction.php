@@ -72,6 +72,30 @@ class FileAction
       }
     }
 
+    //get user files
+    public function userFiles()
+    {
+        $files = auth()->user()->user_files;
+        return FileResource::collection($files);
+    }
+
+     //add user to group
+    public function attachUserToFile($request)
+    {
+         $data = $this->model->where('id', '=', $request->file_id)->exists();
+         if ($data) {
+             $file = $this->model->where('id', '=', $request->file_id)->where('user_id', auth()->user()->id)->first();
+             $file->file_users()->attach($request->user_id);
+             return response()->json([
+                 'message' => 'User attached to file successfully'
+             ], 200);
+         }else {
+             return response()->json([
+                 'message' => 'Sorry this data do not exist'
+             ], 404);
+         }
+    }
+
     //update
     public function update($request, $id)
     {

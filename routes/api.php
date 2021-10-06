@@ -19,9 +19,6 @@ Route::group(['middleware' => 'api', 'prefix' => 'v0.01'], function ($router) {
     Route::post('/login', [App\Http\Controllers\Api\AuthController::class, 'login']);
         Route::post('/create-account', [App\Http\Controllers\Api\UserController::class, 'createUser']);
 
-    // Route::post('/forgot-password-link', [App\Http\Controllers\Api\ResetPasswordController::class, 'send'])->name('password.email');
-    //     Route::post('/reset-password', [App\Http\Controllers\Api\ResetPasswordController::class, 'reset'])->name('password.update');
-
      Route::post('/forgot-password', [App\Http\Controllers\Api\ResetPasswordController::class, 'send'])->name('password.email');
         Route::post('/reset-password', [App\Http\Controllers\Api\ResetPasswordController::class, 'reset'])->name('password.reset');
 
@@ -65,6 +62,8 @@ Route::group(['middleware' => 'api', 'prefix' => 'v0.01'], function ($router) {
                 Route::post('/files', [App\Http\Controllers\Api\FileController::class, 'store']);
                 Route::patch('/files/{id}', [App\Http\Controllers\Api\FileController::class, 'update']);
                 Route::delete('/files/{id}', [App\Http\Controllers\Api\FileController::class, 'destroy']);
+                Route::get('/user-files', [App\Http\Controllers\Api\FileController::class, 'authenticatedUserFiles']);
+                Route::post('/add-user-to-file', [App\Http\Controllers\Api\FileController::class, 'addUserToFile']);
 
 
             //auth routes

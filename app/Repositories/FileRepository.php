@@ -46,6 +46,12 @@ class FileRepository implements FileRepositoryInterface
         return $this->action->get($id);
     }
 
+    //get auth user files
+    public function authUserFiles()
+    {
+        return $this->action->userFiles();
+    }
+
     //update
     public function updateFile($request, $id)
     {
@@ -63,6 +69,22 @@ class FileRepository implements FileRepositoryInterface
           }else {
                 return $this->action->update($request, $id);
           }
+    }
+
+    //add user to file
+    public function addUserToFIle($request)
+    {
+        $validator =  Validator::make($request->all(),[
+            'user_id' => 'required'
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json([
+                'message' => $validator->errors()->first()
+            ], 422);
+        }else {
+            return $this->action->attachUserToFile($request);
+        }
     }
 
     //delete

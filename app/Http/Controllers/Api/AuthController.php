@@ -17,31 +17,26 @@ class AuthController extends Controller
         $this->authRepository = $authRepository;
     }
 
-    //login users
     public function login(Request $request)
     {
         return $this->authRepository->login($request);
     }
 
-    //logout users
     public function logout(Request $request)
     {
         return $this->authRepository->logout($request);
     }
 
-    //refresh password token
     public function refresh()
     {
         return $this->authRepository->refresh();
     }
 
-    //users profile
     public function userProfile()
     {
         return $this->authRepository->userProfile();
     }
 
-    //delete account
     public function delete($id)
     {
         return $this->authRepository->delete($id);

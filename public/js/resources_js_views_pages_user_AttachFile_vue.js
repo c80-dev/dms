@@ -160,7 +160,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               case 0:
                 _context2.prev = 0;
                 _context2.next = 3;
-                return axios__WEBPACK_IMPORTED_MODULE_1___default().post("add-file-to-group", {
+                return axios__WEBPACK_IMPORTED_MODULE_1___default().post("add-user-to-file", {
                   file_id: _this2.selected_file,
                   user_id: _this2.$route.params.id
                 });
@@ -174,7 +174,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               case 7:
                 _context2.prev = 7;
                 _context2.t0 = _context2["catch"](0);
-                alert("Sorry select a user");
+                alert("Sorry select a file");
 
               case 10:
               case "end":

@@ -215,6 +215,12 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
@@ -223,7 +229,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     return {
       users: {},
       files: {},
-      tags: {}
+      tags: {},
+      myFiles: {}
     };
   },
   components: {
@@ -247,6 +254,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     this.getEmployees();
     this.getFiles();
     this.getTags();
+    this.getUserFiles();
   },
   methods: {
     mounted: function mounted() {
@@ -392,6 +400,34 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           }
         }, _callee5);
       }))();
+    },
+    getUserFiles: function getUserFiles() {
+      var _this6 = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee6() {
+        var response;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee6$(_context6) {
+          while (1) {
+            switch (_context6.prev = _context6.next) {
+              case 0:
+                _context6.next = 2;
+                return axios__WEBPACK_IMPORTED_MODULE_1___default().get("user-files");
+
+              case 2:
+                response = _context6.sent;
+                _this6.myFiles = response.data.data;
+
+              case 4:
+              case "end":
+                return _context6.stop();
+            }
+          }
+        }, _callee6);
+      }))();
+    },
+    getFileExtention: function getFileExtention(filePath) {
+      var ext = filePath.split('.').pop();
+      return ext;
     },
     onChange: function onChange(event) {
       var val = event.target.value;
@@ -881,7 +917,64 @@ var render = function() {
                       ]),
                       _vm._v(" "),
                       _c("div", { staticClass: "row" }, [
-                        _vm._m(2),
+                        _c("div", { staticClass: "col-md-4" }, [
+                          _c("h4", [_vm._v("Access Files")]),
+                          _vm._v(" "),
+                          _c("br"),
+                          _vm._v(" "),
+                          _c("table", { staticClass: "table table-striped" }, [
+                            _vm._m(2),
+                            _vm._v(" "),
+                            _c(
+                              "tbody",
+                              _vm._l(_vm.myFiles, function(fileData, index) {
+                                return _c(
+                                  "tr",
+                                  { key: fileData.id, attrs: { index: index } },
+                                  [
+                                    _c("th", { attrs: { scope: "row" } }, [
+                                      _vm._v(_vm._s(index + 1))
+                                    ]),
+                                    _vm._v(" "),
+                                    _c("td", [_vm._v(_vm._s(fileData.name))]),
+                                    _vm._v(" "),
+                                    _c("td", [
+                                      _vm._v(
+                                        _vm._s(
+                                          _vm.getFileExtention(
+                                            fileData.file_path
+                                          )
+                                        )
+                                      )
+                                    ]),
+                                    _vm._v(" "),
+                                    _c("td", [
+                                      _c(
+                                        "a",
+                                        {
+                                          attrs: {
+                                            href: _vm.asset(
+                                              "storage/uploads/" +
+                                                fileData.file_path
+                                            ),
+                                            download: ""
+                                          }
+                                        },
+                                        [
+                                          _c("i", {
+                                            staticClass:
+                                              "fas fa-download text-dark fa-1x"
+                                          })
+                                        ]
+                                      )
+                                    ])
+                                  ]
+                                )
+                              }),
+                              0
+                            )
+                          ])
+                        ]),
                         _vm._v(" "),
                         _c(
                           "div",
@@ -960,35 +1053,15 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-md-4" }, [
-      _c("h4", [_vm._v("Access Files")]),
-      _vm._v(" "),
-      _c("br"),
-      _vm._v(" "),
-      _c("table", { staticClass: "table table-striped" }, [
-        _c("thead", [
-          _c("tr", [
-            _c("th", { attrs: { scope: "col" } }, [_vm._v("No..")]),
-            _vm._v(" "),
-            _c("th", { attrs: { scope: "col" } }, [_vm._v("File")]),
-            _vm._v(" "),
-            _c("th", { attrs: { scope: "col" } }, [_vm._v("Type")]),
-            _vm._v(" "),
-            _c("th", { attrs: { scope: "col" } }, [_vm._v("Action")])
-          ])
-        ]),
+    return _c("thead", [
+      _c("tr", [
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("No..")]),
         _vm._v(" "),
-        _c("tbody", [
-          _c("tr", [
-            _c("th", { attrs: { scope: "row" } }, [_vm._v("1")]),
-            _vm._v(" "),
-            _c("td", [_vm._v("Mark")]),
-            _vm._v(" "),
-            _c("td", [_vm._v("Otto")]),
-            _vm._v(" "),
-            _c("td", [_vm._v("@mdo")])
-          ])
-        ])
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("File")]),
+        _vm._v(" "),
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("Type")]),
+        _vm._v(" "),
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("Action")])
       ])
     ])
   }

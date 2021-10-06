@@ -163,11 +163,17 @@
                         </tr>
                       </thead>
                       <tbody>
-                        <tr>
-                          <th scope="row">1</th>
-                          <td>Mark</td>
-                          <td>Otto</td>
-                          <td>@mdo</td>
+                        <tr  v-for="(fileData, index) in myFiles"
+                        :index="index"
+                        :key="fileData.id">
+                          <th scope="row">{{ index + 1 }}</th>
+                          <td>{{ fileData.name}}</td>
+                          <td>{{ getFileExtention(fileData.file_path) }}</td>
+                          <td>
+                            <a v-bind:href="asset(`storage/uploads/${fileData.file_path}`)" download>
+                            <i class="fas fa-download text-dark fa-1x"></i>
+                        </a> 
+                          </td>
                         </tr>
                       </tbody>
                     </table>
@@ -195,7 +201,8 @@ export default {
     return {
       users: {},
       files: {},
-      tags: {}
+      tags: {},
+      myFiles: {}
     };
   },
   components: {
@@ -209,6 +216,7 @@ export default {
     this.getEmployees();
     this.getFiles();
     this.getTags();
+    this.getUserFiles();
   },
   methods: {
     mounted() {
@@ -245,6 +253,14 @@ export default {
         const response = await axios.get("files");
         this.files = response.data.data;
     },
+    async getUserFiles() {
+        const response = await axios.get("user-files");
+        this.myFiles = response.data.data;
+    },
+     getFileExtention(filePath) {
+                var ext =  filePath.split('.').pop();
+                return ext; 
+            },
     onChange(event) {
       let val = event.target.value;
       this.files = this.files.filter((item) => {

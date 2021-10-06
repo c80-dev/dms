@@ -16,31 +16,36 @@ class FileController extends Controller
         $this->middleware('auth:api');
     }
 
-    //all
     public function index()
     {
         return $this->fileRepository->allFiles();
     }
 
-    //create
     public function store(Request $request)
     {
         return  $this->fileRepository->createFile($request);
     }
 
-    //show
     public function show($id)
     {
         return $this->fileRepository->showFile($id);
     }
 
-    //update
     public function update(Request $request, $id)
     {
         return $this->fileRepository->updateFile($request, $id);
     }
 
-    //delete
+    public function authenticatedUserFiles()
+    {
+        return $this->fileRepository->authUserFiles();
+    }
+
+    public function addUserToFile(Request $request)
+    {
+        return $this->fileRepository->addUserToFIle($request);
+    }
+
     public function destroy($id)
     {
         return $this->fileRepository->deleteFile($id);

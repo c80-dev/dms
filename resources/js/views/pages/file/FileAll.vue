@@ -48,10 +48,7 @@
                 </div>
               </div>
           <div class="col-12">
-
-
                <Files :files="files" />
-
           </div>
         </div>
         <Footer />

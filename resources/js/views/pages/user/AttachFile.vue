@@ -72,7 +72,7 @@ export default {
       error: "",
       success: "",
       files: [],
-       selected_file: ""
+      selected_file: ""
       
     };
   },
@@ -93,13 +93,13 @@ export default {
     async onSubmitFile() {
         
         try {
-            const response = await axios.post("add-file-to-group", {
-            file_id: this.selected_file,
-            user_id: this.$route.params.id,
+            const response = await axios.post("add-user-to-file", {
+                file_id: this.selected_file,
+                user_id: this.$route.params.id,
             });
             alert(response.data.message);
         } catch (e) {
-            alert("Sorry select a user");
+            alert("Sorry select a file");
         }
     },
   },

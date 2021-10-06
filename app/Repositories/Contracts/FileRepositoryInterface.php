@@ -12,6 +12,10 @@ interface FileRepositoryInterface
 
     public function updateFile($request, $id);
 
+    public function authUserFiles();
+
+    public function addUserToFIle($request);
+
     public function deleteFile($id);
 
 }

@@ -85,7 +85,7 @@ class UserAction
             return UserResource::collection($users);
         }
     }
-
+    
     //get single user
     public function get($id)
     {
